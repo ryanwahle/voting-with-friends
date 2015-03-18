@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		681A00051AB9F285000FD77B /* Voting_with_FriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */; };
+		681AFFEB1AB9F285000FD77B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 681AFFEA1AB9F285000FD77B /* main.m */; };
+		681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 681AFFED1AB9F285000FD77B /* AppDelegate.m */; };
+		681AFFF11AB9F285000FD77B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681AFFF01AB9F285000FD77B /* ViewController.m */; };
+		681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF21AB9F285000FD77B /* Main.storyboard */; };
+		681AFFF61AB9F285000FD77B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF51AB9F285000FD77B /* Images.xcassets */; };
+		681AFFF91AB9F285000FD77B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF71AB9F285000FD77B /* LaunchScreen.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		681AFFFF1AB9F285000FD77B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 681AFFDD1AB9F285000FD77B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 681AFFE41AB9F285000FD77B;
+			remoteInfo = "Voting with Friends";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		681A00031AB9F285000FD77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Voting_with_FriendsTests.m; sourceTree = "<group>"; };
+		681AFFE51AB9F285000FD77B /* Voting with Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Voting with Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		681AFFE91AB9F285000FD77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		681AFFEA1AB9F285000FD77B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		681AFFEC1AB9F285000FD77B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		681AFFED1AB9F285000FD77B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		681AFFEF1AB9F285000FD77B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		681AFFF01AB9F285000FD77B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		681AFFF31AB9F285000FD77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		681AFFF51AB9F285000FD77B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		681AFFF81AB9F285000FD77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		681AFFFE1AB9F285000FD77B /* Voting with FriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Voting with FriendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		681AFFE21AB9F285000FD77B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		681AFFFB1AB9F285000FD77B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		681A00011AB9F285000FD77B /* Voting with FriendsTests */ = {
+			isa = PBXGroup;
+			children = (
+				681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */,
+				681A00021AB9F285000FD77B /* Supporting Files */,
+			);
+			path = "Voting with FriendsTests";
+			sourceTree = "<group>";
+		};
+		681A00021AB9F285000FD77B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				681A00031AB9F285000FD77B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		681AFFDC1AB9F285000FD77B = {
+			isa = PBXGroup;
+			children = (
+				681AFFE71AB9F285000FD77B /* Voting with Friends */,
+				681A00011AB9F285000FD77B /* Voting with FriendsTests */,
+				681AFFE61AB9F285000FD77B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		681AFFE61AB9F285000FD77B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				681AFFE51AB9F285000FD77B /* Voting with Friends.app */,
+				681AFFFE1AB9F285000FD77B /* Voting with FriendsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		681AFFE71AB9F285000FD77B /* Voting with Friends */ = {
+			isa = PBXGroup;
+			children = (
+				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
+				681AFFED1AB9F285000FD77B /* AppDelegate.m */,
+				681AFFEF1AB9F285000FD77B /* ViewController.h */,
+				681AFFF01AB9F285000FD77B /* ViewController.m */,
+				681AFFF21AB9F285000FD77B /* Main.storyboard */,
+				681AFFF51AB9F285000FD77B /* Images.xcassets */,
+				681AFFF71AB9F285000FD77B /* LaunchScreen.xib */,
+				681AFFE81AB9F285000FD77B /* Supporting Files */,
+			);
+			path = "Voting with Friends";
+			sourceTree = "<group>";
+		};
+		681AFFE81AB9F285000FD77B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				681AFFE91AB9F285000FD77B /* Info.plist */,
+				681AFFEA1AB9F285000FD77B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		681AFFE41AB9F285000FD77B /* Voting with Friends */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 681A00081AB9F285000FD77B /* Build configuration list for PBXNativeTarget "Voting with Friends" */;
+			buildPhases = (
+				681AFFE11AB9F285000FD77B /* Sources */,
+				681AFFE21AB9F285000FD77B /* Frameworks */,
+				681AFFE31AB9F285000FD77B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Voting with Friends";
+			productName = "Voting with Friends";
+			productReference = 681AFFE51AB9F285000FD77B /* Voting with Friends.app */;
+			productType = "com.apple.product-type.application";
+		};
+		681AFFFD1AB9F285000FD77B /* Voting with FriendsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 681A000B1AB9F285000FD77B /* Build configuration list for PBXNativeTarget "Voting with FriendsTests" */;
+			buildPhases = (
+				681AFFFA1AB9F285000FD77B /* Sources */,
+				681AFFFB1AB9F285000FD77B /* Frameworks */,
+				681AFFFC1AB9F285000FD77B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				681A00001AB9F285000FD77B /* PBXTargetDependency */,
+			);
+			name = "Voting with FriendsTests";
+			productName = "Voting with FriendsTests";
+			productReference = 681AFFFE1AB9F285000FD77B /* Voting with FriendsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		681AFFDD1AB9F285000FD77B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Ryan Wahle";
+				TargetAttributes = {
+					681AFFE41AB9F285000FD77B = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					681AFFFD1AB9F285000FD77B = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 681AFFE41AB9F285000FD77B;
+					};
+				};
+			};
+			buildConfigurationList = 681AFFE01AB9F285000FD77B /* Build configuration list for PBXProject "Voting with Friends" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 681AFFDC1AB9F285000FD77B;
+			productRefGroup = 681AFFE61AB9F285000FD77B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				681AFFE41AB9F285000FD77B /* Voting with Friends */,
+				681AFFFD1AB9F285000FD77B /* Voting with FriendsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		681AFFE31AB9F285000FD77B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */,
+				681AFFF91AB9F285000FD77B /* LaunchScreen.xib in Resources */,
+				681AFFF61AB9F285000FD77B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		681AFFFC1AB9F285000FD77B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		681AFFE11AB9F285000FD77B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681AFFF11AB9F285000FD77B /* ViewController.m in Sources */,
+				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
+				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		681AFFFA1AB9F285000FD77B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681A00051AB9F285000FD77B /* Voting_with_FriendsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		681A00001AB9F285000FD77B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 681AFFE41AB9F285000FD77B /* Voting with Friends */;
+			targetProxy = 681AFFFF1AB9F285000FD77B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		681AFFF21AB9F285000FD77B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				681AFFF31AB9F285000FD77B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		681AFFF71AB9F285000FD77B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				681AFFF81AB9F285000FD77B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		681A00061AB9F285000FD77B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		681A00071AB9F285000FD77B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		681A00091AB9F285000FD77B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Voting with Friends/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		681A000A1AB9F285000FD77B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Voting with Friends/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		681A000C1AB9F285000FD77B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Voting with FriendsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voting with Friends.app/Voting with Friends";
+			};
+			name = Debug;
+		};
+		681A000D1AB9F285000FD77B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Voting with FriendsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voting with Friends.app/Voting with Friends";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		681A00081AB9F285000FD77B /* Build configuration list for PBXNativeTarget "Voting with Friends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681A00091AB9F285000FD77B /* Debug */,
+				681A000A1AB9F285000FD77B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		681A000B1AB9F285000FD77B /* Build configuration list for PBXNativeTarget "Voting with FriendsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681A000C1AB9F285000FD77B /* Debug */,
+				681A000D1AB9F285000FD77B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		681AFFE01AB9F285000FD77B /* Build configuration list for PBXProject "Voting with Friends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681A00061AB9F285000FD77B /* Debug */,
+				681A00071AB9F285000FD77B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 681AFFDD1AB9F285000FD77B /* Project object */;
+}
