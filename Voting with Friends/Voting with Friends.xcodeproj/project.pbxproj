@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		681A00051AB9F285000FD77B /* Voting_with_FriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */; };
+		681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 681A000F1ABA1CBD000FD77B /* PollsVC.m */; };
 		681AFFEB1AB9F285000FD77B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 681AFFEA1AB9F285000FD77B /* main.m */; };
 		681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 681AFFED1AB9F285000FD77B /* AppDelegate.m */; };
 		681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF21AB9F285000FD77B /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 /* Begin PBXFileReference section */
 		681A00031AB9F285000FD77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Voting_with_FriendsTests.m; sourceTree = "<group>"; };
+		681A000E1ABA1CBD000FD77B /* PollsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollsVC.h; sourceTree = "<group>"; };
+		681A000F1ABA1CBD000FD77B /* PollsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollsVC.m; sourceTree = "<group>"; };
 		681AFFE51AB9F285000FD77B /* Voting with Friends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Voting with Friends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		681AFFE91AB9F285000FD77B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		681AFFEA1AB9F285000FD77B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 			children = (
 				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
 				681AFFED1AB9F285000FD77B /* AppDelegate.m */,
+				681A000E1ABA1CBD000FD77B /* PollsVC.h */,
+				681A000F1ABA1CBD000FD77B /* PollsVC.m */,
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				681AFFF51AB9F285000FD77B /* Images.xcassets */,
 				681AFFF71AB9F285000FD77B /* LaunchScreen.xib */,
@@ -215,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */,
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
 			);
