@@ -33,12 +33,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return 1;
+    } else if (section == 2) {
+        return 5;
+    } else if (section == 3) {
+        return 3;
+    }
+
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,22 +59,15 @@
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
     } else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
+    } else if (indexPath.section == 2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
+    } else if (indexPath.section == 3) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
     }
     
-       
     return cell;
 }
-
-/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Section 1";
-    } else if (section == 1) {
-        return @"Section 2";
-    }
-    
-    return @"No section";
-}*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewCell *sectionCell = nil;
@@ -72,23 +77,31 @@
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerOptions"];
     } else if (section == 1) {
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
+    } else if (section == 2) {
+        sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerAnswerKey"];
+    } else if (section == 3) {
+        sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerFriendList"];
     }
-    
+
     return sectionCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 45.0;
+    return 50.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 92;
+        return 88;
     } else if (indexPath.section == 1) {
-        return 92;
+        return 88;
+    } else if (indexPath.section == 2) {
+        return 44;
+    } else if (indexPath.section == 3) {
+        return 44;
     }
     
-    return 22;
+    return 44;
 }
 
 /*
