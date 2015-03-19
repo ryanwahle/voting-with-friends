@@ -126,10 +126,38 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    
+    NSLog(@"Selected user");
+    
+    NSString *selectedFirstName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+    NSString *selectedLastName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
+    
+    ABMultiValueRef emails = ABRecordCopyValue(person, property);
+    CFIndex index = ABMultiValueGetIndexForIdentifier(emails, identifier);
+    
+    NSString *selectedEmail = CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, index));
+    
+    CFRelease(emails);
+    
+    NSLog(@"name: %@ %@ / email selected: %@", selectedFirstName, selectedLastName, selectedEmail);
+
+    
+}
+
 - (IBAction)addFriendButtonTouched:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add Friend to Vote" message:@"How would you like to enter the email address?" preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *alertContacts = [UIAlertAction actionWithTitle:@"From Contacts" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        ABPeoplePickerNavigationController *emailPickerFromContacts = [[ABPeoplePickerNavigationController alloc] init];
+        emailPickerFromContacts.peoplePickerDelegate = self;
+        
+        emailPickerFromContacts.predicateForEnablingPerson = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+        emailPickerFromContacts.displayedProperties = @[@(kABPersonEmailProperty)];
+        
+        [self presentViewController:emailPickerFromContacts animated:YES completion:nil];
+        
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
     

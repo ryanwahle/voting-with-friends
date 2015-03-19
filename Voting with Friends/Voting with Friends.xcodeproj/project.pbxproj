@@ -104,18 +104,18 @@
 		681AFFE71AB9F285000FD77B /* Voting with Friends */ = {
 			isa = PBXGroup;
 			children = (
-				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
-				681AFFED1AB9F285000FD77B /* AppDelegate.m */,
 				681A000E1ABA1CBD000FD77B /* PollsVC.h */,
 				681A000F1ABA1CBD000FD77B /* PollsVC.m */,
-				681AFFF21AB9F285000FD77B /* Main.storyboard */,
-				681AFFF51AB9F285000FD77B /* Images.xcassets */,
-				681AFFF71AB9F285000FD77B /* LaunchScreen.xib */,
-				681AFFE81AB9F285000FD77B /* Supporting Files */,
 				681A00111ABA2F04000FD77B /* AddEditPollVC.h */,
 				681A00121ABA2F04000FD77B /* AddEditPollVC.m */,
 				681A00141ABA4533000FD77B /* VoteVC.h */,
 				681A00151ABA4533000FD77B /* VoteVC.m */,
+				681AFFF21AB9F285000FD77B /* Main.storyboard */,
+				681AFFE81AB9F285000FD77B /* Supporting Files */,
+				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
+				681AFFED1AB9F285000FD77B /* AppDelegate.m */,
+				681AFFF71AB9F285000FD77B /* LaunchScreen.xib */,
+				681AFFF51AB9F285000FD77B /* Images.xcassets */,
 			);
 			path = "Voting with Friends";
 			sourceTree = "<group>";
@@ -418,6 +418,7 @@
 				681A000A1AB9F285000FD77B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		681A000B1AB9F285000FD77B /* Build configuration list for PBXNativeTarget "Voting with FriendsTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +427,7 @@
 				681A000D1AB9F285000FD77B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		681AFFE01AB9F285000FD77B /* Build configuration list for PBXProject "Voting with Friends" */ = {
 			isa = XCConfigurationList;
