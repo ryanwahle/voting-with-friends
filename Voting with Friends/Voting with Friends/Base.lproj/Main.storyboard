@@ -335,6 +335,15 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTn-FX-w9I">
+                                            <rect key="frame" x="384" y="11" width="22" height="22"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addAnswerKeyButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="NaL-Yy-UJF"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -349,6 +358,9 @@
                                             <state key="normal" title="Remove">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="removeAnswerKeyButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="MJF-S1-2so"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Possible Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Pv-JDl">
                                             <rect key="frame" x="73" y="11" width="127" height="21"/>
@@ -370,6 +382,15 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rws-69-0gK">
+                                            <rect key="frame" x="384" y="11" width="22" height="22"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addFriendButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="1d5-F5-aGi"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -384,6 +405,9 @@
                                             <state key="normal" title="Remove">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="removeFriendButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="N0J-bb-nav"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend (friend@gmail.com)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSa-Dt-FxW">
                                             <rect key="frame" x="73" y="11" width="199" height="21"/>
@@ -496,7 +520,7 @@
         <image name="Voting with Friends" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="orz-mL-BLn"/>
+        <segue reference="JOM-bL-RYy"/>
         <segue reference="u3S-Te-ief"/>
     </inferredMetricsTieBreakers>
 </document>
