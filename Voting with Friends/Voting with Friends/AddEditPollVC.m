@@ -21,7 +21,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,7 +140,7 @@
     
     CFRelease(emails);
     
-    NSLog(@"name: %@ %@ / email selected: %@", selectedFirstName, selectedLastName, selectedEmail);
+    NSLog(@"%@ - name: %@ %@ / email selected: %@", ABPersonEmailAddressesProperty, selectedFirstName, selectedLastName, selectedEmail);
 
     
 }

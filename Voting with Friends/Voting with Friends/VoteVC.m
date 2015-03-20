@@ -93,6 +93,16 @@
     return 44;
 }
 
+- (IBAction)buttonCheckTouched:(UIButton *)sender {
+    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+    
+    sender.selected = !sender.selected;
+    
+    
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
