@@ -18,6 +18,7 @@
 		681AFFF91AB9F285000FD77B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF71AB9F285000FD77B /* LaunchScreen.xib */; };
 		68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E08A1ABB71520093C5A4 /* AnswerCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
+		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		68B9E08A1ABB71520093C5A4 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		68B9E0911ABB94090093C5A4 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		68C54AEE1ABF697900A51092 /* SignupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupVC.h; sourceTree = "<group>"; };
+		68C54AEF1ABF697900A51092 /* SignupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 				68B9E08C1ABB71560093C5A4 /* Table Cells */,
 				68B9E0901ABB94090093C5A4 /* LoginVC.h */,
 				68B9E0911ABB94090093C5A4 /* LoginVC.m */,
+				68C54AEE1ABF697900A51092 /* SignupVC.h */,
+				68C54AEF1ABF697900A51092 /* SignupVC.m */,
 				681A000E1ABA1CBD000FD77B /* PollsVC.h */,
 				681A000F1ABA1CBD000FD77B /* PollsVC.m */,
 				681A00111ABA2F04000FD77B /* AddEditPollVC.h */,
@@ -252,6 +257,7 @@
 				681A00131ABA2F04000FD77B /* AddEditPollVC.m in Sources */,
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */,
+				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
 				681A00161ABA4533000FD77B /* VoteVC.m in Sources */,
 				68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */,
 				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
