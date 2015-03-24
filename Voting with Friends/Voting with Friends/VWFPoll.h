@@ -7,13 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface VWFPoll : NSObject
+@interface VWFPoll : PFObject <PFSubclassing>
 
-@property NSDate *createdAt;
+//@property NSDate *createdAt;
 @property NSString *pollQuestion;
 
 @property BOOL showActivity;
 @property BOOL showIndividualAnswerTotals;
+
+
++ (NSString *)parseClassName;
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "PollsVC.h"
+#import "VWFPoll.h"
 
 @interface PollsVC ()
+
+@property NSArray *pollsFromCloud;
 
 @end
 
@@ -17,19 +20,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataUpdated" object:nil];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _pollsFromCloud = @[];
+    
+    PFQuery *queryForPolls = [VWFPoll query];
+    [queryForPolls findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"(viewDidLoad) Error: %@ %@", error, [error userInfo]);
+        } else {
+            NSLog(@"(viewDidLoad) Found %lu polls in the cloud.", objects.count);
+            _pollsFromCloud = objects;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataUpdated" object:nil];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
+
+- (void)updateTableView {
+    [self.tableView reloadData];
+    NSLog(@"(updateTableView) TableView reloadData called.");
+    NSLog(@"(updateTableView) _pollsFromCloud.count = %lu", _pollsFromCloud.count);
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -38,7 +51,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return _pollsFromCloud.count;
 }
 
 
@@ -46,6 +59,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    
+    
     
     return cell;
 }

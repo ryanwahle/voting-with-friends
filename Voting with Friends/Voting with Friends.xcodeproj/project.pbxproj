@@ -24,6 +24,7 @@
 		68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */; };
 		68989BF21AC1FA3200FD8323 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */; };
 		68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */; };
+		68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFC1AC20A2700FD8323 /* PollCell.m */; };
 		68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E08A1ABB71520093C5A4 /* AnswerCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
@@ -66,6 +67,8 @@
 		68989BE81AC1F99600FD8323 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		68989BFB1AC20A2700FD8323 /* PollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollCell.h; sourceTree = "<group>"; };
+		68989BFC1AC20A2700FD8323 /* PollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollCell.m; sourceTree = "<group>"; };
 		68B9E0891ABB71520093C5A4 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
 		68B9E08A1ABB71520093C5A4 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 			children = (
 				68B9E0891ABB71520093C5A4 /* AnswerCell.h */,
 				68B9E08A1ABB71520093C5A4 /* AnswerCell.m */,
+				68989BFB1AC20A2700FD8323 /* PollCell.h */,
+				68989BFC1AC20A2700FD8323 /* PollCell.m */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */,
 				681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */,
 				681A00131ABA2F04000FD77B /* AddEditPollVC.m in Sources */,
 				68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */,

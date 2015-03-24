@@ -7,7 +7,20 @@
 //
 
 #import "VWFPoll.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation VWFPoll
+
+@dynamic pollQuestion;
+@dynamic showActivity;
+@dynamic showIndividualAnswerTotals;
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"Polls";
+}
 
 @end
