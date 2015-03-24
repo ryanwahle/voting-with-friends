@@ -16,6 +16,14 @@
 		681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF21AB9F285000FD77B /* Main.storyboard */; };
 		681AFFF61AB9F285000FD77B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF51AB9F285000FD77B /* Images.xcassets */; };
 		681AFFF91AB9F285000FD77B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF71AB9F285000FD77B /* LaunchScreen.xib */; };
+		68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BDD1AC1E8B200FD8323 /* VWFPoll.m */; };
+		68989BE21AC1F87200FD8323 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE01AC1F87200FD8323 /* Bolts.framework */; };
+		68989BE31AC1F87200FD8323 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE11AC1F87200FD8323 /* Parse.framework */; };
+		68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE61AC1F98C00FD8323 /* libz.dylib */; };
+		68989BE91AC1F99600FD8323 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE81AC1F99600FD8323 /* libsqlite3.dylib */; };
+		68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */; };
+		68989BF21AC1FA3200FD8323 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */; };
+		68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */; };
 		68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E08A1ABB71520093C5A4 /* AnswerCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
@@ -49,6 +57,15 @@
 		681AFFF51AB9F285000FD77B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		681AFFF81AB9F285000FD77B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		681AFFFE1AB9F285000FD77B /* Voting with FriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Voting with FriendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68989BDC1AC1E8B200FD8323 /* VWFPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFPoll.h; sourceTree = "<group>"; };
+		68989BDD1AC1E8B200FD8323 /* VWFPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFPoll.m; sourceTree = "<group>"; };
+		68989BE01AC1F87200FD8323 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		68989BE11AC1F87200FD8323 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		68989BE61AC1F98C00FD8323 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		68989BE81AC1F99600FD8323 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		68B9E0891ABB71520093C5A4 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
 		68B9E08A1ABB71520093C5A4 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
@@ -62,6 +79,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */,
+				68989BF21AC1FA3200FD8323 /* MobileCoreServices.framework in Frameworks */,
+				68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */,
+				68989BE91AC1F99600FD8323 /* libsqlite3.dylib in Frameworks */,
+				68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */,
+				68989BE31AC1F87200FD8323 /* Parse.framework in Frameworks */,
+				68989BE21AC1F87200FD8323 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +119,7 @@
 		681AFFDC1AB9F285000FD77B = {
 			isa = PBXGroup;
 			children = (
+				68989BDF1AC1F85600FD8323 /* Frameworks */,
 				681AFFE71AB9F285000FD77B /* Voting with Friends */,
 				681A00011AB9F285000FD77B /* Voting with FriendsTests */,
 				681AFFE61AB9F285000FD77B /* Products */,
@@ -130,6 +155,8 @@
 				681AFFED1AB9F285000FD77B /* AppDelegate.m */,
 				681AFFF71AB9F285000FD77B /* LaunchScreen.xib */,
 				681AFFF51AB9F285000FD77B /* Images.xcassets */,
+				68989BDC1AC1E8B200FD8323 /* VWFPoll.h */,
+				68989BDD1AC1E8B200FD8323 /* VWFPoll.m */,
 			);
 			path = "Voting with Friends";
 			sourceTree = "<group>";
@@ -141,6 +168,20 @@
 				681AFFEA1AB9F285000FD77B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68989BDF1AC1F85600FD8323 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */,
+				68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */,
+				68989BE81AC1F99600FD8323 /* libsqlite3.dylib */,
+				68989BE61AC1F98C00FD8323 /* libz.dylib */,
+				68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */,
+				68989BE01AC1F87200FD8323 /* Bolts.framework */,
+				68989BE11AC1F87200FD8323 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		68B9E08C1ABB71560093C5A4 /* Table Cells */ = {
@@ -255,6 +296,7 @@
 			files = (
 				681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */,
 				681A00131ABA2F04000FD77B /* AddEditPollVC.m in Sources */,
+				68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */,
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */,
 				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
@@ -383,6 +425,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -394,6 +440,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
