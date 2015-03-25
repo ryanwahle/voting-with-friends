@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
     self.tableView.estimatedRowHeight = 88.0;
-    //self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataUpdated" object:nil];
     

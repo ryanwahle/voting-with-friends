@@ -150,8 +150,7 @@
 				68C54AEE1ABF697900A51092 /* SignupVC.h */,
 				68C54AEF1ABF697900A51092 /* SignupVC.m */,
 				68989C021AC2191700FD8323 /* Polls ViewController */,
-				681A00111ABA2F04000FD77B /* AddEditPollVC.h */,
-				681A00121ABA2F04000FD77B /* AddEditPollVC.m */,
+				68989C031AC2732100FD8323 /* AddEditPoll ViewController */,
 				68989C011AC218F700FD8323 /* Vote ViewController */,
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				681AFFE81AB9F285000FD77B /* Supporting Files */,
@@ -208,6 +207,15 @@
 				68989BFC1AC20A2700FD8323 /* PollCell.m */,
 			);
 			name = "Polls ViewController";
+			sourceTree = "<group>";
+		};
+		68989C031AC2732100FD8323 /* AddEditPoll ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				681A00111ABA2F04000FD77B /* AddEditPollVC.h */,
+				681A00121ABA2F04000FD77B /* AddEditPollVC.m */,
+			);
+			name = "AddEditPoll ViewController";
 			sourceTree = "<group>";
 		};
 		68B9E08C1ABB71560093C5A4 /* Table Cells */ = {
