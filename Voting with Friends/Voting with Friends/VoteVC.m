@@ -7,6 +7,7 @@
 //
 
 #import "VoteVC.h"
+#import "QuestionCell.h"
 
 @interface VoteVC ()
 
@@ -17,16 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (_pollData) {
+        NSLog(@"Recieved vote data: (%@)", _pollData.pollQuestion);
+    }
 }
 
 #pragma mark - Table view data source
@@ -49,17 +46,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
-    
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
+        QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
+       
+        cell.pollQuestion.text = _pollData.pollQuestion;
+        
+        return cell;
     } else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+        return cell;
     } else if (indexPath.section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        return cell;
     }
     
-    return cell;
+    return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -81,6 +82,7 @@
     return 50.0;
 }
 
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 88;
@@ -92,14 +94,10 @@
     
     return 44;
 }
+ */
 
 - (IBAction)buttonCheckTouched:(UIButton *)sender {
-    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
-    
     sender.selected = !sender.selected;
-    
-    
 }
 
 

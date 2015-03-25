@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VWFPoll.h"
 
 @interface VoteVC : UITableViewController
+
+@property VWFPoll *pollData;
 
 @end

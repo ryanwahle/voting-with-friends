@@ -25,6 +25,7 @@
 		68989BF21AC1FA3200FD8323 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */; };
 		68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */; };
 		68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFC1AC20A2700FD8323 /* PollCell.m */; };
+		68989C001AC2189100FD8323 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFF1AC2189100FD8323 /* QuestionCell.m */; };
 		68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E08A1ABB71520093C5A4 /* AnswerCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
@@ -69,6 +70,8 @@
 		68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		68989BFB1AC20A2700FD8323 /* PollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollCell.h; sourceTree = "<group>"; };
 		68989BFC1AC20A2700FD8323 /* PollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollCell.m; sourceTree = "<group>"; };
+		68989BFE1AC2189100FD8323 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
+		68989BFF1AC2189100FD8323 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
 		68B9E0891ABB71520093C5A4 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
 		68B9E08A1ABB71520093C5A4 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
@@ -146,12 +149,10 @@
 				68B9E0911ABB94090093C5A4 /* LoginVC.m */,
 				68C54AEE1ABF697900A51092 /* SignupVC.h */,
 				68C54AEF1ABF697900A51092 /* SignupVC.m */,
-				681A000E1ABA1CBD000FD77B /* PollsVC.h */,
-				681A000F1ABA1CBD000FD77B /* PollsVC.m */,
+				68989C021AC2191700FD8323 /* Polls ViewController */,
 				681A00111ABA2F04000FD77B /* AddEditPollVC.h */,
 				681A00121ABA2F04000FD77B /* AddEditPollVC.m */,
-				681A00141ABA4533000FD77B /* VoteVC.h */,
-				681A00151ABA4533000FD77B /* VoteVC.m */,
+				68989C011AC218F700FD8323 /* Vote ViewController */,
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				681AFFE81AB9F285000FD77B /* Supporting Files */,
 				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
@@ -187,13 +188,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		68989C011AC218F700FD8323 /* Vote ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				681A00141ABA4533000FD77B /* VoteVC.h */,
+				681A00151ABA4533000FD77B /* VoteVC.m */,
+				68989BFE1AC2189100FD8323 /* QuestionCell.h */,
+				68989BFF1AC2189100FD8323 /* QuestionCell.m */,
+			);
+			name = "Vote ViewController";
+			sourceTree = "<group>";
+		};
+		68989C021AC2191700FD8323 /* Polls ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				681A000E1ABA1CBD000FD77B /* PollsVC.h */,
+				681A000F1ABA1CBD000FD77B /* PollsVC.m */,
+				68989BFB1AC20A2700FD8323 /* PollCell.h */,
+				68989BFC1AC20A2700FD8323 /* PollCell.m */,
+			);
+			name = "Polls ViewController";
+			sourceTree = "<group>";
+		};
 		68B9E08C1ABB71560093C5A4 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
 				68B9E0891ABB71520093C5A4 /* AnswerCell.h */,
 				68B9E08A1ABB71520093C5A4 /* AnswerCell.m */,
-				68989BFB1AC20A2700FD8323 /* PollCell.h */,
-				68989BFC1AC20A2700FD8323 /* PollCell.m */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -305,6 +326,7 @@
 				68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */,
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				68B9E08B1ABB71520093C5A4 /* AnswerCell.m in Sources */,
+				68989C001AC2189100FD8323 /* QuestionCell.m in Sources */,
 				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
 				681A00161ABA4533000FD77B /* VoteVC.m in Sources */,
 				68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */,
