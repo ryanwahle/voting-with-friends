@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "VWFPoll.h"
 
 @interface AddEditPollVC : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
+
+@property VWFPoll *pollData;
 
 @end

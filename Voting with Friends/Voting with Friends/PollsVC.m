@@ -89,7 +89,7 @@
     return pollCell;
 }
 
-#pragma mark - Segues
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {    
     if ([segue.identifier isEqualToString:@"Vote"]) {

@@ -212,7 +212,7 @@
                                     <outlet property="pollQuestion" destination="H6z-ig-Njt" id="N9a-1Y-TAT"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellAnswer" id="hya-3U-tAN" customClass="AnswerCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellAnswer" id="hya-3U-tAN">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hya-3U-tAN" id="toO-gN-hbQ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -324,7 +324,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOptions" rowHeight="88" id="qiz-j1-49d">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOptions" rowHeight="88" id="qiz-j1-49d" customClass="OptionsCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiz-j1-49d" id="JNY-cd-Ba3">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -351,6 +351,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="showActivityUISwitch" destination="pcr-Ys-mqK" id="S3R-M4-FdH"/>
+                                    <outlet property="showIndividualAnswerTotalsUISwitch" destination="9aL-dw-yGV" id="lsf-y1-cEw"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerQuestion" id="zD0-0G-tbw">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -366,7 +370,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellQuestion" rowHeight="88" id="8a8-4t-rS7">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellQuestion" rowHeight="88" id="8a8-4t-rS7" customClass="AddEditPollQuestionCell">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8a8-4t-rS7" id="9VK-ls-iqN">
@@ -379,6 +383,9 @@
                                         </textField>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="questionUITextField" destination="7UM-uO-XaE" id="px7-AX-WH4"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerAnswerKey" id="rnz-dU-04s">
                                 <autoresizingMask key="autoresizingMask"/>
