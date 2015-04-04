@@ -578,7 +578,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="o5j-7W-PnL" kind="modal" id="orz-mL-BLn"/>
+                                    <segue destination="o5j-7W-PnL" kind="modal" identifier="SignupButtonSegue" id="z9g-SH-PDF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62i-0P-OsE">
@@ -622,6 +622,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="o5j-7W-PnL" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="PXm-7b-MmP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="BackIcon" backIndicatorTransitionMaskImage="BackIcon" id="IBz-09-Bch">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -661,6 +662,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="u3S-Te-ief"/>
-        <segue reference="JOM-bL-RYy"/>
+        <segue reference="z9g-SH-PDF"/>
     </inferredMetricsTieBreakers>
 </document>

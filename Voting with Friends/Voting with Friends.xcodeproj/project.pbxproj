@@ -160,10 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
-				68B9E0901ABB94090093C5A4 /* LoginVC.h */,
-				68B9E0911ABB94090093C5A4 /* LoginVC.m */,
-				68C54AEE1ABF697900A51092 /* SignupVC.h */,
-				68C54AEF1ABF697900A51092 /* SignupVC.m */,
+				68C841671ACFAA4900FE38CC /* Login */,
+				68C841681ACFAA5300FE38CC /* Signup */,
 				68989C021AC2191700FD8323 /* Polls ViewController */,
 				68989C011AC218F700FD8323 /* Vote ViewController */,
 				68989C031AC2732100FD8323 /* AddEditPoll ViewController */,
@@ -250,6 +248,24 @@
 				6835F32C1ACF201800695D63 /* AddEditPollAnswerCell.m */,
 			);
 			name = "AddEditPoll ViewController";
+			sourceTree = "<group>";
+		};
+		68C841671ACFAA4900FE38CC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				68B9E0901ABB94090093C5A4 /* LoginVC.h */,
+				68B9E0911ABB94090093C5A4 /* LoginVC.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		68C841681ACFAA5300FE38CC /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				68C54AEE1ABF697900A51092 /* SignupVC.h */,
+				68C54AEF1ABF697900A51092 /* SignupVC.m */,
+			);
+			name = Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

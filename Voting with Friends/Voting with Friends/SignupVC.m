@@ -44,5 +44,31 @@
     return textFieldBorder;
 }
 
+- (void) signupNewUser {
+    PFUser *newUser = [PFUser user];
+    
+    newUser.username = _emailUITextField.text;
+    newUser.password = _passwordUITextField.text;
+    newUser.email = _emailUITextField.text;
+    
+    newUser[@"name"] = _nameUITextField.text;
+    
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self performSegueWithIdentifier:@"SignupButtonSegue" sender:nil];
+        } else {
+            // Error
+        }
+    }];
+}
+
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"SignupButtonSegue"]) {
+        [self signupNewUser];
+        return NO;
+    }
+    
+    return YES;
+}
 
 @end
