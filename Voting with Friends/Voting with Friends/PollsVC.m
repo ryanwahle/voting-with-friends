@@ -7,7 +7,6 @@
 //
 
 #import "PollsVC.h"
-#import "VWFPoll.h"
 #import "PollCell.h"
 #import "VoteVC.h"
 
@@ -19,8 +18,8 @@
 
 @implementation PollsVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     self.tableView.estimatedRowHeight = 88.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -47,7 +46,10 @@
         } else {
             NSLog(@"(viewDidLoad) Found %lu polls in the cloud.", objects.count);
             _pollsFromCloud = objects;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataUpdated" object:nil];
+            
+            for (VWFPoll *poll in _pollsFromCloud) {
+                [poll refreshCloudDataAndPostNotification:@"cloudDataUpdated"];
+            }
         }
     }];
 }
@@ -67,9 +69,7 @@
     
     [self.refreshControl endRefreshing];
     
-    
-    NSLog(@"(updateTableView) TableView reloadData called.");
-    NSLog(@"(updateTableView) _pollsFromCloud.count = %lu", _pollsFromCloud.count);
+    NSLog(@"refreshing tableview");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -85,6 +85,12 @@
     
     PollCell *pollCell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
     pollCell.pollQuestion.text = pollData.pollQuestion;
+    
+    if (pollData.currentSelectedAnswer) {
+        [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
+    } else {
+        [pollCell.voteButton setTitle: @"Please Vote" forState: UIControlStateNormal];
+    }
     
     return pollCell;
 }

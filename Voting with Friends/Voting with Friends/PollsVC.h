@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VWFPoll.h"
 
 @interface PollsVC : UITableViewController
 

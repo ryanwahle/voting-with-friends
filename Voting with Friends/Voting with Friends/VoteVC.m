@@ -9,6 +9,7 @@
 #import "VoteVC.h"
 #import "QuestionCell.h"
 #import "AddEditPollVC.h"
+#import "VoteAnswerCell.h"
 
 @interface VoteVC ()
 
@@ -16,29 +17,36 @@
 
 @implementation VoteVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    self.tableView.estimatedRowHeight = 44.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self updateTableView];
     
-    if (_pollData) {
-        NSLog(@"Recieved vote data: (%@)", _pollData.pollQuestion);
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"vote_cloudDataUpdated" object:nil];
+    
+    [_pollData refreshCloudDataAndPostNotification:@"vote_cloudDataUpdated"];
 }
 
 #pragma mark - Table view data source
+
+- (void)updateTableView {
+    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self.tableView reloadData];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 0) { // Question Section
         return 1;
-    } else if (section == 1) {
-        return 4;
-    } else if (section == 2) {
+    } else if (section == 1) { // Answer Section
+        return _pollData.pollAnswerKeys.count;
+    } else if ((section == 2) && _pollData.showActivity) { // Activity Section
         return 3;
     }
     
@@ -47,16 +55,34 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0) { // Question Section
         QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
        
         cell.pollQuestion.text = _pollData.pollQuestion;
         
         return cell;
-    } else if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+    } else if (indexPath.section == 1) { // Answer Section
+        VoteAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+        
+        if (_pollData.showIndividualAnswerTotals) {
+            cell.totalVotesUILabel.hidden = NO;
+        } else {
+            cell.totalVotesUILabel.hidden = YES;
+        }
+        
+        cell.answerUILabel.text = ((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).pollAnswer;
+        
+        if ([_pollData.currentSelectedAnswer.answerPointer.objectId isEqualToString:((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).objectId]) {
+            cell.selectedVoteButton.selected = YES;
+        } else {
+            cell.selectedVoteButton.selected = NO;
+        }
+        
+        NSLog(@"total votes: %ld", (long)((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).totalNumberOfVotes);
+        cell.totalVotesUILabel.text = [NSString stringWithFormat:@"%ld votes", (long)((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).totalNumberOfVotes];
+        
         return cell;
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 2) { // Activity Section
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
         return cell;
     }
@@ -68,11 +94,11 @@
     UITableViewCell *sectionCell = nil;
     
     
-    if (section == 0) {
+    if (section == 0) { // Question Section
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
-    } else if (section == 1) {
-        //sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
-    } else if (section == 2) {
+    } else if (section == 1) { // Answer Section
+        // There is no header for the answers
+    } else if ((section == 2) && _pollData.showActivity) { // Activity Section
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerActivity"];
     }
     
@@ -83,8 +109,40 @@
     return 50.0;
 }
 
+# pragma mark - Answers
+
 - (IBAction)buttonCheckTouched:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+    
+    // Remove the currently selected answer from database
+    if (_pollData.currentSelectedAnswer) {
+        [_pollData.currentSelectedAnswer deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            // Add newly selected answer to database
+            [self saveSelectedAnswer:indexPath.row];
+        }];
+    } else {
+        [self saveSelectedAnswer:indexPath.row];
+    }
+}
+
+- (void)saveSelectedAnswer:(NSInteger) row {
+    VWFUserAnswerForPoll *currentAnswer = [VWFUserAnswerForPoll object];
+    currentAnswer.pollPointer = [VWFPoll objectWithoutDataWithObjectId:_pollData.objectId];
+    currentAnswer.answerPointer = [VWFAnswers objectWithoutDataWithObjectId:((VWFAnswers *)_pollData.pollAnswerKeys[row]).objectId];
+    [currentAnswer saveEventually:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // Refresh the data from the database and update tableview
+            [_pollData refreshCloudDataAndPostNotification:@"vote_cloudDataUpdated"];
+        }
+    }];
+}
+
+#pragma mark - Delete Poll
+
+- (IBAction)deletePollButtonTouched:(UIBarButtonItem *)sender {
+    [_pollData deletePoll];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigation

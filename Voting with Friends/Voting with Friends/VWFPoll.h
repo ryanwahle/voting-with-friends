@@ -9,15 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+#import "VWFAnswers.h"
+#import "VWFUserAnswerForPoll.h"
+
+@class VWFUserAnswerForPoll;
+
 @interface VWFPoll : PFObject <PFSubclassing>
 
-//@property NSDate *createdAt;
 @property NSString *pollQuestion;
+@property NSArray *pollAnswerKeys;
+@property VWFUserAnswerForPoll *currentSelectedAnswer;
 
 @property BOOL showActivity;
 @property BOOL showIndividualAnswerTotals;
 
-
 + (NSString *)parseClassName;
+
+- (void)refreshCloudDataAndPostNotification:(NSString *)notificationString;
+- (void)deletePoll;
 
 @end

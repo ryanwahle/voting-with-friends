@@ -10,7 +10,6 @@
 
 @interface AddEditPollQuestionCell : UITableViewCell
 
-
-@property (weak, nonatomic) IBOutlet UITextField *questionUITextField;
+@property (weak, nonatomic) IBOutlet UITextView *questionUITextView;
 
 @end
