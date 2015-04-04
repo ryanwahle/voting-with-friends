@@ -159,6 +159,7 @@
 		681AFFE71AB9F285000FD77B /* Voting with Friends */ = {
 			isa = PBXGroup;
 			children = (
+				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				68B9E0901ABB94090093C5A4 /* LoginVC.h */,
 				68B9E0911ABB94090093C5A4 /* LoginVC.m */,
 				68C54AEE1ABF697900A51092 /* SignupVC.h */,
@@ -167,7 +168,6 @@
 				68989C011AC218F700FD8323 /* Vote ViewController */,
 				68989C031AC2732100FD8323 /* AddEditPoll ViewController */,
 				6835F3271ACF06E700695D63 /* Data Classes */,
-				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				681AFFE81AB9F285000FD77B /* Supporting Files */,
 				681AFFEC1AB9F285000FD77B /* AppDelegate.h */,
 				681AFFED1AB9F285000FD77B /* AppDelegate.m */,

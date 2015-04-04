@@ -21,9 +21,26 @@
     [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"addEditPoll_cloudDataUpdated" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView) name:@"addEditPoll_questionTextViewChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePollData) name:@"addEditPoll_savePollData" object:nil];
     
-    [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+    if (_pollData == nil) {
+        // Add a new poll
+        VWFPoll *newPoll = [VWFPoll object];
+        newPoll.pollQuestion = @"Touch here to edit your poll question. Answers and friends are added below. May you receive the answer you are looking for!";
+        [newPoll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            _pollData = newPoll;
+            [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+         }];
+    } else {
+        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self savePollData];
+
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Option Switch Logic
@@ -39,10 +56,19 @@
     [_pollData saveEventually];
 }
 
+#pragma mark - Question
+
+- (void)savePollData {
+    [_pollData saveInBackground];
+}
 
 #pragma mark - Table view data source
 
-- (void)updateQuestionTextView {
+- (void)updateQuestionTextView:(NSNotification *)notification {
+    UITextView *questionTextView = notification.object;
+    
+    _pollData.pollQuestion = questionTextView.text;
+    
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
@@ -89,8 +115,7 @@
         return cell;
     } else if (indexPath.section == 2) { // Answers
         AddEditPollAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
-        
-        //VWFAnswers *answerKey = _pollAnswerKeys[indexPath.row];
+
         cell.answerUILabel.text = ((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).pollAnswer;
         
         return cell;

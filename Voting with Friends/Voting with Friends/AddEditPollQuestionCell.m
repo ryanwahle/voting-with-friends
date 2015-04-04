@@ -26,7 +26,7 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_questionTextViewChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_questionTextViewChanged" object:textView];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -41,6 +41,9 @@
         textView.text = _placeholderString;
         textView.textColor = [UIColor lightGrayColor];
     }
+    
+    NSLog(@"Ended Editing");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_savePollData" object:nil];
 }
 
 @end
