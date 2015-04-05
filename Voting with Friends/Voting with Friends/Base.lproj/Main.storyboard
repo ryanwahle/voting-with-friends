@@ -8,7 +8,7 @@
         <!--LoginVC-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="LoginVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="vXZ-lx-hvc" customClass="LoginVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -37,7 +37,7 @@
                                     <color key="titleShadowColor" red="0.17254902422428131" green="0.24313725531101227" blue="0.31372550129890442" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="o5j-7W-PnL" kind="modal" id="JOM-bL-RYy"/>
+                                    <action selector="signInButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="c0P-Zk-IVf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-p2-b7c">
@@ -68,11 +68,12 @@
                     <connections>
                         <outlet property="loginUITextField" destination="QxL-QS-Py1" id="2UW-Y7-HvW"/>
                         <outlet property="passwordUITextField" destination="sJt-m8-ynZ" id="dKm-uX-T6y"/>
+                        <segue destination="o5j-7W-PnL" kind="modal" identifier="LoginSuccessfulSegue" id="rBb-Eq-e0T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-87.5" y="513.5"/>
+            <point key="canvasLocation" x="240.5" y="-460.5"/>
         </scene>
         <!--Polls-->
         <scene sceneID="7Kf-lT-wSU">
@@ -171,6 +172,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Polls" id="1lL-mP-EjO">
                         <barButtonItem key="backBarButtonItem" title=" " id="JnQ-cG-smb"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="0wJ-8T-F2C">
+                            <connections>
+                                <action selector="logoutButtonTap:" destination="76D-LB-yBR" id="FNZ-s0-gQ5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="KCZ-PH-fj6">
@@ -578,7 +584,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="o5j-7W-PnL" kind="modal" identifier="SignupButtonSegue" id="z9g-SH-PDF"/>
+                                    <action selector="signupNewUser:" destination="s30-mf-Ys8" eventType="touchUpInside" id="iaw-8h-4OG"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62i-0P-OsE">
@@ -600,7 +606,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="modal" id="gce-xG-LT6"/>
+                                    <action selector="dismissSignup:" destination="s30-mf-Ys8" eventType="touchUpInside" id="E9m-Bm-dnu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -615,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNu-dX-FmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="443.5" y="-371.5"/>
+            <point key="canvasLocation" x="1030.5" y="-460.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fFk-eB-OI1">
@@ -661,7 +667,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="u3S-Te-ief"/>
-        <segue reference="z9g-SH-PDF"/>
+        <segue reference="HIu-Bz-Nu2"/>
     </inferredMetricsTieBreakers>
 </document>

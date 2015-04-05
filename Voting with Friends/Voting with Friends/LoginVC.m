@@ -18,6 +18,8 @@
 @implementation LoginVC
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     // Make some UI changes to the text fields.
     
     _loginUITextField.borderStyle = UITextBorderStyleNone;
@@ -27,6 +29,28 @@
     [_passwordUITextField.layer addSublayer:[self createTextFieldBottomBorder:_passwordUITextField]];
     
     [_loginUITextField becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // If user is already logged in then move on
+    if ([PFUser currentUser]) {
+        [self loginSuccesful];
+    }
+}
+
+- (IBAction)signInButtonTap:(id)sender {
+    [PFUser logInWithUsernameInBackground:self.loginUITextField.text password:self.passwordUITextField.text block:^(PFUser *user, NSError *error) {
+        if (user) {
+            [self loginSuccesful];
+        }
+    }];
+}
+
+
+- (void) loginSuccesful {
+    [self performSegueWithIdentifier:@"LoginSuccessfulSegue" sender:nil];
 }
 
 - (CALayer *)createTextFieldBottomBorder:(UITextField *)textField {

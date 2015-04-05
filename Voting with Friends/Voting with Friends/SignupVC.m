@@ -44,7 +44,7 @@
     return textFieldBorder;
 }
 
-- (void) signupNewUser {
+- (IBAction)signupNewUser:(UIButton *)sender {
     PFUser *newUser = [PFUser user];
     
     newUser.username = _emailUITextField.text;
@@ -55,20 +55,15 @@
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self performSegueWithIdentifier:@"SignupButtonSegue" sender:nil];
+            [self dismissSignup:nil];
         } else {
             // Error
         }
     }];
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"SignupButtonSegue"]) {
-        [self signupNewUser];
-        return NO;
-    }
-    
-    return YES;
+- (IBAction)dismissSignup:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

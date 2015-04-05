@@ -160,8 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
-				68C841671ACFAA4900FE38CC /* Login */,
 				68C841681ACFAA5300FE38CC /* Signup */,
+				68C841671ACFAA4900FE38CC /* Login */,
 				68989C021AC2191700FD8323 /* Polls ViewController */,
 				68989C011AC218F700FD8323 /* Vote ViewController */,
 				68989C031AC2732100FD8323 /* AddEditPoll ViewController */,
