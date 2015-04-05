@@ -31,7 +31,7 @@
     
     [totalVotesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            NSLog(@"VWFAnswers Error: %@", error);
         } else {
             NSLog(@"updated votes");
             totalNumberOfVotes = objects.count;

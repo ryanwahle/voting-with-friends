@@ -31,6 +31,7 @@
 		68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */; };
 		68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFC1AC20A2700FD8323 /* PollCell.m */; };
 		68989C001AC2189100FD8323 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFF1AC2189100FD8323 /* QuestionCell.m */; };
+		68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
 		68E0D6CA1ACD0C6600CC9508 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E0D6C91ACD0C6600CC9508 /* Launch Screen.xib */; };
@@ -88,6 +89,8 @@
 		68989BFC1AC20A2700FD8323 /* PollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollCell.m; sourceTree = "<group>"; };
 		68989BFE1AC2189100FD8323 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		68989BFF1AC2189100FD8323 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderQuestionCell.h; sourceTree = "<group>"; };
+		68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderQuestionCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		68B9E0911ABB94090093C5A4 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		68C54AEE1ABF697900A51092 /* SignupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupVC.h; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				68989BFF1AC2189100FD8323 /* QuestionCell.m */,
 				6835F3241ACE47D700695D63 /* VoteAnswerCell.h */,
 				6835F3251ACE47D700695D63 /* VoteAnswerCell.m */,
+				68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */,
+				68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */,
 			);
 			name = "Vote ViewController";
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				681A00161ABA4533000FD77B /* VoteVC.m in Sources */,
 				68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */,
 				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
+				68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

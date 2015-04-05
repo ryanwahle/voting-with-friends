@@ -20,6 +20,9 @@
 @property NSArray *pollAnswerKeys;
 @property VWFUserAnswerForPoll *currentSelectedAnswer;
 
+@property PFUser *createdByUserPointer;
+@property NSString *nameOfCreatedByUser;
+
 @property BOOL showActivity;
 @property BOOL showIndividualAnswerTotals;
 

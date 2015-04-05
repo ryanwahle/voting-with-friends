@@ -17,6 +17,8 @@
 
 @dynamic showActivity;
 @dynamic showIndividualAnswerTotals;
+@dynamic createdByUserPointer;
+@synthesize nameOfCreatedByUser;
 
 + (void)load {
     [self registerSubclass];
@@ -31,6 +33,13 @@
         if (error) {
             NSLog(@"Error: %@", error);
         } else {
+            // Get the poll creators name
+            PFQuery *userQuery = [PFUser query];
+            [userQuery getObjectInBackgroundWithId:self.createdByUserPointer.objectId block:^(PFObject *object, NSError *error) {
+                self.nameOfCreatedByUser = object[@"name"];
+            }];
+            
+            // Get a list of possible answers for poll
             PFQuery *answersQuery = [VWFAnswers query];
             [answersQuery whereKey:@"pollPointer" equalTo:[VWFPoll objectWithoutDataWithObjectId:self.objectId]];
             [answersQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -44,14 +53,16 @@
                     }
                 }
                 
+                // Get the users currently selected answer
                 PFQuery *currentAnswerQuery = [VWFUserAnswerForPoll query];
                 [currentAnswerQuery whereKey:@"pollPointer" equalTo:[VWFPoll objectWithoutDataWithObjectId:self.objectId]];
+                [currentAnswerQuery whereKey:@"userPointer" equalTo:[PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId]];
+                
                 [currentAnswerQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                     if (error) {
                         NSLog(@"Error: %@", error);
                         self.currentSelectedAnswer = nil;
                     } else {
-                        NSLog(@"current selected answer object: %@", object);
                         self.currentSelectedAnswer = (VWFUserAnswerForPoll *)object;
                     }
                     

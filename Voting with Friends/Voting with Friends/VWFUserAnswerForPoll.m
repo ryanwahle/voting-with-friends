@@ -13,6 +13,7 @@
 
 @dynamic pollPointer;
 @dynamic answerPointer;
+@dynamic userPointer;
 
 + (void)load {
     [self registerSubclass];

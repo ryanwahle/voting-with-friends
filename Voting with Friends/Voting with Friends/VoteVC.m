@@ -10,6 +10,7 @@
 #import "QuestionCell.h"
 #import "AddEditPollVC.h"
 #import "VoteAnswerCell.h"
+#import "HeaderQuestionCell.h"
 
 @interface VoteVC ()
 
@@ -93,9 +94,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewCell *sectionCell = nil;
     
-    
     if (section == 0) { // Question Section
-        sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
+        HeaderQuestionCell *headerQuestionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
+        
+        headerQuestionCell.personsNameWhoCreatedPoll.text = [NSString stringWithFormat:@"%@ asks . . .", _pollData.nameOfCreatedByUser];
+        
+        return headerQuestionCell;
     } else if (section == 1) { // Answer Section
         // There is no header for the answers
     } else if ((section == 2) && _pollData.showActivity) { // Activity Section
@@ -130,6 +134,8 @@
     VWFUserAnswerForPoll *currentAnswer = [VWFUserAnswerForPoll object];
     currentAnswer.pollPointer = [VWFPoll objectWithoutDataWithObjectId:_pollData.objectId];
     currentAnswer.answerPointer = [VWFAnswers objectWithoutDataWithObjectId:((VWFAnswers *)_pollData.pollAnswerKeys[row]).objectId];
+    currentAnswer.userPointer = [PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId];
+    
     [currentAnswer saveEventually:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // Refresh the data from the database and update tableview

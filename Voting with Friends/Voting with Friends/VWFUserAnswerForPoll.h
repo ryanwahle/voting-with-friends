@@ -17,6 +17,7 @@
 
 @property VWFPoll *pollPointer;
 @property VWFAnswers *answerPointer;
+@property PFUser *userPointer;
 
 + (NSString *)parseClassName;
 

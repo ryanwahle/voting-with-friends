@@ -28,6 +28,8 @@
         // Add a new poll
         VWFPoll *newPoll = [VWFPoll object];
         newPoll.pollQuestion = @"Touch here to edit your poll question. Answers and friends are added below. May you receive the answer you are looking for!";
+        newPoll.createdByUserPointer = [PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId];
+        
         [newPoll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             _pollData = newPoll;
             [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];

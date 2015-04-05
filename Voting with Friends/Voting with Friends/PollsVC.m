@@ -84,7 +84,9 @@
     VWFPoll *pollData = _pollsFromCloud[indexPath.row];
     
     PollCell *pollCell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
+    
     pollCell.pollQuestion.text = pollData.pollQuestion;
+    pollCell.personsNameWhoCreatedPoll.text = [NSString stringWithFormat:@"%@ asks . . .", pollData.nameOfCreatedByUser];
     
     if (pollData.currentSelectedAnswer) {
         [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
