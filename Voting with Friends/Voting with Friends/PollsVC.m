@@ -26,12 +26,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataUpdated" object:nil];
     
-    _pollsFromCloud = @[];
-    
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self action:@selector(getPollDataFromCloud) forControlEvents:UIControlEventValueChanged];
     
+    _pollsFromCloud = @[];
     [self getPollDataFromCloud];
 }
 
@@ -68,8 +67,6 @@
     self.refreshControl.attributedTitle = attributedTitle;
     
     [self.refreshControl endRefreshing];
-    
-    NSLog(@"refreshing tableview");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

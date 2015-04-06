@@ -25,6 +25,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"vote_cloudDataUpdated" object:nil];
     
+    if ([[PFUser currentUser].objectId isEqualToString:_pollData.createdByUserPointer.objectId]) {
+        self.navigationController.toolbarHidden = NO;
+    } else {
+        self.navigationController.toolbarHidden = YES;
+    }
+    
     [_pollData refreshCloudDataAndPostNotification:@"vote_cloudDataUpdated"];
 }
 
