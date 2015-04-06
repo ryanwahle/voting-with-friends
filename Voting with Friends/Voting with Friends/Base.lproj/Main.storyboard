@@ -405,13 +405,17 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UGj-Vr-eWL" id="6VB-Oz-loB">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYV-Sr-1M4">
-                                            <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYV-Sr-1M4">
+                                            <rect key="frame" x="8" y="10" width="63" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qYV-Sr-1M4" firstAttribute="leading" secondItem="6VB-Oz-loB" secondAttribute="leadingMargin" id="KQA-e4-Hh7"/>
+                                        <constraint firstAttribute="centerY" secondItem="qYV-Sr-1M4" secondAttribute="centerY" constant="0.5" id="kIp-j0-NN8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellOptions" rowHeight="88" id="qiz-j1-49d" customClass="OptionsCell">
@@ -419,26 +423,26 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiz-j1-49d" id="JNY-cd-Ba3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-Ys-mqK">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-Ys-mqK">
                                             <rect key="frame" x="318" y="6" width="51" height="31"/>
                                             <color key="onTintColor" red="0.34509803919999998" green="0.43921568630000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="showActivityUISwitchChanged:" destination="2rD-8c-jZY" eventType="valueChanged" id="OUg-qd-9Qi"/>
                                             </connections>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rO-Sh-Uv2">
-                                            <rect key="frame" x="8" y="11" width="105" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rO-Sh-Uv2">
+                                            <rect key="frame" x="8" y="10" width="98" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Individual Answer Totals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed1-j8-lR2">
-                                            <rect key="frame" x="8" y="50" width="233" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Individual Answer Totals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed1-j8-lR2">
+                                            <rect key="frame" x="8" y="50" width="224" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-dw-yGV">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-dw-yGV">
                                             <rect key="frame" x="318" y="45" width="51" height="31"/>
                                             <color key="onTintColor" red="0.34509803919999998" green="0.43921568630000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
@@ -446,6 +450,17 @@
                                             </connections>
                                         </switch>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="JNY-cd-Ba3" secondAttribute="leadingMargin" id="7wT-6J-s1u"/>
+                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="top" secondItem="pcr-Ys-mqK" secondAttribute="bottom" constant="8" id="CLR-5x-QIk"/>
+                                        <constraint firstAttribute="centerY" secondItem="8rO-Sh-Uv2" secondAttribute="centerY" constant="22.5" id="FNu-e0-fDB"/>
+                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="trailing" secondItem="pcr-Ys-mqK" secondAttribute="trailing" id="Hwu-qF-DZb"/>
+                                        <constraint firstItem="pcr-Ys-mqK" firstAttribute="centerY" secondItem="8rO-Sh-Uv2" secondAttribute="centerY" constant="-0.5" id="Sw5-mw-hqS"/>
+                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="centerY" secondItem="Ed1-j8-lR2" secondAttribute="centerY" constant="-1.5" id="UBO-iT-ffC"/>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="8rO-Sh-Uv2" secondAttribute="leading" id="h0a-90-CUJ"/>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="top" secondItem="8rO-Sh-Uv2" secondAttribute="bottom" constant="16" id="qxu-4P-ws2"/>
+                                        <constraint firstItem="pcr-Ys-mqK" firstAttribute="trailing" secondItem="JNY-cd-Ba3" secondAttribute="trailingMargin" id="vel-Ji-Ibb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="showActivityUISwitch" destination="pcr-Ys-mqK" id="S3R-M4-FdH"/>
@@ -457,13 +472,17 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zD0-0G-tbw" id="TZp-SA-Sgu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-3l-tmw">
-                                            <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-3l-tmw">
+                                            <rect key="frame" x="8" y="10" width="72" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="gA1-3l-tmw" secondAttribute="centerY" constant="0.5" id="7Uv-UY-x3a"/>
+                                        <constraint firstItem="gA1-3l-tmw" firstAttribute="leading" secondItem="TZp-SA-Sgu" secondAttribute="leadingMargin" id="pfz-YD-Y6m"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellQuestion" rowHeight="88" id="8a8-4t-rS7" customClass="AddEditPollQuestionCell">
@@ -498,7 +517,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rnz-dU-04s" id="cJf-2x-t1V">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTn-FX-w9I">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTn-FX-w9I">
                                             <rect key="frame" x="345" y="11" width="22" height="22"/>
                                             <color key="tintColor" red="0.34509803919999998" green="0.43921568630000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal">
@@ -508,13 +527,19 @@
                                                 <action selector="addAnswerKeyButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="NaL-Yy-UJF"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer Key to your Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-Ei-kG0">
-                                            <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer Key to your Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-Ei-kG0">
+                                            <rect key="frame" x="8" y="11" width="225" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qnC-Ei-kG0" firstAttribute="leading" secondItem="cJf-2x-t1V" secondAttribute="leadingMargin" id="CR8-Q5-rnb"/>
+                                        <constraint firstAttribute="centerY" secondItem="rTn-FX-w9I" secondAttribute="centerY" id="Emf-QC-gy0"/>
+                                        <constraint firstItem="rTn-FX-w9I" firstAttribute="trailing" secondItem="cJf-2x-t1V" secondAttribute="trailingMargin" id="HYY-rS-rvo"/>
+                                        <constraint firstAttribute="centerY" secondItem="qnC-Ei-kG0" secondAttribute="centerY" constant="-0.5" id="ReA-y4-6OW"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellAnswerKey" id="d7A-DA-Mf6" customClass="AddEditPollAnswerCell">
@@ -523,13 +548,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d7A-DA-Mf6" id="sYG-XV-YgC">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Possible Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Pv-JDl">
-                                            <rect key="frame" x="73" y="11" width="127" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possible Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Pv-JDl">
+                                            <rect key="frame" x="73" y="12" width="103" height="20"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgr-oy-Iwn">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgr-oy-Iwn">
                                             <rect key="frame" x="8" y="8" width="28" height="28"/>
                                             <state key="normal" image="Delete">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -539,6 +564,12 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2fE-Pv-JDl" firstAttribute="centerY" secondItem="Xgr-oy-Iwn" secondAttribute="centerY" constant="-0.5" id="CG0-3i-1nT"/>
+                                        <constraint firstItem="2fE-Pv-JDl" firstAttribute="leading" secondItem="Xgr-oy-Iwn" secondAttribute="trailing" constant="37" id="Liu-Pz-ndf"/>
+                                        <constraint firstItem="Xgr-oy-Iwn" firstAttribute="leading" secondItem="sYG-XV-YgC" secondAttribute="leadingMargin" id="mab-5M-Rsw"/>
+                                        <constraint firstAttribute="centerY" secondItem="Xgr-oy-Iwn" secondAttribute="centerY" id="nN4-KF-hsf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="answerUILabel" destination="2fE-Pv-JDl" id="zfZ-jf-sXr"/>
@@ -549,13 +580,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vpe-H2-5dr" id="GLf-2Z-Kbn">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friends to Vote With" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNW-AI-Jtw">
-                                            <rect key="frame" x="8" y="13" width="359" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends to Vote With" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNW-AI-Jtw">
+                                            <rect key="frame" x="8" y="12" width="157" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rws-69-0gK">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rws-69-0gK">
                                             <rect key="frame" x="345" y="11" width="22" height="22"/>
                                             <color key="tintColor" red="0.34509803919999998" green="0.43921568630000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal">
@@ -566,6 +597,12 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="kNW-AI-Jtw" secondAttribute="centerY" constant="-1.5" id="14g-IV-fHh"/>
+                                        <constraint firstItem="kNW-AI-Jtw" firstAttribute="leading" secondItem="GLf-2Z-Kbn" secondAttribute="leadingMargin" id="8AT-8s-7Hu"/>
+                                        <constraint firstItem="Rws-69-0gK" firstAttribute="centerY" secondItem="kNW-AI-Jtw" secondAttribute="centerY" constant="-2" id="R3o-mo-TYk"/>
+                                        <constraint firstItem="Rws-69-0gK" firstAttribute="trailing" secondItem="GLf-2Z-Kbn" secondAttribute="trailingMargin" id="bhE-kh-OVv"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellFriendList" id="O1f-Kb-Tf2" userLabel="cellFriend">
@@ -574,13 +611,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O1f-Kb-Tf2" id="r7c-e3-uhp">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend (friend@gmail.com)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSa-Dt-FxW">
-                                            <rect key="frame" x="73" y="11" width="200" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend (friend@gmail.com)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSa-Dt-FxW">
+                                            <rect key="frame" x="73" y="13" width="169" height="20"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n83-ao-3xt">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n83-ao-3xt">
                                             <rect key="frame" x="8" y="8" width="28" height="28"/>
                                             <state key="normal" image="Delete">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -590,6 +627,12 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wSa-Dt-FxW" firstAttribute="centerY" secondItem="n83-ao-3xt" secondAttribute="centerY" constant="1" id="QUB-jn-pOQ"/>
+                                        <constraint firstAttribute="centerY" secondItem="n83-ao-3xt" secondAttribute="centerY" id="SVh-Hu-zkW"/>
+                                        <constraint firstItem="wSa-Dt-FxW" firstAttribute="leading" secondItem="n83-ao-3xt" secondAttribute="trailing" constant="37" id="cC0-uj-Ijs"/>
+                                        <constraint firstItem="n83-ao-3xt" firstAttribute="leading" secondItem="r7c-e3-uhp" secondAttribute="leadingMargin" id="wPQ-yP-4iJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
