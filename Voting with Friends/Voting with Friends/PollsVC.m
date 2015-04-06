@@ -103,6 +103,12 @@
         
         VoteVC *voteVC = [segue destinationViewController];
         voteVC.pollData = _pollsFromCloud[indexPath.row];
+        
+        if ([[PFUser currentUser].objectId isEqualToString:voteVC.pollData.createdByUserPointer.objectId]) {
+            voteVC.hidesBottomBarWhenPushed = NO;
+        } else {
+            voteVC.hidesBottomBarWhenPushed = YES;
+        }
     }
 }
 
