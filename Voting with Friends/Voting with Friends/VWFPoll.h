@@ -18,6 +18,7 @@
 
 @property NSString *pollQuestion;
 @property NSArray *pollAnswerKeys;
+@property NSArray *pollFriends;
 @property VWFUserAnswerForPoll *currentSelectedAnswer;
 
 @property PFUser *createdByUserPointer;
@@ -30,5 +31,6 @@
 
 - (void)refreshCloudDataAndPostNotification:(NSString *)notificationString;
 - (void)deletePoll;
+- (void)addFriend:(NSString *)objectIdForPFUser;
 
 @end

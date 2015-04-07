@@ -47,9 +47,9 @@
 - (IBAction)signupNewUser:(UIButton *)sender {
     PFUser *newUser = [PFUser user];
     
-    newUser.username = _emailUITextField.text;
+    newUser.username = _emailUITextField.text.lowercaseString;
     newUser.password = _passwordUITextField.text;
-    newUser.email = _emailUITextField.text;
+    newUser.email = _emailUITextField.text.lowercaseString;
     
     newUser[@"name"] = _nameUITextField.text;
     

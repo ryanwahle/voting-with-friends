@@ -13,6 +13,7 @@
 
 @dynamic pollQuestion;
 @synthesize pollAnswerKeys;
+@synthesize pollFriends;
 @synthesize currentSelectedAnswer;
 
 @dynamic showActivity;
@@ -38,6 +39,19 @@
             [userQuery getObjectInBackgroundWithId:self.createdByUserPointer.objectId block:^(PFObject *object, NSError *error) {
                 self.nameOfCreatedByUser = object[@"name"];
             }];
+            
+            // Get a list of friends
+            PFQuery *pollFriendsQuery = [VWFUserAnswerForPoll query];
+            [pollFriendsQuery whereKey:@"pollPointer" equalTo:[VWFPoll objectWithoutDataWithObjectId:self.objectId]];
+            
+            [pollFriendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (error) {
+                    NSLog(@"Poll Friends Error: %@", error);
+                } else {
+                    self.pollFriends = objects;
+                }
+            }];
+
             
             // Get a list of possible answers for poll
             PFQuery *answersQuery = [VWFAnswers query];
@@ -73,6 +87,19 @@
     }];
 }
 
+- (void)addFriend:(NSString *)objectIdForPFUser {
+        VWFUserAnswerForPoll *newUser = [VWFUserAnswerForPoll object];
+        newUser.pollPointer = [VWFPoll objectWithoutDataWithObjectId:self.objectId];
+        newUser.userPointer = [PFUser objectWithoutDataWithObjectId:objectIdForPFUser];
+        
+        [newUser saveEventually:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // Refresh the data from the database and update tableview
+                [self refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+            }
+        }];
+}
+
 - (void)deletePoll {
     // Delete UserAnswerForPoll by pollPointer
     PFQuery *allUserAnswersForPollQuery = [VWFUserAnswerForPoll query];
@@ -95,5 +122,7 @@
         NSLog(@"Deleted poll data");
     }];
 }
+
+
 
 @end

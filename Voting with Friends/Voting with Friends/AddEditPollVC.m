@@ -10,6 +10,7 @@
 #import "OptionsCell.h"
 #import "AddEditPollQuestionCell.h"
 #import "AddEditPollAnswerCell.h"
+#import "AddEditPollFriendCell.h"
 
 @interface AddEditPollVC ()
 
@@ -32,7 +33,8 @@
         
         [newPoll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             _pollData = newPoll;
-            [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+            [_pollData addFriend:[PFUser currentUser].objectId];
+            //[_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
          }];
     } else {
         [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
@@ -94,7 +96,7 @@
     } else if (section == 2) { // Answers
         return [_pollData.pollAnswerKeys count];
     } else if (section == 3) { // Friends
-        return 3;
+        return [_pollData.pollFriends count];
     }
     
     return 0;
@@ -122,7 +124,21 @@
         
         return cell;
     } else if (indexPath.section == 3) { // Friends
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
+        AddEditPollFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
+        
+        VWFUserAnswerForPoll *friendForCell = _pollData.pollFriends[indexPath.row];
+        
+        if ([friendForCell.userPointer.objectId isEqualToString:[PFUser currentUser].objectId]) {
+            cell.deleteButton.hidden = YES;
+        }
+        
+        PFQuery *userQuery = [PFUser query];
+        
+        [userQuery getObjectInBackgroundWithId:friendForCell.userPointer.objectId block:^(PFObject *object, NSError *error) {
+            PFUser *friend = (PFUser *)object;
+            cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend[@"name"], friend.email];
+        }];
+        
         return cell;
     }
     
@@ -228,23 +244,66 @@
 
 # pragma mark - Friends
 
+- (void)addEmailAddressToPoll:(NSString *)email {
+    NSLog(@"Verifying %@ is part of Voting with Friends", email);
+    
+    PFQuery *userVerify = [PFUser query];
+    [userVerify whereKey:@"email" equalTo:email.lowercaseString];
+    
+    [userVerify getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object) {
+            NSLog(@"Found email address");
+            
+            [_pollData addFriend:object.objectId];
+            
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
+            
+            [alert addAction:alertOK];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+
+        }
+    }];
+}
+
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    
-    NSLog(@"Selected user");
-    
-    NSString *selectedFirstName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-    NSString *selectedLastName = CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
-    
     ABMultiValueRef emails = ABRecordCopyValue(person, property);
     CFIndex index = ABMultiValueGetIndexForIdentifier(emails, identifier);
     
     NSString *selectedEmail = CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, index));
     
     CFRelease(emails);
-    
-    NSLog(@"%@ - name: %@ %@ / email selected: %@", ABPersonEmailAddressesProperty, selectedFirstName, selectedLastName, selectedEmail);
 
+    [self addEmailAddressToPoll:selectedEmail];
+}
+
+- (void)getManualEmailAddress {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add E-Mail Address" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Add E-Mail" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *emailAddressTextField = alert.textFields[0];
+        [self addEmailAddressToPoll:emailAddressTextField.text];
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:alertOK];
+    [alert addAction:alertCancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Tap to enter e-mail address";
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 - (IBAction)addFriendButtonTouched:(id)sender {
@@ -264,7 +323,10 @@
     }];
     
     UIAlertAction *alertEmailAddress = [UIAlertAction actionWithTitle:@"Manually" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
+        [self getManualEmailAddress];
+        [alert dismissViewControllerAnimated:YES completion:^{
+            [self getManualEmailAddress];
+        }];
     }];
     
     UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -278,17 +340,18 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
-
 - (IBAction)removeFriendButtonTouched:(id)sender {
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
     
-    NSString *alertMessageText = [NSString stringWithFormat:@"Are you sure you want to delete your friend (row: %ld) from voting?", indexPath.row];
+    NSString *alertMessageText = [NSString stringWithFormat:@"Are you sure you want to delete your friend from voting?"];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessageText preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self deleteFriendFromPoll:_pollData.pollFriends[indexPath.row]];
+        [alert dismissViewControllerAnimated:YES completion:nil];
+
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -301,5 +364,12 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (void)deleteFriendFromPoll:(VWFAnswers *)friend {
+    [friend deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+    }];
+}
+
 
 @end

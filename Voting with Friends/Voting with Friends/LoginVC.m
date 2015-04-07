@@ -41,7 +41,7 @@
 }
 
 - (IBAction)signInButtonTap:(id)sender {
-    [PFUser logInWithUsernameInBackground:self.loginUITextField.text password:self.passwordUITextField.text block:^(PFUser *user, NSError *error) {
+    [PFUser logInWithUsernameInBackground:self.loginUITextField.text.lowercaseString password:self.passwordUITextField.text block:^(PFUser *user, NSError *error) {
         if (user) {
             [self loginSuccesful];
         }

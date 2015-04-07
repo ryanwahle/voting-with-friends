@@ -38,17 +38,19 @@
     
     NSLog(@"(getPollDataFromCloud) Getting data from cloud.");
     
-    PFQuery *queryForPolls = [VWFPoll query];
-    [queryForPolls findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"(viewDidLoad) Error: %@ %@", error, [error userInfo]);
-        } else {
-            NSLog(@"(viewDidLoad) Found %lu polls in the cloud.", objects.count);
-            _pollsFromCloud = objects;
-            
-            for (VWFPoll *poll in _pollsFromCloud) {
-                [poll refreshCloudDataAndPostNotification:@"cloudDataUpdated"];
-            }
+    PFQuery *pollsForCurrentUserQuery = [VWFUserAnswerForPoll query];
+    [pollsForCurrentUserQuery whereKey:@"userPointer" equalTo:[PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId]];
+    [pollsForCurrentUserQuery includeKey:@"pollPointer"];
+    [pollsForCurrentUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray *pollsArray = [[NSMutableArray alloc] init];
+        
+        for (VWFUserAnswerForPoll *pollsForCurrentUser in objects) {
+            [pollsArray addObject:pollsForCurrentUser.pollPointer];
+        }
+        
+        _pollsFromCloud = [NSArray arrayWithArray:pollsArray];
+        for (VWFPoll *poll in _pollsFromCloud) {
+            [poll refreshCloudDataAndPostNotification:@"cloudDataUpdated"];
         }
     }];
 }
@@ -85,7 +87,7 @@
     pollCell.pollQuestion.text = pollData.pollQuestion;
     pollCell.personsNameWhoCreatedPoll.text = [NSString stringWithFormat:@"%@ asks . . .", pollData.nameOfCreatedByUser];
     
-    if (pollData.currentSelectedAnswer) {
+    if (pollData.currentSelectedAnswer.answerPointer) {
         [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
     } else {
         [pollCell.voteButton setTitle: @"Please Vote" forState: UIControlStateNormal];

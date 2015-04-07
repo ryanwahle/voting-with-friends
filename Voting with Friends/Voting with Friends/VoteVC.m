@@ -50,8 +50,7 @@
     } else if ((section == 2) && _pollData.showActivity) { // Activity Section
         return 3;
     }
-    
-    
+
     return 0;
 }
 
@@ -79,7 +78,6 @@
             cell.selectedVoteButton.selected = NO;
         }
         
-        NSLog(@"total votes: %ld", (long)((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).totalNumberOfVotes);
         cell.totalVotesUILabel.text = [NSString stringWithFormat:@"%ld votes", (long)((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).totalNumberOfVotes];
         
         return cell;

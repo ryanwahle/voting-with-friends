@@ -27,13 +27,11 @@
 - (void)updateTotalNumberOfVotes {
     PFQuery *totalVotesQuery = [VWFUserAnswerForPoll query];
     [totalVotesQuery whereKey:@"answerPointer" equalTo:[VWFAnswers objectWithoutDataWithObjectId:self.objectId]];
-    NSLog(@"objectID: %@", self.objectId);
     
     [totalVotesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"VWFAnswers Error: %@", error);
         } else {
-            NSLog(@"updated votes");
             totalNumberOfVotes = objects.count;
         }
     }];
