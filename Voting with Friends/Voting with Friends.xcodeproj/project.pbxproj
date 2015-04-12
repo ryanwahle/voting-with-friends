@@ -18,13 +18,10 @@
 		681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF21AB9F285000FD77B /* Main.storyboard */; };
 		681AFFF61AB9F285000FD77B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 681AFFF51AB9F285000FD77B /* Images.xcassets */; };
 		6835F3261ACE47D700695D63 /* VoteAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F3251ACE47D700695D63 /* VoteAnswerCell.m */; };
-		6835F32A1ACF070900695D63 /* VWFAnswers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F3291ACF070900695D63 /* VWFAnswers.m */; };
 		6835F32D1ACF201800695D63 /* AddEditPollAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F32C1ACF201800695D63 /* AddEditPollAnswerCell.m */; };
-		6835F3301ACF417600695D63 /* VWFUserAnswerForPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */; };
 		6839C2111ADB292800AAFECB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2101ADB292800AAFECB /* Parse.framework */; };
 		6839C2131ADB293600AAFECB /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2121ADB293600AAFECB /* Bolts.framework */; };
 		6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */; };
-		68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BDD1AC1E8B200FD8323 /* VWFPoll.m */; };
 		68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE61AC1F98C00FD8323 /* libz.dylib */; };
 		68989BE91AC1F99600FD8323 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE81AC1F99600FD8323 /* libsqlite3.dylib */; };
 		68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */; };
@@ -74,18 +71,12 @@
 		681AFFFE1AB9F285000FD77B /* Voting with FriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Voting with FriendsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6835F3241ACE47D700695D63 /* VoteAnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteAnswerCell.h; sourceTree = "<group>"; };
 		6835F3251ACE47D700695D63 /* VoteAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteAnswerCell.m; sourceTree = "<group>"; };
-		6835F3281ACF070900695D63 /* VWFAnswers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFAnswers.h; sourceTree = "<group>"; };
-		6835F3291ACF070900695D63 /* VWFAnswers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFAnswers.m; sourceTree = "<group>"; };
 		6835F32B1ACF201800695D63 /* AddEditPollAnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollAnswerCell.h; sourceTree = "<group>"; };
 		6835F32C1ACF201800695D63 /* AddEditPollAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditPollAnswerCell.m; sourceTree = "<group>"; };
-		6835F32E1ACF417600695D63 /* VWFUserAnswerForPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFUserAnswerForPoll.h; sourceTree = "<group>"; };
-		6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFUserAnswerForPoll.m; sourceTree = "<group>"; };
 		6839C2101ADB292800AAFECB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6839C2121ADB293600AAFECB /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6893E6D21AD34E2C00851820 /* AddEditPollFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollFriendCell.h; sourceTree = "<group>"; };
 		6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditPollFriendCell.m; sourceTree = "<group>"; };
-		68989BDC1AC1E8B200FD8323 /* VWFPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFPoll.h; sourceTree = "<group>"; };
-		68989BDD1AC1E8B200FD8323 /* VWFPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFPoll.m; sourceTree = "<group>"; };
 		68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		68989BE61AC1F98C00FD8323 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		68989BE81AC1F99600FD8323 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -202,7 +193,6 @@
 		6835F3271ACF06E700695D63 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				68B3F9D61AD4464B00949BC4 /* Old */,
 				68B3F9D71AD4467200949BC4 /* VFPoll.h */,
 				68B3F9D81AD4467200949BC4 /* VFPoll.m */,
 				68B3F9DA1AD4762200949BC4 /* VFFriend.h */,
@@ -268,19 +258,6 @@
 				6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */,
 			);
 			name = "AddEditPoll ViewController";
-			sourceTree = "<group>";
-		};
-		68B3F9D61AD4464B00949BC4 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				68989BDC1AC1E8B200FD8323 /* VWFPoll.h */,
-				68989BDD1AC1E8B200FD8323 /* VWFPoll.m */,
-				6835F3281ACF070900695D63 /* VWFAnswers.h */,
-				6835F3291ACF070900695D63 /* VWFAnswers.m */,
-				6835F32E1ACF417600695D63 /* VWFUserAnswerForPoll.h */,
-				6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */,
-			);
-			name = Old;
 			sourceTree = "<group>";
 		};
 		68C841671ACFAA4900FE38CC /* Login */ = {
@@ -403,18 +380,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */,
-				6835F32A1ACF070900695D63 /* VWFAnswers.m in Sources */,
 				68B3F9DF1AD4A16A00949BC4 /* VFAnswer.m in Sources */,
 				6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */,
 				681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */,
 				681A00131ABA2F04000FD77B /* AddEditPollVC.m in Sources */,
-				68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */,
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				6818BC671AC27B300088D9EB /* OptionsCell.m in Sources */,
 				6818BC6D1AC27EC30088D9EB /* AddEditPollQuestionCell.m in Sources */,
 				68B3F9DC1AD4762200949BC4 /* VFFriend.m in Sources */,
 				6835F32D1ACF201800695D63 /* AddEditPollAnswerCell.m in Sources */,
-				6835F3301ACF417600695D63 /* VWFUserAnswerForPoll.m in Sources */,
 				6835F3261ACE47D700695D63 /* VoteAnswerCell.m in Sources */,
 				68989C001AC2189100FD8323 /* QuestionCell.m in Sources */,
 				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
