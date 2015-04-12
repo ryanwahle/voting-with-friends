@@ -34,6 +34,7 @@
      TEST OUT THE NEW OBJECTS HERE
      */
     
+    /*
     [PFUser logInWithUsername:@"test2@test.com" password:@"test"];
     
     NSString *pollQuestion = @"What would you like to eat tomorrow?";
@@ -81,7 +82,8 @@
     for (VFAnswer *answer in poll.possibleAnswersForPoll) {
         NSLog(@"Possible Answer for Poll: %@ - Votes: %ld", answer.answerText, (long)answer.totalVotesForPoll);
     }
-
+     */
+    
     
     return YES;
 }
