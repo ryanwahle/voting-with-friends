@@ -21,10 +21,10 @@
 		6835F32A1ACF070900695D63 /* VWFAnswers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F3291ACF070900695D63 /* VWFAnswers.m */; };
 		6835F32D1ACF201800695D63 /* AddEditPollAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F32C1ACF201800695D63 /* AddEditPollAnswerCell.m */; };
 		6835F3301ACF417600695D63 /* VWFUserAnswerForPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */; };
+		6839C2111ADB292800AAFECB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2101ADB292800AAFECB /* Parse.framework */; };
+		6839C2131ADB293600AAFECB /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2121ADB293600AAFECB /* Bolts.framework */; };
 		6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */; };
 		68989BDE1AC1E8B200FD8323 /* VWFPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BDD1AC1E8B200FD8323 /* VWFPoll.m */; };
-		68989BE21AC1F87200FD8323 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE01AC1F87200FD8323 /* Bolts.framework */; };
-		68989BE31AC1F87200FD8323 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE11AC1F87200FD8323 /* Parse.framework */; };
 		68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE61AC1F98C00FD8323 /* libz.dylib */; };
 		68989BE91AC1F99600FD8323 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE81AC1F99600FD8323 /* libsqlite3.dylib */; };
 		68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */; };
@@ -32,6 +32,9 @@
 		68989BFA1AC1FA6E00FD8323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */; };
 		68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFC1AC20A2700FD8323 /* PollCell.m */; };
 		68989C001AC2189100FD8323 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68989BFF1AC2189100FD8323 /* QuestionCell.m */; };
+		68B3F9D91AD4467200949BC4 /* VFPoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B3F9D81AD4467200949BC4 /* VFPoll.m */; };
+		68B3F9DC1AD4762200949BC4 /* VFFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B3F9DB1AD4762200949BC4 /* VFFriend.m */; };
+		68B3F9DF1AD4A16A00949BC4 /* VFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B3F9DE1AD4A16A00949BC4 /* VFAnswer.m */; };
 		68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
@@ -77,12 +80,12 @@
 		6835F32C1ACF201800695D63 /* AddEditPollAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditPollAnswerCell.m; sourceTree = "<group>"; };
 		6835F32E1ACF417600695D63 /* VWFUserAnswerForPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFUserAnswerForPoll.h; sourceTree = "<group>"; };
 		6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFUserAnswerForPoll.m; sourceTree = "<group>"; };
+		6839C2101ADB292800AAFECB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6839C2121ADB293600AAFECB /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6893E6D21AD34E2C00851820 /* AddEditPollFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollFriendCell.h; sourceTree = "<group>"; };
 		6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEditPollFriendCell.m; sourceTree = "<group>"; };
 		68989BDC1AC1E8B200FD8323 /* VWFPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWFPoll.h; sourceTree = "<group>"; };
 		68989BDD1AC1E8B200FD8323 /* VWFPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWFPoll.m; sourceTree = "<group>"; };
-		68989BE01AC1F87200FD8323 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		68989BE11AC1F87200FD8323 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		68989BE61AC1F98C00FD8323 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		68989BE81AC1F99600FD8323 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -92,6 +95,12 @@
 		68989BFC1AC20A2700FD8323 /* PollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollCell.m; sourceTree = "<group>"; };
 		68989BFE1AC2189100FD8323 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		68989BFF1AC2189100FD8323 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		68B3F9D71AD4467200949BC4 /* VFPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFPoll.h; sourceTree = "<group>"; };
+		68B3F9D81AD4467200949BC4 /* VFPoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFPoll.m; sourceTree = "<group>"; };
+		68B3F9DA1AD4762200949BC4 /* VFFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFFriend.h; sourceTree = "<group>"; };
+		68B3F9DB1AD4762200949BC4 /* VFFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFFriend.m; sourceTree = "<group>"; };
+		68B3F9DD1AD4A16A00949BC4 /* VFAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFAnswer.h; sourceTree = "<group>"; };
+		68B3F9DE1AD4A16A00949BC4 /* VFAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFAnswer.m; sourceTree = "<group>"; };
 		68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderQuestionCell.h; sourceTree = "<group>"; };
 		68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderQuestionCell.m; sourceTree = "<group>"; };
 		68B9E0901ABB94090093C5A4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
@@ -110,9 +119,9 @@
 				68989BF21AC1FA3200FD8323 /* MobileCoreServices.framework in Frameworks */,
 				68989BEA1AC1F9BF00FD8323 /* AudioToolbox.framework in Frameworks */,
 				68989BE91AC1F99600FD8323 /* libsqlite3.dylib in Frameworks */,
+				6839C2111ADB292800AAFECB /* Parse.framework in Frameworks */,
 				68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */,
-				68989BE31AC1F87200FD8323 /* Parse.framework in Frameworks */,
-				68989BE21AC1F87200FD8323 /* Bolts.framework in Frameworks */,
+				6839C2131ADB293600AAFECB /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,12 +202,13 @@
 		6835F3271ACF06E700695D63 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				68989BDC1AC1E8B200FD8323 /* VWFPoll.h */,
-				68989BDD1AC1E8B200FD8323 /* VWFPoll.m */,
-				6835F3281ACF070900695D63 /* VWFAnswers.h */,
-				6835F3291ACF070900695D63 /* VWFAnswers.m */,
-				6835F32E1ACF417600695D63 /* VWFUserAnswerForPoll.h */,
-				6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */,
+				68B3F9D61AD4464B00949BC4 /* Old */,
+				68B3F9D71AD4467200949BC4 /* VFPoll.h */,
+				68B3F9D81AD4467200949BC4 /* VFPoll.m */,
+				68B3F9DA1AD4762200949BC4 /* VFFriend.h */,
+				68B3F9DB1AD4762200949BC4 /* VFFriend.m */,
+				68B3F9DD1AD4A16A00949BC4 /* VFAnswer.h */,
+				68B3F9DE1AD4A16A00949BC4 /* VFAnswer.m */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -206,13 +216,13 @@
 		68989BDF1AC1F85600FD8323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6839C2121ADB293600AAFECB /* Bolts.framework */,
+				6839C2101ADB292800AAFECB /* Parse.framework */,
 				68989BF91AC1FA6E00FD8323 /* SystemConfiguration.framework */,
 				68989BF11AC1FA3200FD8323 /* MobileCoreServices.framework */,
 				68989BE81AC1F99600FD8323 /* libsqlite3.dylib */,
 				68989BE61AC1F98C00FD8323 /* libz.dylib */,
 				68989BE41AC1F96F00FD8323 /* AudioToolbox.framework */,
-				68989BE01AC1F87200FD8323 /* Bolts.framework */,
-				68989BE11AC1F87200FD8323 /* Parse.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -258,6 +268,19 @@
 				6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */,
 			);
 			name = "AddEditPoll ViewController";
+			sourceTree = "<group>";
+		};
+		68B3F9D61AD4464B00949BC4 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				68989BDC1AC1E8B200FD8323 /* VWFPoll.h */,
+				68989BDD1AC1E8B200FD8323 /* VWFPoll.m */,
+				6835F3281ACF070900695D63 /* VWFAnswers.h */,
+				6835F3291ACF070900695D63 /* VWFAnswers.m */,
+				6835F32E1ACF417600695D63 /* VWFUserAnswerForPoll.h */,
+				6835F32F1ACF417600695D63 /* VWFUserAnswerForPoll.m */,
+			);
+			name = Old;
 			sourceTree = "<group>";
 		};
 		68C841671ACFAA4900FE38CC /* Login */ = {
@@ -381,6 +404,7 @@
 			files = (
 				68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */,
 				6835F32A1ACF070900695D63 /* VWFAnswers.m in Sources */,
+				68B3F9DF1AD4A16A00949BC4 /* VFAnswer.m in Sources */,
 				6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */,
 				681A00101ABA1CBD000FD77B /* PollsVC.m in Sources */,
 				681A00131ABA2F04000FD77B /* AddEditPollVC.m in Sources */,
@@ -388,6 +412,7 @@
 				681AFFEE1AB9F285000FD77B /* AppDelegate.m in Sources */,
 				6818BC671AC27B300088D9EB /* OptionsCell.m in Sources */,
 				6818BC6D1AC27EC30088D9EB /* AddEditPollQuestionCell.m in Sources */,
+				68B3F9DC1AD4762200949BC4 /* VFFriend.m in Sources */,
 				6835F32D1ACF201800695D63 /* AddEditPollAnswerCell.m in Sources */,
 				6835F3301ACF417600695D63 /* VWFUserAnswerForPoll.m in Sources */,
 				6835F3261ACE47D700695D63 /* VoteAnswerCell.m in Sources */,
@@ -396,6 +421,7 @@
 				681A00161ABA4533000FD77B /* VoteVC.m in Sources */,
 				68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */,
 				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
+				68B3F9D91AD4467200949BC4 /* VFPoll.m in Sources */,
 				68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +544,7 @@
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
 		};
@@ -533,6 +560,7 @@
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
 		};

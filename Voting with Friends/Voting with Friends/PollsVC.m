@@ -10,6 +10,8 @@
 #import "PollCell.h"
 #import "VoteVC.h"
 
+#import "VWFUserAnswerForPoll.h"
+
 @interface PollsVC ()
 
 @property NSArray *pollsFromCloud;

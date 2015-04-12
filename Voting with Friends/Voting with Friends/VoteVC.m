@@ -12,6 +12,9 @@
 #import "VoteAnswerCell.h"
 #import "HeaderQuestionCell.h"
 
+#import "VWFAnswers.h"
+#import "VWFUserAnswerForPoll.h"
+
 @interface VoteVC ()
 
 @end

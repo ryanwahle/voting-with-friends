@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "VWFPoll.h"
 
 @interface PollsVC : UITableViewController

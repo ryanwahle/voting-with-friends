@@ -12,6 +12,10 @@
 #import "AddEditPollAnswerCell.h"
 #import "AddEditPollFriendCell.h"
 
+#import "VWFPoll.h"
+#import "VWFUserAnswerForPoll.h"
+#import "VWFAnswers.h"
+
 @interface AddEditPollVC ()
 
 @end

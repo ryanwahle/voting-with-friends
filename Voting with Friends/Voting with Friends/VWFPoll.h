@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
-
-#import "VWFAnswers.h"
-#import "VWFUserAnswerForPoll.h"
+@import Foundation;
+@import Parse;
+@import Parse.PFSubclassing;
 
 @class VWFUserAnswerForPoll;
 

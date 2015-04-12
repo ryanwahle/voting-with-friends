@@ -6,10 +6,8 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
-
-#import "VWFPoll.h"
+@import Foundation;
+@import Parse;
 
 @class VWFPoll;
 

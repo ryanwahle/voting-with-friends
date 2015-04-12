@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
+@import Parse.PFSubclassing;
+
 #import "VWFAnswers.h"
-#import <Parse/PFObject+Subclass.h>
+#import "VWFUserAnswerForPoll.h"
+
+//#import <Parse/PFObject+Subclass.h>
 
 @implementation VWFAnswers
 

@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
+@import Parse;
+
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
+#import "VFPoll.h"
+#import "VFFriend.h"
+#import "VFAnswer.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +24,64 @@
     // Override point for customization after application launch.
     
     // Setup Parse
-    [Parse setApplicationId:@"fuXmnRf2qq1uyMs22s5Zn2MWeVJ5ovhGKYjimsc5"
-                  clientKey:@"p42xExgpwNduYJadxWrgEXYlbMdG9v1LUFvbuk4V"];
+    [Parse setApplicationId:@"bzgd0ayJY8JwHeixEt4uZN78lefxVkIRXOfcnca1"
+                  clientKey:@"1GJz5IHypQmpWy856B5RrJjjheLKXdbdPAvTSUgF"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
+    /*
+     TEST OUT THE NEW OBJECTS HERE
+     */
+    
+    [PFUser logInWithUsername:@"test2@test.com" password:@"test"];
+    
+    NSString *pollQuestion = @"What would you like to eat tomorrow?";
+    
+    VFPoll *poll = [VFPoll createPollWithQuestion: pollQuestion
+                                        pollOwner: [PFUser currentUser]];
+    
+    [poll addFriendToPollByPFUser:[PFUser currentUser]];
+    
+    [PFUser logInWithUsername:@"ryanwahle@fullsail.edu" password:@"test"];
+    [poll addFriendToPollByPFUser:[PFUser currentUser]];
+    
+    [PFUser logInWithUsername:@"ryanwahle@yahoo.com" password:@"test"];
+    [poll addFriendToPollByPFUser:[PFUser currentUser]];
+    
+    NSLog(@"Poll Owner: %@", poll.nameOfPollOwner);
+    NSLog(@"isCurrentUserPollOwner: %d", poll.isCurrentUserPollOwner);
+    
+    poll.shouldDisplayAnswerTotals = NO;
+    poll.shouldDisplayActivity = YES;
+    NSLog(@"DisplayAnswerTotals: %d, DisplayActivity: %d", poll.shouldDisplayAnswerTotals, poll.shouldDisplayActivity);
+
+    for (VFFriend *friend in poll.friendsOfPoll) {
+        NSLog(@"Friend From Poll: %@ (%@)", friend.name, friend.email);
+    }
+
+    
+    [poll removeFriendOfPollAtIndex:1];
+    
+    
+    for (VFFriend *friend in poll.friendsOfPoll) {
+        NSLog(@"Friend From Poll: %@ (%@)", friend.name, friend.email);
+    }
+
+    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"McDonalds"]];
+    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"Jack in the Box"]];
+    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"The Habit"]];
+    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"Paradise Bakery"]];
+    
+    for (VFAnswer *answer in poll.possibleAnswersForPoll) {
+        [answer selectAnswerForCurrentUser];
+        NSLog(@"Possible Answer for Poll: %@ - Votes: %ld", answer.answerText, (long)answer.totalVotesForPoll);
+    }
+    
+    for (VFAnswer *answer in poll.possibleAnswersForPoll) {
+        NSLog(@"Possible Answer for Poll: %@ - Votes: %ld", answer.answerText, (long)answer.totalVotesForPoll);
+    }
+
     
     return YES;
 }

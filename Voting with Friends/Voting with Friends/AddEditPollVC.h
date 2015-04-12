@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <AddressBook/AddressBook.h>
-#import <AddressBookUI/AddressBookUI.h>
+@import UIKit;
+@import AddressBook;
+@import AddressBookUI;
 
-#import "VWFPoll.h"
+@class VWFPoll;
 
 @interface AddEditPollVC : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
 
