@@ -59,16 +59,42 @@
 }
 
 /* * * * * * * * * * * * * * * * *
+ votedForByUsers
+ * * * * * * * * * * * * * * * * */
+- (NSArray *)votedForByUsers {
+    NSMutableArray *votedForByUsers = [[NSMutableArray alloc] init];
+    
+    for (PFUser *user in self.answerFromParse[@"votedForByUsers"]) {
+        [votedForByUsers addObject:user];
+    }
+    
+    return [NSArray arrayWithArray:votedForByUsers];
+}
+
+
+/* * * * * * * * * * * * * * * * *
  Helper Methods
  * * * * * * * * * * * * * * * * */
 
 - (void)save {
-    [self.answerFromParse saveInBackground];
+    [self.answerFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+    }];
+}
+
+- (void)deleteAnswer {
+    [self.answerFromParse deleteInBackground];
 }
 
 - (void)selectAnswerForCurrentUser {
     PFUser *user = [PFUser currentUser];
     [self.answerFromParse addObjectsFromArray:@[user] forKey:@"votedForByUsers"];
+    [self save];
+}
+
+- (void)removeSelectedAnswerForCurrentUser {
+    PFUser *user = [PFUser currentUser];
+    [self.answerFromParse removeObjectsInArray:@[user] forKey:@"votedForByUsers"];
     [self save];
 }
 

@@ -13,6 +13,7 @@
 
 @property PFObject *answerFromParse;
 
+@property (readonly) NSArray *votedForByUsers;
 @property NSString *answerText;
 @property (readonly) NSInteger totalVotesForPoll;
 
@@ -20,5 +21,7 @@
 + (instancetype)createAnswerUsingPFObject:(PFObject *)answer;
 
 - (void)selectAnswerForCurrentUser;
-    
+- (void)removeSelectedAnswerForCurrentUser;
+
+- (void)deleteAnswer;
 @end

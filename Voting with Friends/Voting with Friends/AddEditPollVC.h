@@ -10,10 +10,10 @@
 @import AddressBook;
 @import AddressBookUI;
 
-@class VWFPoll;
+@class VFPoll;
 
 @interface AddEditPollVC : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
 
-@property VWFPoll *pollData;
+@property VFPoll *pollData;
 
 @end

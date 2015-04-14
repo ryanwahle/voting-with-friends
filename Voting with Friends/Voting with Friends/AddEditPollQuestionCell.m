@@ -42,8 +42,7 @@
         textView.textColor = [UIColor lightGrayColor];
     }
     
-    NSLog(@"Ended Editing");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_savePollData" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_saveQuestionForPoll" object:textView];
 }
 
 @end

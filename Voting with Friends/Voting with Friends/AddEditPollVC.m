@@ -12,11 +12,13 @@
 #import "AddEditPollAnswerCell.h"
 #import "AddEditPollFriendCell.h"
 
-#import "VWFPoll.h"
-#import "VWFUserAnswerForPoll.h"
-#import "VWFAnswers.h"
+#import "VFPoll.h"
+#import "VFAnswer.h"
+#import "VFFriend.h"
 
 @interface AddEditPollVC ()
+
+@property NSString *localQuestionForPollString;
 
 @end
 
@@ -25,61 +27,63 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"addEditPoll_cloudDataUpdated" object:nil];
+    [self updateTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataRefreshed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePollData) name:@"addEditPoll_savePollData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveQuestionForPoll) name:@"addEditPoll_saveQuestionForPoll" object:nil];
     
-    if (_pollData == nil) {
+    if (self.pollData == nil) {
         // Add a new poll
-        VWFPoll *newPoll = [VWFPoll object];
-        newPoll.pollQuestion = @"Touch here to edit your poll question. Answers and friends are added below. May you receive the answer you are looking for!";
-        newPoll.createdByUserPointer = [PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId];
+        VFPoll *newPoll = [VFPoll createPollWithQuestion:@"Touch here to edit your poll question. Answers and friends are added below. May you receive the answer you are looking for!" pollOwner:[PFUser currentUser]];
         
-        [newPoll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            _pollData = newPoll;
-            [_pollData addFriend:[PFUser currentUser].objectId];
-            //[_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
-         }];
-    } else {
-        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
+        self.pollData = newPoll;
     }
+
+    
+    self.localQuestionForPollString = self.pollData.questionForPoll.copy;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self savePollData];
-
     [super viewWillDisappear:animated];
+    
+    [self saveQuestionForPoll];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_questionTextViewChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_saveQuestionForPoll" object:nil];
 }
 
 #pragma mark - Option Switch Logic
 
 - (IBAction)showActivityUISwitchChanged:(UISwitch *)sender {
-    _pollData.showActivity = sender.isOn;
-    [_pollData saveEventually];
+    self.pollData.shouldDisplayActivity = sender.isOn;
 }
 
 
 - (IBAction)showIndividualAnswerTotalsUISwitchChanged:(UISwitch *)sender {
-    _pollData.showIndividualAnswerTotals = sender.isOn;
-    [_pollData saveEventually];
+    self.pollData.shouldDisplayAnswerTotals = sender.isOn;
 }
 
 #pragma mark - Question
 
-- (void)savePollData {
-    [_pollData saveInBackground];
-}
-
-#pragma mark - Table view data source
-
 - (void)updateQuestionTextView:(NSNotification *)notification {
     UITextView *questionTextView = notification.object;
     
-    _pollData.pollQuestion = questionTextView.text;
-    
+    self.localQuestionForPollString = questionTextView.text;
+
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
+
+- (void)saveQuestionForPoll {
+    NSLog(@"question to save: %@", self.localQuestionForPollString);
+    self.pollData.questionForPoll = self.localQuestionForPollString.copy;
+}
+
+#pragma mark - Table view data source
 
 - (void)updateTableView {
     self.tableView.estimatedRowHeight = 88.0;
@@ -98,9 +102,9 @@
     } else if (section == 1) { // Question
         return 1;
     } else if (section == 2) { // Answers
-        return [_pollData.pollAnswerKeys count];
+        return self.pollData.possibleAnswersForPoll.count;
     } else if (section == 3) { // Friends
-        return [_pollData.pollFriends count];
+        return self.pollData.friendsOfPoll.count;
     }
     
     return 0;
@@ -110,38 +114,29 @@
     if (indexPath.section == 0) { // Options
         OptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
         
-        [cell.showActivityUISwitch setOn:_pollData.showActivity animated:YES];
-        [cell.showIndividualAnswerTotalsUISwitch setOn:_pollData.showIndividualAnswerTotals animated:YES];
+        [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
+        [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
         
         return cell;
     } else if (indexPath.section == 1) { // Question
         AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
         
-        cell.questionUITextView.text = _pollData.pollQuestion;
+        cell.questionUITextView.text = self.localQuestionForPollString;
         cell.questionUITextView.textColor = [UIColor blackColor];
         
         return cell;
     } else if (indexPath.section == 2) { // Answers
         AddEditPollAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
 
-        cell.answerUILabel.text = ((VWFAnswers *)_pollData.pollAnswerKeys[indexPath.row]).pollAnswer;
+        VFAnswer *answer = self.pollData.possibleAnswersForPoll[indexPath.row];
+        cell.answerUILabel.text = answer.answerText;
         
         return cell;
     } else if (indexPath.section == 3) { // Friends
         AddEditPollFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
+        VFFriend *friend = self.pollData.friendsOfPoll[indexPath.row];
         
-        VWFUserAnswerForPoll *friendForCell = _pollData.pollFriends[indexPath.row];
-        
-        if ([friendForCell.userPointer.objectId isEqualToString:[PFUser currentUser].objectId]) {
-            cell.deleteButton.hidden = YES;
-        }
-        
-        PFQuery *userQuery = [PFUser query];
-        
-        [userQuery getObjectInBackgroundWithId:friendForCell.userPointer.objectId block:^(PFObject *object, NSError *error) {
-            PFUser *friend = (PFUser *)object;
-            cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend[@"name"], friend.email];
-        }];
+        cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend.name, friend.email];
         
         return cell;
     }
@@ -186,18 +181,11 @@
 # pragma mark - Answer Key
 
 - (void)addAnswerKeyToPoll:(NSString *)answerKeyText {
-    VWFAnswers *newAnswer = [VWFAnswers object];
-    newAnswer.pollAnswer = answerKeyText;
-    newAnswer.pollPointer = [VWFPoll objectWithoutDataWithObjectId:[_pollData objectId]];
-    [newAnswer saveEventually:^(BOOL succeeded, NSError *error) {
-        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
-    }];
+    [self.pollData addPossibleAnswerForPollWithAnswerText:answerKeyText];
 }
 
-- (void)deleteAnswerKeyFromPoll:(VWFAnswers *)answerKey {
-    [answerKey deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
-    }];
+- (void)deleteAnswerKeyFromPollUsingIndex:(NSInteger)answerKeyIndex {
+    [self.pollData removePossibleAnswerFromPollAtIndex:answerKeyIndex];
 }
 
 - (IBAction)addAnswerKeyButtonTouched:(id)sender {
@@ -232,7 +220,7 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessageText preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        [self deleteAnswerKeyFromPoll:_pollData.pollAnswerKeys[indexPath.row]];
+        [self deleteAnswerKeyFromPollUsingIndex:indexPath.row];
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -258,7 +246,11 @@
         if (object) {
             NSLog(@"Found email address");
             
-            [_pollData addFriend:object.objectId];
+            PFUser *foundUser = (PFUser *)object;
+            
+            [self.pollData addFriendToPollByPFUser:foundUser];
+            
+            //[_pollData addFriend:object.objectId];
             
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
@@ -353,7 +345,7 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessageText preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        [self deleteFriendFromPoll:_pollData.pollFriends[indexPath.row]];
+        [self.pollData removeFriendOfPollAtIndex:indexPath.row];
         [alert dismissViewControllerAnimated:YES completion:nil];
 
         [alert dismissViewControllerAnimated:YES completion:nil];
@@ -368,12 +360,5 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-- (void)deleteFriendFromPoll:(VWFAnswers *)friend {
-    [friend deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [_pollData refreshCloudDataAndPostNotification:@"addEditPoll_cloudDataUpdated"];
-    }];
-}
-
 
 @end

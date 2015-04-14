@@ -13,24 +13,30 @@
 
 @interface VFPoll : NSObject
 
+@property PFObject *pollFromParse;
+
 @property (readonly) BOOL isCurrentUserPollOwner;
 @property BOOL shouldDisplayActivity;
 @property BOOL shouldDisplayAnswerTotals;
 
-/* TODO */ @property NSNumber *indexOfSelectedAnswerFromCurrentUser;
+@property (readonly) NSInteger indexOfSelectedAnswerFromCurrentUser;
 
 @property (readonly) NSString *nameOfPollOwner;
+
 @property NSString *questionForPoll;
 
 @property (readonly) NSArray *possibleAnswersForPoll;
 @property (readonly) NSArray *friendsOfPoll;
 
 + (instancetype)createPollWithQuestion:(NSString *)questionForPoll pollOwner:(PFUser *)pollOwner;
++ (instancetype)createPollWithPFObject:(PFObject *)pfObject;
 
 - (void)addFriendToPollByPFUser:(PFUser *)user;
 - (void)removeFriendOfPollAtIndex:(NSInteger)index;
 
-- (void)addPossibleAnswerForPollWithAnswer:(VFAnswer *)answer;
+- (void)addPossibleAnswerForPollWithAnswerText:(NSString *)answerText;
 - (void)removePossibleAnswerFromPollAtIndex:(NSInteger)index;
+
+- (void)deletePoll;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-#import "VWFPoll.h"
+//#import "VWFPoll.h"
 
 @interface HeaderQuestionCell : UITableViewCell
 

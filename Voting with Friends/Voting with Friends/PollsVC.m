@@ -10,8 +10,6 @@
 #import "PollCell.h"
 #import "VoteVC.h"
 
-#import "VWFUserAnswerForPoll.h"
-
 @interface PollsVC ()
 
 @property NSArray *pollsFromCloud;
@@ -26,7 +24,9 @@
     self.tableView.estimatedRowHeight = 88.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"pollsListCloudDataUpdated" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPollDataFromCloud) name:@"refreshPollsList" object:nil];
     
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1];
     self.refreshControl.tintColor = [UIColor whiteColor];
@@ -40,20 +40,29 @@
     
     NSLog(@"(getPollDataFromCloud) Getting data from cloud.");
     
-    PFQuery *pollsForCurrentUserQuery = [VWFUserAnswerForPoll query];
-    [pollsForCurrentUserQuery whereKey:@"userPointer" equalTo:[PFUser objectWithoutDataWithObjectId:[PFUser currentUser].objectId]];
-    [pollsForCurrentUserQuery includeKey:@"pollPointer"];
-    [pollsForCurrentUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *pollsWhereCurrentUserIsOwner = [PFQuery queryWithClassName:@"Polls"];
+    [pollsWhereCurrentUserIsOwner whereKey:@"pollOwner" equalTo:[PFUser currentUser]];
+
+    PFQuery *pollsWhereCurrentUserIsFriend = [PFQuery queryWithClassName:@"Polls"];
+    [pollsWhereCurrentUserIsFriend whereKey:@"friendsOfPoll" equalTo:[PFUser currentUser]];
+
+    PFQuery *pollsForCurrentUser = [PFQuery orQueryWithSubqueries:@[pollsWhereCurrentUserIsOwner, pollsWhereCurrentUserIsFriend]];
+    
+    [pollsForCurrentUser includeKey:@"pollOwner"];
+    [pollsForCurrentUser includeKey:@"friendsOfPoll"];
+    [pollsForCurrentUser includeKey:@"possibleAnswersForPoll"];
+    [pollsForCurrentUser includeKey:@"possibleAnswersForPoll.votedForByUsers"];
+    
+    [pollsForCurrentUser findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray *pollsArray = [[NSMutableArray alloc] init];
-        
-        for (VWFUserAnswerForPoll *pollsForCurrentUser in objects) {
-            [pollsArray addObject:pollsForCurrentUser.pollPointer];
+    
+        for (PFObject *pollObject in objects) {
+            [pollsArray addObject:[VFPoll createPollWithPFObject:pollObject]];
         }
         
-        _pollsFromCloud = [NSArray arrayWithArray:pollsArray];
-        for (VWFPoll *poll in _pollsFromCloud) {
-            [poll refreshCloudDataAndPostNotification:@"cloudDataUpdated"];
-        }
+        self.pollsFromCloud = [NSArray arrayWithArray:pollsArray];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pollsListCloudDataUpdated" object:nil];
     }];
 }
 
@@ -61,7 +70,6 @@
 
 - (void)updateTableView {
     [self.tableView reloadData];
-    
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
@@ -82,14 +90,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VWFPoll *pollData = _pollsFromCloud[indexPath.row];
-    
+    VFPoll *pollData = _pollsFromCloud[indexPath.row];
+
     PollCell *pollCell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
     
-    pollCell.pollQuestion.text = pollData.pollQuestion;
-    pollCell.personsNameWhoCreatedPoll.text = [NSString stringWithFormat:@"%@ asks . . .", pollData.nameOfCreatedByUser];
-    
-    if (pollData.currentSelectedAnswer.answerPointer) {
+    pollCell.pollQuestion.text = pollData.questionForPoll;
+    pollCell.personsNameWhoCreatedPoll.text = pollData.nameOfPollOwner;
+
+    if (pollData.indexOfSelectedAnswerFromCurrentUser > -1) {
         [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
     } else {
         [pollCell.voteButton setTitle: @"Please Vote" forState: UIControlStateNormal];
@@ -107,8 +115,8 @@
         
         VoteVC *voteVC = [segue destinationViewController];
         voteVC.pollData = _pollsFromCloud[indexPath.row];
-        
-        if ([[PFUser currentUser].objectId isEqualToString:voteVC.pollData.createdByUserPointer.objectId]) {
+  
+        if (voteVC.pollData.isCurrentUserPollOwner) {
             voteVC.hidesBottomBarWhenPushed = NO;
         } else {
             voteVC.hidesBottomBarWhenPushed = YES;

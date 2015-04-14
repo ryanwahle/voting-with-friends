@@ -12,8 +12,6 @@
 
 @interface VFPoll ()
 
-@property PFObject *pollFromParse;
-
 @end
 
 
@@ -27,6 +25,14 @@
     }
     
     return self;
+}
+
++ (instancetype)createPollWithPFObject:(PFObject *)object {
+    VFPoll *poll = [[VFPoll alloc] init];
+    
+    poll.pollFromParse = object;
+    
+    return poll;
 }
 
 + (instancetype)createPollWithQuestion:(NSString *)questionForPoll pollOwner:(PFUser *)pollOwner {
@@ -142,6 +148,26 @@
 }
 
 /* * * * * * * * * * * * * * * * *
+ indexOfSelectedAnswerFromCurrentUser
+ * * * * * * * * * * * * * * * * */
+- (NSInteger) indexOfSelectedAnswerFromCurrentUser {
+    NSInteger returnValue = -1;
+    
+    NSInteger index = 0;
+    for (VFAnswer *answer in self.possibleAnswersForPoll) {
+        for (PFUser *user in answer.votedForByUsers) {
+            if ([[PFUser currentUser].objectId isEqualToString:user.objectId]){
+                returnValue = index;
+            }
+        }
+        
+        index++;
+    }
+    
+    return returnValue;
+}
+
+/* * * * * * * * * * * * * * * * *
  Helper Methods
  * * * * * * * * * * * * * * * * */
 
@@ -155,18 +181,36 @@
     [self save];
 }
 
-- (void)addPossibleAnswerForPollWithAnswer:(VFAnswer *)answer {
+- (void)addPossibleAnswerForPollWithAnswerText:(NSString *)answerText {
+    VFAnswer *answer = [VFAnswer createAnswerUsingString:answerText];
+    
     [self.pollFromParse addObjectsFromArray:@[answer.answerFromParse] forKey:@"possibleAnswersForPoll"];
     [self save];
 }
 
 - (void)removePossibleAnswerFromPollAtIndex:(NSInteger)index {
-    [self.pollFromParse removeObject:((VFAnswer *)self.possibleAnswersForPoll[index]).answerFromParse forKey:@"possibleAnswersForPoll"];
+    VFAnswer *answer = self.possibleAnswersForPoll[index];
+    
+    [self.pollFromParse removeObject:answer.answerFromParse forKey:@"possibleAnswersForPoll"];
+    [answer deleteAnswer];
+    
     [self save];
 }
 
+- (void)deletePoll {
+    for (VFAnswer *answerInPoll in self.possibleAnswersForPoll) {
+        [answerInPoll deleteAnswer];
+    }
+    
+    [self.pollFromParse deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPollsList" object:nil];
+    }];
+}
+
 - (void)save {
-    [self.pollFromParse saveInBackground];
+    [self.pollFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+    }];
 }
 
 @end
