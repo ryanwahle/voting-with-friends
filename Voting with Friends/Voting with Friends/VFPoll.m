@@ -9,6 +9,7 @@
 #import "VFPoll.h"
 #import "VFFriend.h"
 #import "VFAnswer.h"
+#import "VFPush.h"
 
 @interface VFPoll ()
 
@@ -21,7 +22,7 @@
     self = [super init];
     
     if (self) {
-    
+        
     }
     
     return self;
@@ -47,9 +48,10 @@
     poll.shouldDisplayAnswerTotals = NO;
     poll.shouldDisplayActivity = NO;
     
+    
+    
     return poll;
 }
-
 
 /* * * * * * * * * * * * * * * * *
     questionForPoll
@@ -172,6 +174,8 @@
  * * * * * * * * * * * * * * * * */
 
 - (void)addFriendToPollByPFUser:(PFUser *)user {
+    [VFPush sendPushNotificationToUsers:@[user] withNotificationString:[NSString stringWithFormat:@"You were sent a poll from %@. Please vote now!", self.nameOfPollOwner]];
+    
     [self.pollFromParse addObjectsFromArray:@[user] forKey:@"friendsOfPoll"];
     [self save];
 }
@@ -182,6 +186,7 @@
 }
 
 - (void)addPossibleAnswerForPollWithAnswerText:(NSString *)answerText {
+    [VFPush sendPushNotificationToFriends:self.friendsOfPoll withNotificationString:[NSString stringWithFormat:@""]];
     VFAnswer *answer = [VFAnswer createAnswerUsingString:answerText];
     
     [self.pollFromParse addObjectsFromArray:@[answer.answerFromParse] forKey:@"possibleAnswersForPoll"];
@@ -197,6 +202,23 @@
     [self save];
 }
 
+- (void)refreshPoll {
+    PFQuery *pollQuery = [PFQuery queryWithClassName:@"Polls"];
+    [pollQuery whereKey:@"objectId" equalTo:self.pollFromParse.objectId];
+    
+    [pollQuery includeKey:@"pollOwner"];
+    [pollQuery includeKey:@"friendsOfPoll"];
+    [pollQuery includeKey:@"possibleAnswersForPoll"];
+    [pollQuery includeKey:@"possibleAnswersForPoll.votedForByUsers"];
+    
+    [pollQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        self.pollFromParse = object;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pollObjectUpdated" object:nil];
+    }];
+
+}
+
 - (void)deletePoll {
     for (VFAnswer *answerInPoll in self.possibleAnswersForPoll) {
         [answerInPoll deleteAnswer];
@@ -204,6 +226,7 @@
     
     [self.pollFromParse deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPollsList" object:nil];
+        [VFPush sendPushNotificationToFriends:self.friendsOfPoll withNotificationString:[NSString stringWithFormat:@""]];
     }];
 }
 

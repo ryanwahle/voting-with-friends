@@ -38,5 +38,6 @@
 - (void)removePossibleAnswerFromPollAtIndex:(NSInteger)index;
 
 - (void)deletePoll;
+- (void)refreshPoll;
 
 @end

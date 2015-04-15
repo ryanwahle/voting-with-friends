@@ -7,6 +7,7 @@
 //
 
 #import "LoginVC.h"
+#import "VFPush.h"
 
 @interface LoginVC ()
 
@@ -69,8 +70,8 @@
     }];
 }
 
-
 - (void) loginSuccesful {
+    [VFPush registerPushNotifications];
     [self performSegueWithIdentifier:@"LoginSuccessfulSegue" sender:nil];
 }
 

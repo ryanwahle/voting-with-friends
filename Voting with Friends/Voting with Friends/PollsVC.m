@@ -9,6 +9,7 @@
 #import "PollsVC.h"
 #import "PollCell.h"
 #import "VoteVC.h"
+#import "VFPush.h"
 
 @interface PollsVC ()
 
@@ -25,7 +26,6 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"pollsListCloudDataUpdated" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPollDataFromCloud) name:@"refreshPollsList" object:nil];
     
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1];
@@ -36,10 +36,12 @@
     [self getPollDataFromCloud];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollsListCloudDataUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshPollsList" object:nil];
+}
+
 - (void)getPollDataFromCloud {
-    
-    NSLog(@"(getPollDataFromCloud) Getting data from cloud.");
-    
     PFQuery *pollsWhereCurrentUserIsOwner = [PFQuery queryWithClassName:@"Polls"];
     [pollsWhereCurrentUserIsOwner whereKey:@"pollOwner" equalTo:[PFUser currentUser]];
 
@@ -126,6 +128,7 @@
 
 
 - (IBAction)logoutButtonTap:(id)sender {
+    [VFPush deregisterPushNotifications];
     [PFUser logOut];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

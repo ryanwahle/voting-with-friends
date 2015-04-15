@@ -23,9 +23,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self updateTableView];
+    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataRefreshed" object:nil];
+    [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"pollObjectUpdated" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self.tableView reloadData];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"cloudDataRefreshed" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self.pollData refreshPoll];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -35,14 +44,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (void)updateTableView {
-    self.tableView.estimatedRowHeight = 44.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    [self.tableView reloadData];
-}
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;

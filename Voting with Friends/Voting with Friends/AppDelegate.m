@@ -9,9 +9,6 @@
 @import Parse;
 
 #import "AppDelegate.h"
-#import "VFPoll.h"
-#import "VFFriend.h"
-#import "VFAnswer.h"
 
 @interface AppDelegate ()
 
@@ -29,63 +26,25 @@
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
     
-    /*
-     TEST OUT THE NEW OBJECTS HERE
-     */
-    
-    /*
-    [PFUser logInWithUsername:@"test2@test.com" password:@"test"];
-    
-    NSString *pollQuestion = @"What would you like to eat tomorrow?";
-    
-    VFPoll *poll = [VFPoll createPollWithQuestion: pollQuestion
-                                        pollOwner: [PFUser currentUser]];
-    
-    [poll addFriendToPollByPFUser:[PFUser currentUser]];
-    
-    [PFUser logInWithUsername:@"ryanwahle@fullsail.edu" password:@"test"];
-    [poll addFriendToPollByPFUser:[PFUser currentUser]];
-    
-    [PFUser logInWithUsername:@"ryanwahle@yahoo.com" password:@"test"];
-    [poll addFriendToPollByPFUser:[PFUser currentUser]];
-    
-    NSLog(@"Poll Owner: %@", poll.nameOfPollOwner);
-    NSLog(@"isCurrentUserPollOwner: %d", poll.isCurrentUserPollOwner);
-    
-    poll.shouldDisplayAnswerTotals = NO;
-    poll.shouldDisplayActivity = YES;
-    NSLog(@"DisplayAnswerTotals: %d, DisplayActivity: %d", poll.shouldDisplayAnswerTotals, poll.shouldDisplayActivity);
-
-    for (VFFriend *friend in poll.friendsOfPoll) {
-        NSLog(@"Friend From Poll: %@ (%@)", friend.name, friend.email);
-    }
-
-    
-    [poll removeFriendOfPollAtIndex:1];
-    
-    
-    for (VFFriend *friend in poll.friendsOfPoll) {
-        NSLog(@"Friend From Poll: %@ (%@)", friend.name, friend.email);
-    }
-
-    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"McDonalds"]];
-    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"Jack in the Box"]];
-    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"The Habit"]];
-    [poll addPossibleAnswerForPollWithAnswer:[VFAnswer createAnswerUsingString:@"Paradise Bakery"]];
-    
-    for (VFAnswer *answer in poll.possibleAnswersForPoll) {
-        [answer selectAnswerForCurrentUser];
-        NSLog(@"Possible Answer for Poll: %@ - Votes: %ld", answer.answerText, (long)answer.totalVotesForPoll);
-    }
-    
-    for (VFAnswer *answer in poll.possibleAnswersForPoll) {
-        NSLog(@"Possible Answer for Poll: %@ - Votes: %ld", answer.answerText, (long)answer.totalVotesForPoll);
-    }
-     */
-    
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPollsList" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -104,6 +63,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPollsList" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
