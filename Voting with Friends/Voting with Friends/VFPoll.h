@@ -18,6 +18,7 @@
 @property (readonly) BOOL isCurrentUserPollOwner;
 @property BOOL shouldDisplayActivity;
 @property BOOL shouldDisplayAnswerTotals;
+@property NSDate *expirationDate;
 
 @property (readonly) NSInteger indexOfSelectedAnswerFromCurrentUser;
 

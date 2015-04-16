@@ -56,6 +56,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_saveQuestionForPoll" object:nil];
 }
 
+
+- (IBAction)saveButton:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Option Switch Logic
 
 - (IBAction)showActivityUISwitchChanged:(UISwitch *)sender {
@@ -65,6 +70,11 @@
 
 - (IBAction)showIndividualAnswerTotalsUISwitchChanged:(UISwitch *)sender {
     self.pollData.shouldDisplayAnswerTotals = sender.isOn;
+}
+
+- (IBAction)expirationDateUIChanged:(UIDatePicker *)sender {
+    NSLog(@"date: %@", sender.date);
+    self.pollData.expirationDate = sender.date;
 }
 
 #pragma mark - Question
@@ -117,6 +127,8 @@
         [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
         [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
         
+        [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+        
         return cell;
     } else if (indexPath.section == 1) { // Question
         AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
@@ -166,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) { // Options
-        return 88;
+        return 330;
     } else if (indexPath.section == 1) { // Question
         return self.tableView.rowHeight;
     } else if (indexPath.section == 2) { // Answers
@@ -360,5 +372,7 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+
 
 @end

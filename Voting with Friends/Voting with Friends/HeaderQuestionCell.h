@@ -7,10 +7,10 @@
 //
 
 @import UIKit;
-//#import "VWFPoll.h"
 
 @interface HeaderQuestionCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *personsNameWhoCreatedPoll;
+@property (weak, nonatomic) IBOutlet UILabel *pollExpirationDate;
 
 @end

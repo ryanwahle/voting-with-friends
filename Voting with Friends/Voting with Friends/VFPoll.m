@@ -44,6 +44,7 @@
     
     poll.questionForPoll = questionForPoll;
     poll.pollOwner = pollOwner;
+    poll.expirationDate = [[NSDate date] dateByAddingTimeInterval:604800];
         
     poll.shouldDisplayAnswerTotals = NO;
     poll.shouldDisplayActivity = NO;
@@ -119,6 +120,18 @@
 
 - (void) setShouldDisplayAnswerTotals:(BOOL)shouldDisplayAnswerTotals {
     self.pollFromParse[@"shouldDisplayAnswerTotals"] = @(shouldDisplayAnswerTotals);
+    [self save];
+}
+
+/* * * * * * * * * * * * * * * * *
+ expirationDate
+ * * * * * * * * * * * * * * * * */
+- (NSDate *)expirationDate {
+    return self.pollFromParse[@"expirationDate"];
+}
+
+- (void)setExpirationDate:(NSDate *)expirationDate {
+    self.pollFromParse[@"expirationDate"] = expirationDate;
     [self save];
 }
 

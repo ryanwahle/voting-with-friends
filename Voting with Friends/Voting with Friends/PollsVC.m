@@ -97,12 +97,16 @@
     PollCell *pollCell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
     
     pollCell.pollQuestion.text = pollData.questionForPoll;
-    pollCell.personsNameWhoCreatedPoll.text = pollData.nameOfPollOwner;
+    pollCell.personsNameWhoCreatedPoll.text = [NSString stringWithFormat:@"%@ asks . . .", pollData.nameOfPollOwner];
 
     if (pollData.indexOfSelectedAnswerFromCurrentUser > -1) {
         [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
+        //[pollCell.voteButton setTitleColor:[UIColor colorWithRed:236.0f/255.0f green:240.0f/255.0f blue:241.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
     } else {
         [pollCell.voteButton setTitle: @"Please Vote" forState: UIControlStateNormal];
+        //[pollCell.voteButton setTitleColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:192.0f/255.0f green:57.0f/255.0f blue:43.0f/255.0f alpha:1.0]];
     }
     
     return pollCell;

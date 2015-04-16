@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *showActivityUISwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showIndividualAnswerTotalsUISwitch;
+@property (weak, nonatomic) IBOutlet UIDatePicker *pollExpirationDate;
 
 @end
