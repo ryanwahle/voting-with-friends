@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
+@import Social;
+
 #import "VoteVC.h"
 #import "QuestionCell.h"
 #import "AddEditPollVC.h"
@@ -45,6 +47,37 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
 }
+
+#pragma mark - Tweet
+
+
+- (IBAction)tweetButtonTapped:(UIBarButtonItem *)sender {
+    
+    if (self.pollData.indexOfSelectedAnswerFromCurrentUser == -1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Twitter" message:@"You need to select an answer before you can tweet about it!" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        VFAnswer *answerForTweet = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
+    
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            SLComposeViewController *twitterComposeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+            NSString *tweetString = [NSString stringWithFormat:@"I just voted for '%@' for a poll created with #VotingWithFriends -- Download now!", answerForTweet.answerText];
+        
+            [twitterComposeVC setInitialText:tweetString];
+        
+            [self presentViewController:twitterComposeVC animated:YES completion:nil];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Twitter" message:@"Please login to Twitter in the Settings app to share this poll." preferredStyle:UIAlertControllerStyleAlert];
+        
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
+}
+
 
 #pragma mark - Table view data source
 

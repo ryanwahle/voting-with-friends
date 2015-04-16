@@ -325,8 +325,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dav-d4-p8U">
-                                            <rect key="frame" x="162" y="10" width="51" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="17"/>
+                                            <rect key="frame" x="169" y="14" width="38" height="16"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -343,22 +343,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan voted for Wendy's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9c-7r-yAA">
-                                            <rect key="frame" x="98" y="11" width="175" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLightItalic" family="Avenir Next" pointSize="17"/>
+                                            <rect key="frame" x="88" y="14" width="121" height="16"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today 2p" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-7r-eY3">
-                                            <rect key="frame" x="41" y="13" width="49" height="17"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="12"/>
+                                            <rect key="frame" x="41" y="15" width="39" height="13"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="9"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="v9c-7r-yAA" secondAttribute="centerY" constant="-1" id="19Y-Yg-6RH"/>
+                                        <constraint firstAttribute="centerY" secondItem="v9c-7r-yAA" secondAttribute="centerY" id="19Y-Yg-6RH"/>
                                         <constraint firstItem="v9c-7r-yAA" firstAttribute="leading" secondItem="OVz-7r-eY3" secondAttribute="trailing" constant="8" id="gE1-Kv-Xks"/>
-                                        <constraint firstAttribute="centerY" secondItem="OVz-7r-eY3" secondAttribute="centerY" constant="0.5" id="hsJ-9Q-4lE"/>
+                                        <constraint firstAttribute="centerY" secondItem="OVz-7r-eY3" secondAttribute="centerY" id="hsJ-9Q-4lE"/>
                                         <constraint firstItem="OVz-7r-eY3" firstAttribute="leading" secondItem="RQs-Gb-pcf" secondAttribute="leadingMargin" constant="33" id="wtL-NW-YSe"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -390,6 +390,11 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Vote" id="KOv-W6-2YQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="31d-uu-ebP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="9Cf-tf-q7H">
+                            <connections>
+                                <action selector="tweetButtonTapped:" destination="NW5-dC-IBu" id="8xg-zz-BJN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
