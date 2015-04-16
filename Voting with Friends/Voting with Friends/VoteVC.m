@@ -11,8 +11,10 @@
 #import "AddEditPollVC.h"
 #import "VoteAnswerCell.h"
 #import "HeaderQuestionCell.h"
+#import "VoteActivityCell.h"
 
 #import "VFAnswer.h"
+#import "VFActivity.h"
 
 @interface VoteVC ()
 
@@ -56,7 +58,7 @@
     } else if (section == 1) { // Answer Section
         return self.pollData.possibleAnswersForPoll.count;
     } else if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
-        return 3;
+        return self.pollData.pollActivity.count;
     }
 
     return 0;
@@ -91,7 +93,18 @@
         
         return cell;
     } else if (indexPath.section == 2) { // Activity Section
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        VoteActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        
+        VFActivity *activity = self.pollData.pollActivity[indexPath.row];
+        
+        cell.labelActivityDescription.text = activity.descriptionOfActivity;
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+
+        cell.labelDateTime.text = [dateFormatter stringFromDate:activity.dateAndTimeOfActivity];
+        
         return cell;
     }
     

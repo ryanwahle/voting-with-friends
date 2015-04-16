@@ -337,7 +337,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellActivity" id="AqB-H6-XGd">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellActivity" id="AqB-H6-XGd" customClass="VoteActivityCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqB-H6-XGd" id="RQs-Gb-pcf">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -362,6 +362,10 @@
                                         <constraint firstItem="OVz-7r-eY3" firstAttribute="leading" secondItem="RQs-Gb-pcf" secondAttribute="leadingMargin" constant="33" id="wtL-NW-YSe"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="labelActivityDescription" destination="v9c-7r-yAA" id="HSx-k5-Qfw"/>
+                                    <outlet property="labelDateTime" destination="OVz-7r-eY3" id="zJF-hR-heH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

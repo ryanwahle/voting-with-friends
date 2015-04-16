@@ -52,6 +52,7 @@
     
     [pollsForCurrentUser includeKey:@"pollOwner"];
     [pollsForCurrentUser includeKey:@"friendsOfPoll"];
+    [pollsForCurrentUser includeKey:@"pollActivity"];
     [pollsForCurrentUser includeKey:@"possibleAnswersForPoll"];
     [pollsForCurrentUser includeKey:@"possibleAnswersForPoll.votedForByUsers"];
     

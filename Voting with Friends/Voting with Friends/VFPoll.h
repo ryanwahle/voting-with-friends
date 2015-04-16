@@ -26,6 +26,7 @@
 
 @property NSString *questionForPoll;
 
+@property (readonly) NSArray *pollActivity;
 @property (readonly) NSArray *possibleAnswersForPoll;
 @property (readonly) NSArray *friendsOfPoll;
 

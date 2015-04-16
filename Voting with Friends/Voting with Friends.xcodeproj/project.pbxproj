@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680B36AA1ADF6E3100A971E8 /* VFActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 680B36A91ADF6E3100A971E8 /* VFActivity.m */; };
+		680B36AD1ADF75B600A971E8 /* VoteActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 680B36AC1ADF75B600A971E8 /* VoteActivityCell.m */; };
 		6818BC671AC27B300088D9EB /* OptionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818BC661AC27B300088D9EB /* OptionsCell.m */; };
 		6818BC6D1AC27EC30088D9EB /* AddEditPollQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818BC6C1AC27EC30088D9EB /* AddEditPollQuestionCell.m */; };
 		681A00051AB9F285000FD77B /* Voting_with_FriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		680B36A81ADF6E3100A971E8 /* VFActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFActivity.h; sourceTree = "<group>"; };
+		680B36A91ADF6E3100A971E8 /* VFActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFActivity.m; sourceTree = "<group>"; };
+		680B36AB1ADF75B600A971E8 /* VoteActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteActivityCell.h; sourceTree = "<group>"; };
+		680B36AC1ADF75B600A971E8 /* VoteActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteActivityCell.m; sourceTree = "<group>"; };
 		6818BC651AC27B300088D9EB /* OptionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsCell.h; sourceTree = "<group>"; };
 		6818BC661AC27B300088D9EB /* OptionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsCell.m; sourceTree = "<group>"; };
 		6818BC6B1AC27EC30088D9EB /* AddEditPollQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollQuestionCell.h; sourceTree = "<group>"; };
@@ -204,6 +210,8 @@
 				68B3F9DE1AD4A16A00949BC4 /* VFAnswer.m */,
 				688616781ADDB09E00207EE3 /* VFPush.h */,
 				688616791ADDB09E00207EE3 /* VFPush.m */,
+				680B36A81ADF6E3100A971E8 /* VFActivity.h */,
+				680B36A91ADF6E3100A971E8 /* VFActivity.m */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -233,6 +241,8 @@
 				6835F3251ACE47D700695D63 /* VoteAnswerCell.m */,
 				68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */,
 				68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */,
+				680B36AB1ADF75B600A971E8 /* VoteActivityCell.h */,
+				680B36AC1ADF75B600A971E8 /* VoteActivityCell.m */,
 			);
 			name = "Vote ViewController";
 			sourceTree = "<group>";
@@ -398,8 +408,10 @@
 				6886167A1ADDB09E00207EE3 /* VFPush.m in Sources */,
 				68989C001AC2189100FD8323 /* QuestionCell.m in Sources */,
 				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
+				680B36AD1ADF75B600A971E8 /* VoteActivityCell.m in Sources */,
 				681A00161ABA4533000FD77B /* VoteVC.m in Sources */,
 				68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */,
+				680B36AA1ADF6E3100A971E8 /* VFActivity.m in Sources */,
 				681AFFEB1AB9F285000FD77B /* main.m in Sources */,
 				68B3F9D91AD4467200949BC4 /* VFPoll.m in Sources */,
 				68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */,
