@@ -20,6 +20,8 @@
 
 @interface VoteVC ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pollSettingsButton;
+
 @end
 
 @implementation VoteVC
@@ -28,7 +30,9 @@
     [super viewWillAppear:animated];
     
     if (self.pollData.isPollExpired) {
-        
+        self.pollSettingsButton.enabled = NO;
+    } else {
+        self.pollSettingsButton.enabled = YES;
     }
     
     self.tableView.estimatedRowHeight = 50.0;
@@ -162,7 +166,11 @@
         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
-        headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
+        if (self.pollData.isPollExpired) {
+            headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expired on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
+        } else {
+            headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
+        }
         
         return headerQuestionCell.contentView;
     } else if (section == 1) { // Answer Section
@@ -185,6 +193,13 @@
 - (IBAction)buttonCheckTouched:(UIButton *)sender {
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+    
+    if (self.pollData.isPollExpired) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to change your vote." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     
     // Remove the currently selected answer from database
     if (self.pollData.indexOfSelectedAnswerFromCurrentUser != indexPath.row) {

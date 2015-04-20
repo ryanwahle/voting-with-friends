@@ -415,6 +415,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="pollSettingsButton" destination="MkL-oT-SUj" id="9Zj-Fa-AoO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dt-NR-j10" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
