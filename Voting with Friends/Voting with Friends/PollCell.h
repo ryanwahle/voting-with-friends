@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *personsNameWhoCreatedPoll;
 @property (weak, nonatomic) IBOutlet UILabel *pollQuestion;
 @property (weak, nonatomic) IBOutlet UIButton *voteButton;
+@property (weak, nonatomic) IBOutlet UILabel *expirationLabel;
 
 @end

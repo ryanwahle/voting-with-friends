@@ -27,7 +27,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.tableView.estimatedRowHeight = 44.0;
+    if (self.pollData.isPollExpired) {
+        
+    }
+    
+    self.tableView.estimatedRowHeight = 50.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView reloadData];
@@ -43,12 +47,12 @@
     //}];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
+//}
 
 #pragma mark - Tweet
 
@@ -170,9 +174,11 @@
     return sectionCell.contentView;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50.0;
+    return 65;
 }
+
 
 # pragma mark - Answers
 
@@ -191,10 +197,13 @@
         VFAnswer *newAnswer = self.pollData.possibleAnswersForPoll[indexPath.row];
         [newAnswer selectAnswerForCurrentUser];
         [newAnswer save];
+        
+        [self.pollData addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ chose the answer %@", [PFUser currentUser][@"name"], newAnswer.answerText]];
+        [self.pollData save];
     }
     
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
 }
 
 #pragma mark - Delete Poll

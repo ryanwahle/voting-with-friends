@@ -156,6 +156,8 @@
     return NO;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2) {
         [self deleteAnswerKeyFromPollUsingIndex:indexPath.row];

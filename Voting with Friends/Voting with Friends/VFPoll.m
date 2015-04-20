@@ -77,6 +77,18 @@
 }
 
 /* * * * * * * * * * * * * * * * *
+    isPollExpired
+ * * * * * * * * * * * * * * * * */
+- (BOOL)isPollExpired {
+    if ([self.expirationDate earlierDate:[NSDate date]] == self.expirationDate) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+/* * * * * * * * * * * * * * * * *
     shouldDisplayActivity
  * * * * * * * * * * * * * * * * */
 - (BOOL) shouldDisplayActivity {
@@ -147,6 +159,10 @@
     for (PFObject *activity in self.pollFromParse[@"pollActivity"]) {
         [pollActivity addObject:[VFActivity createActivityWithPFObjecct:activity]];
     }
+    
+    [pollActivity sortUsingComparator:^NSComparisonResult(VFActivity *obj1, VFActivity *obj2) {
+        return [obj2.dateAndTimeOfActivity compare:obj1.dateAndTimeOfActivity];
+    }];
     
     return [NSArray arrayWithArray:pollActivity];
 }

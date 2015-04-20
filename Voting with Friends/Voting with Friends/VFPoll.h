@@ -17,6 +17,7 @@
 @property PFObject *pollFromParse;
 
 @property (readonly) BOOL isCurrentUserPollOwner;
+@property (readonly) BOOL isPollExpired;
 @property BOOL shouldDisplayActivity;
 @property BOOL shouldDisplayAnswerTotals;
 @property NSDate *expirationDate;
@@ -33,6 +34,8 @@
 
 + (instancetype)createPollForUser:(PFUser *)pollOwner;
 + (instancetype)createPollWithPFObject:(PFObject *)pfObject;
+
+- (void)addActivityToPollWithDescription:(NSString *)descriptionOfActivity;
 
 - (void)addAnswerObjectToPoll:(VFAnswer *)answer;
 - (void)removeAnswerObjectFromPoll:(VFAnswer *)answer;
