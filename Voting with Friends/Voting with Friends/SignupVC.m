@@ -47,21 +47,40 @@
 }
 
 - (IBAction)signupNewUser:(UIButton *)sender {
-    PFUser *newUser = [PFUser user];
+    NSString *emailString = [_emailUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *passwordString = [_passwordUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *nameString = [_nameUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    newUser.username = _emailUITextField.text.lowercaseString;
-    newUser.password = _passwordUITextField.text;
-    newUser.email = _emailUITextField.text.lowercaseString;
-    
-    newUser[@"name"] = _nameUITextField.text;
-    
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self dismissSignup:nil];
-        } else {
-            // Error
-        }
-    }];
+    if ( ! emailString.length) {
+        [self signUpFailedAlert:@"You must enter an email address to sign up."];
+    } else if ( ! passwordString.length) {
+        [self signUpFailedAlert:@"You must enter a password to sign up."];
+    } else if ( ! nameString.length) {
+        [self signUpFailedAlert:@"You must enter your name to sign up."];
+    } else {
+        PFUser *newUser = [PFUser user];
+        
+        newUser.username = emailString;
+        newUser.password = passwordString;
+        newUser.email = emailString;
+        
+        newUser[@"name"] = nameString;
+
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self dismissSignup:nil];
+            } else {
+                [self signUpFailedAlert:error.userInfo[@"error"]];
+            }
+        }];
+    }
+}
+
+- (void)signUpFailedAlert:(NSString *)alertString {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sign Up Failed" message:alertString preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 - (IBAction)dismissSignup:(id)sender {
