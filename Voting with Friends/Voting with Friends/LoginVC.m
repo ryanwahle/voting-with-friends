@@ -42,32 +42,57 @@
 }
 
 - (IBAction)signInButtonTap:(id)sender {
-    [PFUser logInWithUsernameInBackground:self.loginUITextField.text.lowercaseString password:self.passwordUITextField.text block:^(PFUser *user, NSError *error) {
-        if (user) {
-            [self loginSuccesful];
-        } else {
-            UIAlertController *invalidLogin = [UIAlertController alertControllerWithTitle:@"Login Incorrect" message:@"You email and password do not match." preferredStyle:UIAlertControllerStyleAlert];
-            
-            [invalidLogin addAction:[UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [invalidLogin dismissViewControllerAnimated:YES completion:nil];
-            }]];
-            
-            [invalidLogin addAction:[UIAlertAction actionWithTitle:@"Forgot Password?" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                [PFUser requestPasswordResetForEmailInBackground:self.loginUITextField.text block:^(BOOL succeeded, NSError *error) {
-                    UIAlertController *passwordResetSentAlert = [UIAlertController alertControllerWithTitle:@"Forget Password?" message:[NSString stringWithFormat:@"An email was to %@ with instructions on resetting your password.", self.loginUITextField.text.lowercaseString] preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    [passwordResetSentAlert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                        [passwordResetSentAlert dismissViewControllerAnimated:YES completion:nil];
-                    }]];
-                    
-                    [self presentViewController:passwordResetSentAlert animated:YES completion:nil];
-                }];
-            }]];
-            
-            [self presentViewController:invalidLogin animated:YES completion:nil];
+    
+    NSString *emailString = [self.loginUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *passwordString = [self.passwordUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ( ! emailString.length) {
+        [self signInFailedAlert:@"You must enter an email address to sign in." withTitle:@"Sign In Failed"];
+    } else if ( ! passwordString.length) {
+        [self signInFailedAlert:@"You must enter a password to sign in." withTitle:@"Sign In Failed"];
+    } else {
+        [PFUser logInWithUsernameInBackground:self.loginUITextField.text.lowercaseString password:self.passwordUITextField.text block:^(PFUser *user, NSError *error) {
+            if (user) {
+                [self loginSuccesful];
+            } else {
+                /*
+                    [invalidLogin addAction:[UIAlertAction actionWithTitle:@"Forgot Password?" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    [PFUser requestPasswordResetForEmailInBackground:self.loginUITextField.text block:^(BOOL succeeded, NSError *error) {
+                        UIAlertController *passwordResetSentAlert = [UIAlertController alertControllerWithTitle:@"Forget Password?" message:[NSString stringWithFormat:@"An email was to %@ with instructions on resetting your password.", self.loginUITextField.text.lowercaseString] preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        [passwordResetSentAlert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                            [passwordResetSentAlert dismissViewControllerAnimated:YES completion:nil];
+                        }]];
+                        
+                        [self presentViewController:passwordResetSentAlert animated:YES completion:nil];
+                    }];
+                }]];
+                
+                [self presentViewController:invalidLogin animated:YES completion:nil];
+                */
+                
+                [self signInFailedAlert:@"Your email and password do not match." withTitle:@"Sign In Failed"];
+            }
+        }];
+    }
+}
 
-        }
-    }];
+- (IBAction)forgetPasswordButtonTap:(id)sender {
+    NSString *emailString = [self.loginUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ( ! emailString.length ) {
+        [self signInFailedAlert:@"You must first enter your email address in order to reset your password." withTitle:@"Reset Password"];
+    } else {
+        [PFUser requestPasswordResetForEmailInBackground:emailString block:^(BOOL succeeded, NSError *error) {
+            [self signInFailedAlert:[NSString stringWithFormat:@"An email was sent to %@ with instructions on resetting your password.", emailString] withTitle:@"Reset Password"];
+        }];
+    }
+}
+
+- (void)signInFailedAlert:(NSString *)alertString withTitle:(NSString *)titleString {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:titleString message:alertString preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) loginSuccesful {

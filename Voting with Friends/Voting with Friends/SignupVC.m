@@ -80,7 +80,6 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sign Up Failed" message:alertString preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 
 - (IBAction)dismissSignup:(id)sender {

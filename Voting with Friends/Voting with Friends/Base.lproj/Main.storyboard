@@ -17,14 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxL-QS-Py1">
-                                <rect key="frame" x="16" y="174" width="343" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="hPQ-h3-ziq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJt-m8-ynZ">
                                 <rect key="frame" x="16" y="232" width="343" height="40"/>
                                 <constraints>
@@ -55,20 +47,6 @@
                                 <color key="textColor" red="0.20392157137393951" green="0.28627452254295349" blue="0.36862745881080627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0P-1i-stE">
-                                <rect key="frame" x="125" y="344" width="125" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VRG-Xl-O4v"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                <state key="normal" title="First Time User?">
-                                    <color key="titleColor" red="0.90588235855102539" green="0.29803922772407532" blue="0.23529411852359772" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="s30-mf-Ys8" kind="modal" id="f3N-0B-h7j"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Voting with Friends" translatesAutoresizingMaskIntoConstraints="NO" id="gNm-E3-v1Q">
                                 <rect key="frame" x="150" y="61" width="75" height="75"/>
                                 <constraints>
@@ -76,10 +54,39 @@
                                     <constraint firstAttribute="width" constant="75" id="gZr-gj-Hn1"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0P-1i-stE">
+                                <rect key="frame" x="242" y="344" width="117" height="36"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="First Time User">
+                                    <color key="titleColor" red="0.90588235855102539" green="0.29803922772407532" blue="0.23529411852359772" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="s30-mf-Ys8" kind="modal" id="f3N-0B-h7j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-CJ-jL4">
+                                <rect key="frame" x="16" y="344" width="131" height="36"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Forget Password">
+                                    <color key="titleColor" red="0.90588235859999999" green="0.29803922770000002" blue="0.23529411850000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="forgetPasswordButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZQ8-GJ-2H5"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxL-QS-Py1">
+                                <rect key="frame" x="16" y="174" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hPQ-h3-ziq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="v0P-1i-stE" secondAttribute="centerX" constant="0.5" id="7N5-5S-0xs"/>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="trailing" secondItem="sJt-m8-ynZ" secondAttribute="trailing" id="9AJ-UX-GOK"/>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="top" secondItem="gNm-E3-v1Q" secondAttribute="bottom" constant="38" id="B0p-b6-xjT"/>
                             <constraint firstItem="D2l-xJ-kO4" firstAttribute="top" secondItem="sJt-m8-ynZ" secondAttribute="bottom" constant="14" id="BXW-lp-Zii"/>
@@ -87,11 +94,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="D2l-xJ-kO4" secondAttribute="trailing" constant="-16" id="IQu-mD-86m"/>
                             <constraint firstItem="sJt-m8-ynZ" firstAttribute="top" secondItem="QxL-QS-Py1" secondAttribute="bottom" constant="18" id="Sjb-k8-0UW"/>
                             <constraint firstAttribute="centerX" secondItem="D2l-xJ-kO4" secondAttribute="centerX" id="T80-pF-bma"/>
+                            <constraint firstItem="v0P-1i-stE" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="TPM-fl-2bJ"/>
                             <constraint firstAttribute="centerX" secondItem="gNm-E3-v1Q" secondAttribute="centerX" id="UK7-To-VO5"/>
-                            <constraint firstItem="v0P-1i-stE" firstAttribute="top" secondItem="D2l-xJ-kO4" secondAttribute="bottom" constant="8" id="VzJ-2X-L7y"/>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="WnH-UA-UJv"/>
+                            <constraint firstItem="v0P-1i-stE" firstAttribute="top" secondItem="D2l-xJ-kO4" secondAttribute="bottom" constant="8" id="fAy-U4-iE9"/>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="leading" secondItem="sJt-m8-ynZ" secondAttribute="leading" id="iX2-IR-HjY"/>
+                            <constraint firstItem="XY5-CJ-jL4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="l5J-2t-bgW"/>
                             <constraint firstAttribute="centerX" secondItem="OfD-p2-b7c" secondAttribute="centerX" id="tNU-jh-C9s"/>
+                            <constraint firstItem="XY5-CJ-jL4" firstAttribute="top" secondItem="D2l-xJ-kO4" secondAttribute="bottom" constant="8" id="uLI-o8-gJd"/>
                             <constraint firstItem="OfD-p2-b7c" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="x5q-pL-F6J"/>
                             <constraint firstItem="gNm-E3-v1Q" firstAttribute="top" secondItem="OfD-p2-b7c" secondAttribute="bottom" constant="8" id="x5r-Gg-XuZ"/>
                         </constraints>
