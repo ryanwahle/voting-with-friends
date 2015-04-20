@@ -12,22 +12,7 @@
 #import "VFPush.h"
 #import "VFActivity.h"
 
-@interface VFPoll ()
-
-@end
-
-
 @implementation VFPoll
-
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-}
 
 + (instancetype)createPollWithPFObject:(PFObject *)object {
     VFPoll *poll = [[VFPoll alloc] init];
@@ -37,18 +22,11 @@
     return poll;
 }
 
-+ (instancetype)createPollWithQuestion:(NSString *)questionForPoll pollOwner:(PFUser *)pollOwner {
++ (instancetype)createPollForUser:(PFUser *)pollOwner {
     VFPoll *poll = [[VFPoll alloc] init];
     
     poll.pollFromParse = [PFObject objectWithClassName:@"Polls"];
-    [poll save];
-    
-    poll.questionForPoll = questionForPoll;
     poll.pollOwner = pollOwner;
-    poll.expirationDate = [[NSDate date] dateByAddingTimeInterval:604800];
-        
-    poll.shouldDisplayAnswerTotals = NO;
-    poll.shouldDisplayActivity = NO;
     
     [poll addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ created this poll.", poll.nameOfPollOwner]];
     
@@ -64,7 +42,6 @@
 
 - (void)setQuestionForPoll:(NSString *)questionForPoll {
     self.pollFromParse[@"questionForPoll"] = questionForPoll;
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -72,7 +49,6 @@
  * * * * * * * * * * * * * * * * */
 - (void)setPollOwner:(PFUser *)pollOwner {
     self.pollFromParse[@"pollOwner"] = pollOwner;
-    [self.pollFromParse saveInBackground];
 }
 
 - (PFUser *)pollOwner {
@@ -109,7 +85,6 @@
 
 - (void) setShouldDisplayActivity:(BOOL)shouldDisplayActivity {
     self.pollFromParse[@"shouldDisplayActivity"] = @(shouldDisplayActivity);
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -121,7 +96,6 @@
 
 - (void) setShouldDisplayAnswerTotals:(BOOL)shouldDisplayAnswerTotals {
     self.pollFromParse[@"shouldDisplayAnswerTotals"] = @(shouldDisplayAnswerTotals);
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -133,7 +107,6 @@
 
 - (void)setExpirationDate:(NSDate *)expirationDate {
     self.pollFromParse[@"expirationDate"] = expirationDate;
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -159,6 +132,8 @@
     for (PFObject *answer in self.pollFromParse[@"possibleAnswersForPoll"]) {
         [possibleAnswersForPoll addObject:[VFAnswer createAnswerUsingPFObject:answer]];
     }
+    
+    NSLog(@"Possible Answers Count: %lu", (unsigned long)possibleAnswersForPoll.count);
     
     return [NSArray arrayWithArray:possibleAnswersForPoll];
 }
@@ -202,50 +177,35 @@
 
 - (void)addActivityToPollWithDescription:(NSString *)descriptionOfActivity {
     VFActivity *activity = [VFActivity createActivityWithDescription:descriptionOfActivity andDateAndTime:[NSDate date]];
+    [activity save];
+    
     [self.pollFromParse addObjectsFromArray:@[activity.dataObjectFromParse] forKey:@"pollActivity"];
-    [self save];
 }
 
-- (void)addFriendToPollByPFUser:(PFUser *)user {
-    [VFPush sendPushNotificationToUsers:@[user] withNotificationString:[NSString stringWithFormat:@"You were sent a poll from %@. Please vote now!", self.nameOfPollOwner]];
+- (void)addFriendObjectToPoll:(VFFriend *)friend {
+    [VFPush sendPushNotificationToUsers:@[friend.pollFriend] withNotificationString:[NSString stringWithFormat:@"You were sent a poll from %@. Please vote now!", self.nameOfPollOwner]];
     
-    [self.pollFromParse addObjectsFromArray:@[user] forKey:@"friendsOfPoll"];
-    [self save];
-    
-    [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ was invited", user[@"name"]]];
+    [self.pollFromParse addObject:friend.pollFriend forKey:@"friendsOfPoll"];
+    [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ was invited", friend.name]];
 }
 
-- (void)removeFriendOfPollAtIndex:(NSInteger)index {
-    VFFriend *friend = self.friendsOfPoll[index];
-    
+- (void)removeFriendObjectFromPoll:(VFFriend *)friend {
     [self.pollFromParse removeObject:friend.pollFriend forKey:@"friendsOfPoll"];
-    [self save];
-    
     [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ was uninvited", friend.name]];
 }
 
-- (void)addPossibleAnswerForPollWithAnswerText:(NSString *)answerText {
-    [VFPush sendPushNotificationToFriends:self.friendsOfPoll withNotificationString:[NSString stringWithFormat:@""]];
-    VFAnswer *answer = [VFAnswer createAnswerUsingString:answerText];
-    
-    [self.pollFromParse addObjectsFromArray:@[answer.answerFromParse] forKey:@"possibleAnswersForPoll"];
-    [self save];
-    
-    [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ added as answer", answerText]];
+- (void)addAnswerObjectToPoll:(VFAnswer *)answer {
+    [self.pollFromParse addObject:answer.answerFromParse forKey:@"possibleAnswersForPoll"];
+    [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ added as answer", answer.answerText]];
 }
 
-- (void)removePossibleAnswerFromPollAtIndex:(NSInteger)index {
-    VFAnswer *answer = self.possibleAnswersForPoll[index];
-    
+- (void)removeAnswerObjectFromPoll:(VFAnswer *)answer {
     [self.pollFromParse removeObject:answer.answerFromParse forKey:@"possibleAnswersForPoll"];
-    [answer deleteAnswer];
-    
-    [self save];
-    
     [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ removed from answers", answer.answerText]];
 }
 
 - (void)refreshPoll {
+    
     PFQuery *pollQuery = [PFQuery queryWithClassName:@"Polls"];
     [pollQuery whereKey:@"objectId" equalTo:self.pollFromParse.objectId];
     
@@ -273,7 +233,7 @@
     }
     
     [self.pollFromParse deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPollsList" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
         [VFPush sendPushNotificationToFriends:self.friendsOfPoll withNotificationString:[NSString stringWithFormat:@""]];
     }];
 }

@@ -8,23 +8,7 @@
 
 #import "VFFriend.h"
 
-@interface VFFriend ()
-
-
-
-@end
-
 @implementation VFFriend
-
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-}
 
 + (instancetype)friendFromPFUser:(PFUser *)user {
     VFFriend *friend = [[VFFriend alloc] init];

@@ -21,7 +21,6 @@
 + (instancetype)createActivityWithDescription:(NSString *)descriptionOfActivity andDateAndTime:(NSDate *)dateAndTimeOfActivity {
     VFActivity *activity = [[VFActivity alloc] init];
     activity.dataObjectFromParse = [PFObject objectWithClassName:@"Activity"];
-    [activity save];
     
     activity.descriptionOfActivity = descriptionOfActivity;
     activity.dateAndTimeOfActivity = dateAndTimeOfActivity;
@@ -38,7 +37,6 @@
 
 - (void)setDescriptionOfActivity:(NSString *)descriptionOfActivity {
     self.dataObjectFromParse[@"descriptionOfActivity"] = descriptionOfActivity;
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -50,7 +48,6 @@
 
 - (void)setDateAndTimeOfActivity:(NSDate *)dateAndTimeOfActivity {
     self.dataObjectFromParse[@"dateAndTimeOfActivity"] = dateAndTimeOfActivity;
-    [self save];
 }
 
 
@@ -59,9 +56,11 @@
  * * * * * * * * * * * * * * * * */
 
 - (void)save {
-    [self.dataObjectFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
-    }];
+    //[self.dataObjectFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+    //}];
+    
+    [self.dataObjectFromParse saveInBackground];
 }
 
 - (void)deleteActivity {

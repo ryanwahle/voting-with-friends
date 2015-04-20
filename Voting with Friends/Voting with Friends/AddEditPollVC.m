@@ -17,90 +17,115 @@
 #import "VFFriend.h"
 
 @interface AddEditPollVC ()
-
-@property NSString *localQuestionForPollString;
-
+{
+    NSMutableArray *pollAnswers;
+    NSMutableArray *pollAnswersToDelete;
+    
+    NSMutableArray *pollFriends;
+    NSMutableArray *pollFriendsToDelete;
+    NSMutableArray *pollFriendsToAdd;
+}
 @end
 
 @implementation AddEditPollVC
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self updateTableView];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"cloudDataRefreshed" object:nil];
+    [super viewWillAppear:animated];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveQuestionForPoll) name:@"addEditPoll_saveQuestionForPoll" object:nil];
     
-    if (self.pollData == nil) {
-        // Add a new poll
-        VFPoll *newPoll = [VFPoll createPollWithQuestion:@"Touch here to edit your poll question. Answers and friends are added below. May you receive the answer you are looking for!" pollOwner:[PFUser currentUser]];
-        
-        self.pollData = newPoll;
+    self.tableView.estimatedRowHeight = 88.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.editing = YES;
+    
+    self->pollAnswersToDelete = [[NSMutableArray alloc] init];
+    self->pollFriendsToDelete = [[NSMutableArray alloc] init];
+    self->pollFriendsToAdd = [[NSMutableArray alloc] init];
+    
+    if (self.pollData) {
+        self->pollAnswers = [NSMutableArray arrayWithArray:self.pollData.possibleAnswersForPoll];
+        self->pollFriends = [NSMutableArray arrayWithArray:self.pollData.friendsOfPoll];
+    } else {
+        self.title = @"New Poll";
+        self->pollAnswers = [[NSMutableArray alloc] init];
+        self->pollFriends = [[NSMutableArray alloc] init];
     }
-
-    
-    self.localQuestionForPollString = self.pollData.questionForPoll.copy;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    [self saveQuestionForPoll];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_questionTextViewChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_saveQuestionForPoll" object:nil];
 }
 
-
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
+    VFPoll *savePoll = nil;
+    
+    // If no pollData, then this is a new poll we are creating.
+    if (self.pollData == nil) {
+        savePoll = [VFPoll createPollForUser:[PFUser currentUser]];
+    } else {
+        savePoll = self.pollData;
+    }
+    
+    // Options
+    OptionsCell *optionsCell = (OptionsCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    savePoll.shouldDisplayActivity = optionsCell.showActivityUISwitch.isOn;
+    savePoll.shouldDisplayAnswerTotals = optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
+    savePoll.expirationDate = optionsCell.pollExpirationDate.date;
+    
+    // Question
+    AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    savePoll.questionForPoll = addEditPollQuestionCell.questionUITextView.text;
+    
+    // Answers :: Remove all the answers the user removed that were already saved in parse and the poll
+    for (VFAnswer *answer in self->pollAnswersToDelete) {
+        [savePoll removeAnswerObjectFromPoll:answer];
+        [answer deleteAnswer];
+    }
+    
+    [savePoll save];
+    
+    // Answers :: Add to poll if not in poll already and if needed and then save all the answers to parse.
+    for (VFAnswer *answer in self->pollAnswers) {
+        if (answer.answerFromParse.objectId == nil) {
+            [savePoll addAnswerObjectToPoll:answer];
+        }
+        
+        [answer save];
+    }
+    
+    [savePoll save];
+    
+    // Friends :: Remove all the friends the user removed
+    for (VFFriend *friend in self->pollFriendsToDelete) {
+        [savePoll removeFriendObjectFromPoll:friend];
+    }
+    
+    [savePoll save];
+    
+    // Friends :: Add any new friends to the poll
+    for (VFFriend *friend in self->pollFriendsToAdd) {
+        [savePoll addFriendObjectToPoll:friend];
+    }
+    
+    // Save and return back to previous screen
+    [savePoll save];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - Option Switch Logic
-
-- (IBAction)showActivityUISwitchChanged:(UISwitch *)sender {
-    self.pollData.shouldDisplayActivity = sender.isOn;
-}
-
-
-- (IBAction)showIndividualAnswerTotalsUISwitchChanged:(UISwitch *)sender {
-    self.pollData.shouldDisplayAnswerTotals = sender.isOn;
-}
-
-- (IBAction)expirationDateUIChanged:(UIDatePicker *)sender {
-    NSLog(@"date: %@", sender.date);
-    self.pollData.expirationDate = sender.date;
+- (IBAction)cancelButton:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Question
 
 - (void)updateQuestionTextView:(NSNotification *)notification {
-    UITextView *questionTextView = notification.object;
-    
-    self.localQuestionForPollString = questionTextView.text;
-
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
 
-- (void)saveQuestionForPoll {
-    NSLog(@"question to save: %@", self.localQuestionForPollString);
-    self.pollData.questionForPoll = self.localQuestionForPollString.copy;
-}
-
 #pragma mark - Table view data source
-
-- (void)updateTableView {
-    self.tableView.estimatedRowHeight = 88.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    [self.tableView reloadData];
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
@@ -112,43 +137,68 @@
     } else if (section == 1) { // Question
         return 1;
     } else if (section == 2) { // Answers
-        return self.pollData.possibleAnswersForPoll.count;
+        return [self->pollAnswers count];
     } else if (section == 3) { // Friends
-        return self.pollData.friendsOfPoll.count;
+        return [self->pollFriends count];
     }
     
     return 0;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) { // Answers
+        return YES;
+    } else if (indexPath.section == 3) { // Friends
+        return YES;
+    }
+    
+    // Options and Questions can't be deleted
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) {
+        [self deleteAnswerKeyFromPollUsingIndex:indexPath.row];
+    } else if (indexPath.section == 3) {
+        [self deleteFriendFromPollUsingIndex:indexPath.row];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) { // Options
         OptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
         
-        [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
-        [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
-        
-        [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+        if (self.pollData) {
+            [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
+            [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
+            
+            [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+        }
         
         return cell;
     } else if (indexPath.section == 1) { // Question
         AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
         
-        cell.questionUITextView.text = self.localQuestionForPollString;
-        cell.questionUITextView.textColor = [UIColor blackColor];
+        if (self.pollData) {
+            cell.questionUITextView.text = self.pollData.questionForPoll;
+            cell.questionUITextView.textColor = [UIColor blackColor];
+        }
         
         return cell;
     } else if (indexPath.section == 2) { // Answers
         AddEditPollAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
 
-        VFAnswer *answer = self.pollData.possibleAnswersForPoll[indexPath.row];
+        VFAnswer *answer = self->pollAnswers[indexPath.row];
         cell.answerUILabel.text = answer.answerText;
         
         return cell;
     } else if (indexPath.section == 3) { // Friends
         AddEditPollFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
-        VFFriend *friend = self.pollData.friendsOfPoll[indexPath.row];
         
-        cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend.name, friend.email];
+        if (self.pollData) {
+            VFFriend *friend = self->pollFriends[indexPath.row];
+            cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend.name, friend.email];
+        }
         
         return cell;
     }
@@ -193,11 +243,27 @@
 # pragma mark - Answer Key
 
 - (void)addAnswerKeyToPoll:(NSString *)answerKeyText {
-    [self.pollData addPossibleAnswerForPollWithAnswerText:answerKeyText];
+    // Create an VFAnswer object, but don't save it to the cloud in case user cancels
+    VFAnswer *answer = [VFAnswer createAnswerUsingString:answerKeyText];
+    
+    // Add it to the bottom of the answer list array and reload the answer section
+    [self->pollAnswers addObject:answer];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)deleteAnswerKeyFromPollUsingIndex:(NSInteger)answerKeyIndex {
-    [self.pollData removePossibleAnswerFromPollAtIndex:answerKeyIndex];
+    // Get the answer to delete from the answer list array
+    VFAnswer *answer = self->pollAnswers[answerKeyIndex];
+    
+    // If the answer has an answerFromParse object, that means it's saved on the server so we will add it to an array and
+    // delete it if user saves.
+    if (answer.answerFromParse.objectId) {
+        [self->pollAnswersToDelete addObject:answer];
+    }
+    
+    // and remove it from the answer array and reload the answer section
+    [self->pollAnswers removeObjectAtIndex:answerKeyIndex];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (IBAction)addAnswerKeyButtonTouched:(id)sender {
@@ -223,29 +289,6 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (IBAction)removeAnswerKeyButtonTouched:(id)sender {
-    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
-    
-    NSString *alertMessageText = [NSString stringWithFormat:@"Are you sure you want to delete this answer?"];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessageText preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        [self deleteAnswerKeyFromPollUsingIndex:indexPath.row];
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [alert addAction:alertOK];
-    [alert addAction:alertCancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 # pragma mark - Friends
 
 - (void)addEmailAddressToPoll:(NSString *)email {
@@ -258,11 +301,14 @@
         if (object) {
             NSLog(@"Found email address");
             
-            PFUser *foundUser = (PFUser *)object;
+            // Add to the new friends array
+            [self->pollFriendsToAdd addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
             
-            [self.pollData addFriendToPollByPFUser:foundUser];
+            // Add to the main friends array holding new and old friends.
+            [self->pollFriends addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
             
-            //[_pollData addFriend:object.objectId];
+            // Reload friends section
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
             
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
@@ -277,6 +323,20 @@
 
         }
     }];
+}
+
+- (void)deleteFriendFromPollUsingIndex:(NSInteger)friendIndex {
+    // Get the friend to delete from the poll
+    VFFriend *friend = self->pollFriends[friendIndex];
+    
+    // Add to the delete array
+    [self->pollFriendsToDelete addObject:friend];
+    
+    // Remove it from the main friends array
+    [self->pollFriends removeObject:friend];
+    
+    // Reload the friends section
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
@@ -347,32 +407,6 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-- (IBAction)removeFriendButtonTouched:(id)sender {
-    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
-    
-    NSString *alertMessageText = [NSString stringWithFormat:@"Are you sure you want to delete your friend from voting?"];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessageText preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        [self.pollData removeFriendOfPollAtIndex:indexPath.row];
-        [alert dismissViewControllerAnimated:YES completion:nil];
-
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [alert addAction:alertOK];
-    [alert addAction:alertCancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 
 
 @end

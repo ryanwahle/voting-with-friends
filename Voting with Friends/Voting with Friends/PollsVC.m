@@ -25,23 +25,24 @@
     self.tableView.estimatedRowHeight = 88.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"pollsListCloudDataUpdated" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPollDataFromCloud) name:@"refreshPollsList" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPollDataFromCloud) name:@"cloudDataRefreshed" object:nil];
     
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self action:@selector(getPollDataFromCloud) forControlEvents:UIControlEventValueChanged];
     
-    _pollsFromCloud = @[];
     [self getPollDataFromCloud];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollsListCloudDataUpdated" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshPollsList" object:nil];
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
 }
 
 - (void)getPollDataFromCloud {
+    self.pollsFromCloud = nil;
+    
     PFQuery *pollsWhereCurrentUserIsOwner = [PFQuery queryWithClassName:@"Polls"];
     [pollsWhereCurrentUserIsOwner whereKey:@"pollOwner" equalTo:[PFUser currentUser]];
 
@@ -65,7 +66,7 @@
         
         self.pollsFromCloud = [NSArray arrayWithArray:pollsArray];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"pollsListCloudDataUpdated" object:nil];
+        [self updateTableView];
     }];
 }
 
@@ -102,11 +103,9 @@
 
     if (pollData.indexOfSelectedAnswerFromCurrentUser > -1) {
         [pollCell.voteButton setTitle: @"Vote Saved" forState: UIControlStateNormal];
-        //[pollCell.voteButton setTitleColor:[UIColor colorWithRed:236.0f/255.0f green:240.0f/255.0f blue:241.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
     } else {
         [pollCell.voteButton setTitle: @"Please Vote" forState: UIControlStateNormal];
-        //[pollCell.voteButton setTitleColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:192.0f/255.0f green:57.0f/255.0f blue:43.0f/255.0f alpha:1.0]];
     }
     

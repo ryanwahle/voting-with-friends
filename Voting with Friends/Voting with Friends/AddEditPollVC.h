@@ -14,6 +14,6 @@
 
 @interface AddEditPollVC : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
 
-@property VFPoll *pollData;
+@property (weak) VFPoll *pollData;
 
 @end

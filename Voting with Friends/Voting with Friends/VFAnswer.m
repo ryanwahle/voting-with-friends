@@ -10,22 +10,10 @@
 
 @implementation VFAnswer
 
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-}
-
 + (instancetype)createAnswerUsingString:(NSString *)string {
     VFAnswer *answer = [[VFAnswer alloc] init];
     
     answer.answerFromParse = [PFObject objectWithClassName:@"Answers"];
-    [answer save];
-    
     answer.answerText = string;
     
     return answer;
@@ -48,7 +36,6 @@
 
 - (void)setAnswerText:(NSString *)answerText {
     self.answerFromParse[@"answerText"] = answerText;
-    [self save];
 }
 
 /* * * * * * * * * * * * * * * * *
@@ -71,15 +58,22 @@
     return [NSArray arrayWithArray:votedForByUsers];
 }
 
+- (BOOL)isSelectedForCurrentUser {
+    for (PFUser *user in self.answerFromParse[@"votedForByUsers"]) {
+        if ([[PFUser currentUser].objectId isEqualToString:user.objectId]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
 
 /* * * * * * * * * * * * * * * * *
  Helper Methods
  * * * * * * * * * * * * * * * * */
 
 - (void)save {
-    [self.answerFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
-    }];
+    [self.answerFromParse saveInBackground];
 }
 
 - (void)deleteAnswer {
@@ -89,13 +83,11 @@
 - (void)selectAnswerForCurrentUser {
     PFUser *user = [PFUser currentUser];
     [self.answerFromParse addObjectsFromArray:@[user] forKey:@"votedForByUsers"];
-    [self save];
 }
 
 - (void)removeSelectedAnswerForCurrentUser {
     PFUser *user = [PFUser currentUser];
     [self.answerFromParse removeObjectsInArray:@[user] forKey:@"votedForByUsers"];
-    [self save];
 }
 
 @end

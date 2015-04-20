@@ -11,6 +11,6 @@
 
 @interface VoteVC : UITableViewController
 
-@property VFPoll *pollData;
+@property (weak) VFPoll *pollData;
 
 @end

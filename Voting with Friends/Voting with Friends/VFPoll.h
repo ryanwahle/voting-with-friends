@@ -10,6 +10,7 @@
 @import Parse;
 
 @class VFAnswer;
+@class VFFriend;
 
 @interface VFPoll : NSObject
 
@@ -30,16 +31,18 @@
 @property (readonly) NSArray *possibleAnswersForPoll;
 @property (readonly) NSArray *friendsOfPoll;
 
-+ (instancetype)createPollWithQuestion:(NSString *)questionForPoll pollOwner:(PFUser *)pollOwner;
++ (instancetype)createPollForUser:(PFUser *)pollOwner;
 + (instancetype)createPollWithPFObject:(PFObject *)pfObject;
 
-- (void)addFriendToPollByPFUser:(PFUser *)user;
-- (void)removeFriendOfPollAtIndex:(NSInteger)index;
+- (void)addAnswerObjectToPoll:(VFAnswer *)answer;
+- (void)removeAnswerObjectFromPoll:(VFAnswer *)answer;
 
-- (void)addPossibleAnswerForPollWithAnswerText:(NSString *)answerText;
-- (void)removePossibleAnswerFromPollAtIndex:(NSInteger)index;
+- (void)addFriendObjectToPoll:(VFFriend *)friend;
+- (void)removeFriendObjectFromPoll:(VFFriend *)friend;
 
 - (void)deletePoll;
 - (void)refreshPoll;
+
+- (void)save;
 
 @end

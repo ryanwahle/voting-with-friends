@@ -32,13 +32,15 @@
     
     [self.tableView reloadData];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"pollObjectUpdated" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [self.tableView reloadData];
-    }];
+    //[[NSNotificationCenter defaultCenter] addObserverForName:@"pollObjectUpdated" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    //    [self.tableView reloadData];
+    //    NSLog(@"Notification pollObjectUpdated");
+    //}];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"cloudDataRefreshed" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [self.pollData refreshPoll];
-    }];
+    //[[NSNotificationCenter defaultCenter] addObserverForName:@"cloudDataRefreshed" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    //    [self.pollData refreshPoll];
+    //    NSLog(@"Notification cloudDataRefreshed");
+    //}];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -158,14 +160,14 @@
         
         headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
         
-        return headerQuestionCell;
+        return headerQuestionCell.contentView;
     } else if (section == 1) { // Answer Section
         // There is no header for the answers
     } else if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerActivity"];
     }
     
-    return sectionCell;
+    return sectionCell.contentView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -183,11 +185,16 @@
         if (self.pollData.indexOfSelectedAnswerFromCurrentUser != -1) {
             VFAnswer *existingAnswer = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
             [existingAnswer removeSelectedAnswerForCurrentUser];
+            [existingAnswer save];
         }
         
         VFAnswer *newAnswer = self.pollData.possibleAnswersForPoll[indexPath.row];
         [newAnswer selectAnswerForCurrentUser];
+        [newAnswer save];
     }
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
 }
 
 #pragma mark - Delete Poll

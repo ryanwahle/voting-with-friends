@@ -24,4 +24,6 @@
 - (void)removeSelectedAnswerForCurrentUser;
 
 - (void)deleteAnswer;
+- (void)save;
+
 @end

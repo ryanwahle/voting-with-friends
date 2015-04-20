@@ -19,6 +19,8 @@
 @implementation SignupVC
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     // Make some UI changes to the text fields.
     
     _nameUITextField.borderStyle = UITextBorderStyleNone;
