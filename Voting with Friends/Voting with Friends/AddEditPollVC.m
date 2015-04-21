@@ -310,7 +310,9 @@
             [self->pollFriends addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
             
             // Reload friends section
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+            dispatch_async(dispatch_get_main_queue(),^ {
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
             
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];

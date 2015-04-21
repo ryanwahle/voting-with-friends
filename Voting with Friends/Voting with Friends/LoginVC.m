@@ -55,22 +55,6 @@
             if (user) {
                 [self loginSuccesful];
             } else {
-                /*
-                    [invalidLogin addAction:[UIAlertAction actionWithTitle:@"Forgot Password?" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    [PFUser requestPasswordResetForEmailInBackground:self.loginUITextField.text block:^(BOOL succeeded, NSError *error) {
-                        UIAlertController *passwordResetSentAlert = [UIAlertController alertControllerWithTitle:@"Forget Password?" message:[NSString stringWithFormat:@"An email was to %@ with instructions on resetting your password.", self.loginUITextField.text.lowercaseString] preferredStyle:UIAlertControllerStyleAlert];
-                        
-                        [passwordResetSentAlert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                            [passwordResetSentAlert dismissViewControllerAnimated:YES completion:nil];
-                        }]];
-                        
-                        [self presentViewController:passwordResetSentAlert animated:YES completion:nil];
-                    }];
-                }]];
-                
-                [self presentViewController:invalidLogin animated:YES completion:nil];
-                */
-                
                 [self signInFailedAlert:@"Your email and password do not match." withTitle:@"Sign In Failed"];
             }
         }];
