@@ -29,14 +29,8 @@
 
 @implementation AddEditPollVC
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
-    
-    self.tableView.estimatedRowHeight = 88.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.editing = YES;
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     self->pollAnswersToDelete = [[NSMutableArray alloc] init];
     self->pollFriendsToDelete = [[NSMutableArray alloc] init];
@@ -50,6 +44,17 @@
         self->pollAnswers = [[NSMutableArray alloc] init];
         self->pollFriends = [[NSMutableArray alloc] init];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"VIEW APPEARED");
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
+    
+    self.tableView.estimatedRowHeight = 88.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.editing = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -250,7 +255,9 @@
     
     // Add it to the bottom of the answer list array and reload the answer section
     [self->pollAnswers addObject:answer];
+
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+
 }
 
 - (void)deleteAnswerKeyFromPollUsingIndex:(NSInteger)answerKeyIndex {
@@ -309,11 +316,9 @@
             // Add to the main friends array holding new and old friends.
             [self->pollFriends addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
             
-            // Reload friends section
-            dispatch_async(dispatch_get_main_queue(),^ {
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
-            });
             
+            // Reload friends section
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
             
