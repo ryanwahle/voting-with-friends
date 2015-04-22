@@ -44,17 +44,17 @@
         self->pollAnswers = [[NSMutableArray alloc] init];
         self->pollFriends = [[NSMutableArray alloc] init];
     }
+    
+    
+    self.editing = YES;
+    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"VIEW APPEARED");
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
-    
-    self.tableView.estimatedRowHeight = 88.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.editing = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -126,8 +126,14 @@
 #pragma mark - Question
 
 - (void)updateQuestionTextView:(NSNotification *)notification {
+    [UIView setAnimationsEnabled:NO];
+    
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+    
+    [UIView setAnimationsEnabled:YES];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 #pragma mark - Table view data source
@@ -160,8 +166,6 @@
     // Options and Questions can't be deleted
     return NO;
 }
-
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2) {
@@ -233,20 +237,6 @@
     return 50.0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) { // Options
-        return 330;
-    } else if (indexPath.section == 1) { // Question
-        return self.tableView.rowHeight;
-    } else if (indexPath.section == 2) { // Answers
-        return 44;
-    } else if (indexPath.section == 3) { // Friends
-        return 44;
-    }
-    
-    return 44;
-}
-
 # pragma mark - Answer Key
 
 - (void)addAnswerKeyToPoll:(NSString *)answerKeyText {
@@ -257,7 +247,6 @@
     [self->pollAnswers addObject:answer];
 
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-
 }
 
 - (void)deleteAnswerKeyFromPollUsingIndex:(NSInteger)answerKeyIndex {

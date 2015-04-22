@@ -10,4 +10,9 @@
 
 @implementation OptionsCell
 
+- (IBAction)allowPollToExpireUISwitchTap:(id)sender {
+    self.pollExpirationLabel.hidden = !self.pollExpirationLabel.hidden;
+    self.pollExpirationDate.hidden = !self.pollExpirationDate.hidden;
+}
+
 @end
