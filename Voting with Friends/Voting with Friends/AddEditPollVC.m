@@ -64,7 +64,12 @@
     OptionsCell *optionsCell = (OptionsCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     savePoll.shouldDisplayActivity = optionsCell.showActivityUISwitch.isOn;
     savePoll.shouldDisplayAnswerTotals = optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
-    savePoll.expirationDate = optionsCell.pollExpirationDate.date;
+    
+    if (optionsCell.allowPollToExpireUISwitch.isOn) {
+        savePoll.expirationDate = optionsCell.pollExpirationDate.date;
+    } else {
+        savePoll.expirationDate = nil;
+    }
     
     // Question
     AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
@@ -157,7 +162,13 @@
             [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
             [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
             
-            [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+            if (self.pollData.expirationDate) {
+                [cell.allowPollToExpireUISwitch setOn:YES animated:YES];
+                [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+            } else {
+                [cell.allowPollToExpireUISwitch setOn:NO animated:NO];
+                [cell allowPollToExpireUISwitchTap:nil];
+            }
         }
         
         return cell;

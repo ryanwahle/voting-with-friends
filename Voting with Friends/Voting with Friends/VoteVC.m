@@ -169,7 +169,11 @@
         if (self.pollData.isPollExpired) {
             headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expired on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
         } else {
-            headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
+            if (self.pollData.expirationDate) {
+                headerQuestionCell.pollExpirationDate.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:self.pollData.expirationDate]];
+            } else {
+                headerQuestionCell.pollExpirationDate.text = @"";
+            }
         }
         
         return headerQuestionCell.contentView;

@@ -80,7 +80,7 @@
     isPollExpired
  * * * * * * * * * * * * * * * * */
 - (BOOL)isPollExpired {
-    if ([self.expirationDate earlierDate:[NSDate date]] == self.expirationDate) {
+    if (self.expirationDate && [self.expirationDate earlierDate:[NSDate date]] == self.expirationDate) {
         return YES;
     }
     
@@ -114,11 +114,19 @@
  expirationDate
  * * * * * * * * * * * * * * * * */
 - (NSDate *)expirationDate {
-    return self.pollFromParse[@"expirationDate"];
+    if (self.pollFromParse[@"expirationDate"] == [NSNull null]) {
+        return nil;
+    } else {
+        return self.pollFromParse[@"expirationDate"];
+    }
 }
 
 - (void)setExpirationDate:(NSDate *)expirationDate {
-    self.pollFromParse[@"expirationDate"] = expirationDate;
+    if (expirationDate) {
+        self.pollFromParse[@"expirationDate"] = expirationDate;
+    } else {
+        self.pollFromParse[@"expirationDate"] = [NSNull null];
+    }
 }
 
 /* * * * * * * * * * * * * * * * *

@@ -124,7 +124,11 @@
             [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:192.0f/255.0f green:57.0f/255.0f blue:43.0f/255.0f alpha:1.0]];
         }
         
-        pollCell.expirationLabel.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:pollData.expirationDate]];
+        if (pollData.expirationDate) {
+            pollCell.expirationLabel.text = [NSString stringWithFormat:@"This poll expires on %@", [dateFormatter stringFromDate:pollData.expirationDate]];
+        } else {
+            pollCell.expirationLabel.text = @"";
+        }
     }
     
     return pollCell;

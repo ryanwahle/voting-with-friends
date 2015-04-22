@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *allowPollToExpireUISwitch;
 
+- (IBAction)allowPollToExpireUISwitchTap:(id)sender;
+
 @end

@@ -495,18 +495,18 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1He-64-Tgd">
-                                            <rect key="frame" x="311" y="83" width="51" height="31"/>
-                                            <connections>
-                                                <action selector="allowPollToExpireUISwitchTap:" destination="qiz-j1-49d" eventType="valueChanged" id="RDA-Jo-noP"/>
-                                            </connections>
-                                        </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Poll to Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKB-wv-aqI">
                                             <rect key="frame" x="15" y="86" width="151" height="24"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1He-64-Tgd">
+                                            <rect key="frame" x="311" y="82" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="allowPollToExpireUISwitchTap:" destination="qiz-j1-49d" eventType="valueChanged" id="RDA-Jo-noP"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="ZKB-wv-aqI" secondAttribute="trailing" constant="-151" id="1yZ-1h-EHY"/>
