@@ -45,24 +45,11 @@
         self->pollFriends = [[NSMutableArray alloc] init];
     }
     
-    
     self.editing = YES;
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateQuestionTextView:) name:@"addEditPoll_questionTextViewChanged" object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addEditPoll_questionTextViewChanged" object:nil];
-}
-
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     VFPoll *savePoll = nil;
     
@@ -121,19 +108,6 @@
 
 - (IBAction)cancelButton:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - Question
-
-- (void)updateQuestionTextView:(NSNotification *)notification {
-    [UIView setAnimationsEnabled:NO];
-    
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    
-    [UIView setAnimationsEnabled:YES];
-    
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 #pragma mark - Table view data source

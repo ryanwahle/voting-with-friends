@@ -26,8 +26,17 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_questionTextViewChanged" object:textView];
+    [UIView setAnimationsEnabled:NO];
+    
+    [[self parentTableView] beginUpdates];
+    [[self parentTableView] endUpdates];
+    
+    [UIView setAnimationsEnabled:YES];
+    
+    [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
+
+
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if ([textView.text isEqualToString:_placeholderString]) {
@@ -44,5 +53,18 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_saveQuestionForPoll" object:textView];
 }
+
+-(UITableView *) parentTableView {
+    // iterate up the view hierarchy to find the table containing this cell/view
+    UIView *aView = self.superview;
+    while(aView != nil) {
+        if([aView isKindOfClass:[UITableView class]]) {
+            return (UITableView *)aView;
+        }
+        aView = aView.superview;
+    }
+    return nil; // this view is not within a tableView
+}
+
 
 @end
