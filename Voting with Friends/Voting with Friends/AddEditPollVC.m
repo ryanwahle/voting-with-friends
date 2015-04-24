@@ -25,7 +25,9 @@
     NSMutableArray *pollFriendsToDelete;
     NSMutableArray *pollFriendsToAdd;
 }
+
 @end
+
 
 @implementation AddEditPollVC
 
@@ -61,7 +63,7 @@
     }
     
     // Options
-    OptionsCell *optionsCell = (OptionsCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    OptionsCell *optionsCell = (OptionsCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionOptions]];
     savePoll.shouldDisplayActivity = optionsCell.showActivityUISwitch.isOn;
     savePoll.shouldDisplayAnswerTotals = optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
     
@@ -72,7 +74,7 @@
     }
     
     // Question
-    AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion]];
     savePoll.questionForPoll = addEditPollQuestionCell.questionUITextView.text;
     
     // Answers :: Remove all the answers the user removed that were already saved in parse and the poll
@@ -122,13 +124,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) { // Options
+    if (section == VFSettingsSectionOptions) { // Options
         return 1;
-    } else if (section == 1) { // Question
+    } else if (section == VFSettingsSectionQuestion) { // Question
         return 1;
-    } else if (section == 2) { // Answers
+    } else if (section == VFSettingsSectionAnswerKey) { // Answers
         return [self->pollAnswers count];
-    } else if (section == 3) { // Friends
+    } else if (section == VFSettingsSectionFriendsList) { // Friends
         return [self->pollFriends count];
     }
     
@@ -136,9 +138,9 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) { // Answers
+    if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
         return YES;
-    } else if (indexPath.section == 3) { // Friends
+    } else if (indexPath.section == VFSettingsSectionFriendsList) { // Friends
         return YES;
     }
     
@@ -147,15 +149,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) {
+    if (indexPath.section == VFSettingsSectionAnswerKey) {
         [self deleteAnswerKeyFromPollUsingIndex:indexPath.row];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == VFSettingsSectionFriendsList) {
         [self deleteFriendFromPollUsingIndex:indexPath.row];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) { // Options
+    if (indexPath.section == VFSettingsSectionOptions) { // Options
         OptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
         
         if (self.pollData) {
@@ -172,7 +174,7 @@
         }
         
         return cell;
-    } else if (indexPath.section == 1) { // Question
+    } else if (indexPath.section == VFSettingsSectionQuestion) { // Question
         AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
         
         if (self.pollData) {
@@ -181,14 +183,14 @@
         }
         
         return cell;
-    } else if (indexPath.section == 2) { // Answers
+    } else if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
         AddEditPollAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
 
         VFAnswer *answer = self->pollAnswers[indexPath.row];
         cell.answerUILabel.text = answer.answerText;
         
         return cell;
-    } else if (indexPath.section == 3) { // Friends
+    } else if (indexPath.section == VFSettingsSectionFriendsList) { // Friends
         AddEditPollFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
         
         if (self.pollData) {
@@ -205,13 +207,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewCell *sectionCell = nil;
     
-    if (section == 0) {
+    if (section == VFSettingsSectionOptions) {
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerOptions"];
-    } else if (section == 1) {
+    } else if (section == VFSettingsSectionQuestion) {
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerQuestion"];
-    } else if (section == 2) {
+    } else if (section == VFSettingsSectionAnswerKey) {
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerAnswerKey"];
-    } else if (section == 3) {
+    } else if (section == VFSettingsSectionFriendsList) {
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerFriendList"];
     }
 
@@ -231,7 +233,7 @@
     // Add it to the bottom of the answer list array and reload the answer section
     [self->pollAnswers addObject:answer];
 
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionAnswerKey] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)deleteAnswerKeyFromPollUsingIndex:(NSInteger)answerKeyIndex {
@@ -246,7 +248,7 @@
     
     // and remove it from the answer array and reload the answer section
     [self->pollAnswers removeObjectAtIndex:answerKeyIndex];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionAnswerKey] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (IBAction)addAnswerKeyButtonTouched:(id)sender {
@@ -292,7 +294,7 @@
             
             
             // Reload friends section
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionFriendsList] withRowAnimation:UITableViewRowAnimationAutomatic];
         } else {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
             
@@ -319,7 +321,7 @@
     [self->pollFriends removeObject:friend];
     
     // Reload the friends section
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionFriendsList] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {

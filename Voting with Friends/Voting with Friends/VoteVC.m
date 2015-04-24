@@ -225,21 +225,4 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - Delete Poll
-
-- (IBAction)deletePollButtonTouched:(UIBarButtonItem *)sender {
-    [self.pollData deletePoll];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PollSettings"]) {
-        AddEditPollVC *destinationVC = [segue destinationViewController];
-        destinationVC.pollData = self.pollData;
-    }
-}
-
-
 @end

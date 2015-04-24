@@ -16,4 +16,11 @@
 
 @property (weak) VFPoll *pollData;
 
+typedef NS_ENUM(NSInteger, VFSettingsSection) {
+    VFSettingsSectionQuestion,
+    VFSettingsSectionAnswerKey,
+    VFSettingsSectionFriendsList,
+    VFSettingsSectionOptions
+};
+
 @end

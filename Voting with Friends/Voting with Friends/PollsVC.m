@@ -10,6 +10,7 @@
 #import "PollCell.h"
 #import "VoteVC.h"
 #import "VFPush.h"
+#import "AddEditPollVC.h"
 
 @interface PollsVC ()
 
@@ -134,21 +135,53 @@
     return pollCell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Needed for editActions to work
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *returnArray;
+    
+    VFPoll *swipedPoll = self.pollsFromCloud[indexPath.row];
+    
+    if (swipedPoll.isCurrentUserPollOwner) {
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+            [swipedPoll deletePoll];
+        }];
+        
+        UITableViewRowAction *settingsAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Settings" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+            [self performSegueWithIdentifier:@"PollSettings" sender:indexPath];
+        }];
+        
+        returnArray = @[deleteAction, settingsAction];
+    } else {
+        UITableViewRowAction *notPollOwnerAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Ask Poll Owner\nto Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) { }];
+        
+        notPollOwnerAction.backgroundColor = [UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0];
+        
+        returnArray = @[notPollOwnerAction];
+    }
+    
+    return returnArray;
+}
+
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {    
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Vote"]) {
         CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
         
         VoteVC *voteVC = [segue destinationViewController];
-        voteVC.pollData = _pollsFromCloud[indexPath.row];
-  
-        if (voteVC.pollData.isCurrentUserPollOwner) {
-            voteVC.hidesBottomBarWhenPushed = NO;
-        } else {
-            voteVC.hidesBottomBarWhenPushed = YES;
-        }
+        voteVC.pollData = self.pollsFromCloud[indexPath.row];
+    }
+    
+    if ([segue.identifier isEqualToString:@"PollSettings"]) {
+        NSIndexPath *indexPath = sender;
+
+        AddEditPollVC *destinationVC = [segue destinationViewController];
+        destinationVC.pollData = self.pollsFromCloud[indexPath.row];
     }
 }
 

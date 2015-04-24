@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Ryan Wahle. All rights reserved.
 //
 
+#import "AddEditPollVC.h"
 #import "AddEditPollQuestionCell.h"
 
 @interface AddEditPollQuestionCell ()
@@ -33,7 +34,7 @@
     
     [UIView setAnimationsEnabled:YES];
     
-    [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 

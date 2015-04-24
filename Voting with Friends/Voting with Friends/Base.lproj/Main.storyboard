@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -178,7 +178,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This poll expires on 4/15/2015 4:30PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEn-0Y-2Qf">
                                             <rect key="frame" x="140" y="152" width="171" height="14"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -217,7 +217,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Ia7-O6-3Yi"/>
                         <barButtonItem title="Add a New Poll" id="DNg-Q2-8l4">
                             <connections>
-                                <segue destination="2rD-8c-jZY" kind="push" id="HIu-Bz-Nu2"/>
+                                <segue destination="2rD-8c-jZY" kind="push" identifier="newPoll" id="HIu-Bz-Nu2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="anf-dH-ahB"/>
@@ -234,6 +234,9 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="KCZ-PH-fj6">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
+                    <connections>
+                        <segue destination="2rD-8c-jZY" kind="push" identifier="PollSettings" id="4rW-1p-dci"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhD-gU-c7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -242,7 +245,7 @@
         <!--Vote-->
         <scene sceneID="yp1-mC-lD6">
             <objects>
-                <tableViewController title="Vote" id="NW5-dC-IBu" customClass="VoteVC" sceneMemberID="viewController">
+                <tableViewController title="Vote" hidesBottomBarWhenPushed="YES" id="NW5-dC-IBu" customClass="VoteVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Mu1-tu-8Ti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -262,7 +265,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This poll expires on 4/15/2015 4:30PM " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwd-Pi-O86">
                                             <rect key="frame" x="100" y="8" width="174" height="18"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -400,21 +403,7 @@
                             <outlet property="delegate" destination="NW5-dC-IBu" id="Wa4-np-J5K"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="EyG-XR-N0x"/>
-                        <barButtonItem title="Poll Settings" id="MkL-oT-SUj">
-                            <connections>
-                                <segue destination="2rD-8c-jZY" kind="push" identifier="PollSettings" id="u3S-Te-ief"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="igE-C0-Xj8"/>
-                        <barButtonItem systemItem="trash" id="TuN-6F-ilZ">
-                            <connections>
-                                <action selector="deletePollButtonTouched:" destination="NW5-dC-IBu" id="DUx-kn-iF6"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Y0D-Hd-ddi"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Vote" id="KOv-W6-2YQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="31d-uu-ebP"/>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="9Cf-tf-q7H">
@@ -423,11 +412,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="pollSettingsButton" destination="MkL-oT-SUj" id="9Zj-Fa-AoO"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dt-NR-j10" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -442,106 +428,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="headerOptions" id="UGj-Vr-eWL">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UGj-Vr-eWL" id="6VB-Oz-loB">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYV-Sr-1M4">
-                                            <rect key="frame" x="15" y="10" width="64" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="qYV-Sr-1M4" firstAttribute="leading" secondItem="6VB-Oz-loB" secondAttribute="leadingMargin" constant="7" id="KQA-e4-Hh7"/>
-                                        <constraint firstAttribute="centerY" secondItem="qYV-Sr-1M4" secondAttribute="centerY" constant="0.5" id="kIp-j0-NN8"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="cellOptions" rowHeight="330" id="qiz-j1-49d" customClass="OptionsCell">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiz-j1-49d" id="JNY-cd-Ba3">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-Ys-mqK">
-                                            <rect key="frame" x="311" y="4" width="51" height="31"/>
-                                        </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rO-Sh-Uv2">
-                                            <rect key="frame" x="15" y="8" width="98" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Show Individual Answer Totals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ed1-j8-lR2">
-                                            <rect key="frame" x="15" y="47" width="224" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-dw-yGV">
-                                            <rect key="frame" x="311" y="43" width="51" height="31"/>
-                                        </switch>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Dp-vIJ">
-                                            <rect key="frame" x="27" y="155" width="320" height="162"/>
-                                            <date key="date" timeIntervalSinceReferenceDate="450831174.98061299">
-                                                <!--2015-04-15 22:52:54 +0000-->
-                                            </date>
-                                        </datePicker>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Fb-0gJ">
-                                            <rect key="frame" x="129" y="133" width="116" height="14"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Poll to Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKB-wv-aqI">
-                                            <rect key="frame" x="15" y="86" width="151" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1He-64-Tgd">
-                                            <rect key="frame" x="311" y="82" width="51" height="31"/>
-                                            <connections>
-                                                <action selector="allowPollToExpireUISwitchTap:" destination="qiz-j1-49d" eventType="valueChanged" id="RDA-Jo-noP"/>
-                                            </connections>
-                                        </switch>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="ZKB-wv-aqI" secondAttribute="trailing" constant="-151" id="1yZ-1h-EHY"/>
-                                        <constraint firstAttribute="centerX" secondItem="m5U-Fb-0gJ" secondAttribute="centerX" constant="0.5" id="4aK-Hq-ARy"/>
-                                        <constraint firstItem="1He-64-Tgd" firstAttribute="trailing" secondItem="pcr-Ys-mqK" secondAttribute="trailing" id="5D6-iR-qUe"/>
-                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="Ed1-j8-lR2" secondAttribute="leading" id="6a8-zc-rVx"/>
-                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="top" secondItem="JNY-cd-Ba3" secondAttribute="topMargin" id="6yF-aI-486"/>
-                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="9aL-dw-yGV" secondAttribute="leading" constant="-10" id="7lJ-9X-lQy"/>
-                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="centerY" secondItem="pcr-Ys-mqK" secondAttribute="centerY" constant="0.5" id="8h0-in-khI"/>
-                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="ZKB-wv-aqI" secondAttribute="trailing" constant="-151" id="8wZ-Lk-T5r"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="i7q-Dp-vIJ" secondAttribute="bottom" constant="5" id="FSs-F1-MDS"/>
-                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="centerY" secondItem="Ed1-j8-lR2" secondAttribute="centerY" constant="-0.5" id="NuN-Ao-V8G"/>
-                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="JNY-cd-Ba3" secondAttribute="leadingMargin" constant="7" id="ROB-Q1-GmR"/>
-                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="Ed1-j8-lR2" secondAttribute="leading" id="SXB-Kd-hzv"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="pcr-Ys-mqK" secondAttribute="trailing" constant="7" id="VLr-jR-Xsz"/>
-                                        <constraint firstItem="i7q-Dp-vIJ" firstAttribute="top" secondItem="m5U-Fb-0gJ" secondAttribute="bottom" constant="8" id="csX-ys-MHn"/>
-                                        <constraint firstAttribute="centerY" secondItem="m5U-Fb-0gJ" secondAttribute="centerY" constant="25" id="dNy-MC-2m7"/>
-                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="top" secondItem="Ed1-j8-lR2" secondAttribute="bottom" constant="15" id="dla-7S-JjS"/>
-                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="centerY" secondItem="1He-64-Tgd" secondAttribute="centerY" id="khc-uo-mHO"/>
-                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="trailing" secondItem="pcr-Ys-mqK" secondAttribute="trailing" id="rb1-7U-6Ds"/>
-                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="leading" secondItem="JNY-cd-Ba3" secondAttribute="leadingMargin" constant="7" id="s6B-zA-7u5"/>
-                                        <constraint firstItem="1He-64-Tgd" firstAttribute="trailing" secondItem="9aL-dw-yGV" secondAttribute="trailing" id="uLs-Hf-sEs"/>
-                                        <constraint firstAttribute="centerY" secondItem="i7q-Dp-vIJ" secondAttribute="centerY" constant="-71" id="vrm-UL-vv5"/>
-                                        <constraint firstAttribute="centerX" secondItem="i7q-Dp-vIJ" secondAttribute="centerX" constant="0.5" id="xuy-cu-dvx"/>
-                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="top" secondItem="8rO-Sh-Uv2" secondAttribute="bottom" constant="15" id="ztM-vA-LTw"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="allowPollToExpireUISwitch" destination="1He-64-Tgd" id="6BS-B5-6S2"/>
-                                    <outlet property="pollExpirationDate" destination="i7q-Dp-vIJ" id="aRE-Vd-IiX"/>
-                                    <outlet property="pollExpirationLabel" destination="m5U-Fb-0gJ" id="mup-4i-WAC"/>
-                                    <outlet property="showActivityUISwitch" destination="pcr-Ys-mqK" id="S3R-M4-FdH"/>
-                                    <outlet property="showIndividualAnswerTotalsUISwitch" destination="9aL-dw-yGV" id="lsf-y1-cEw"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="headerQuestion" rowHeight="52" id="zD0-0G-tbw">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zD0-0G-tbw" id="TZp-SA-Sgu">
@@ -688,6 +574,106 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameAndEmailUITextView" destination="wSa-Dt-FxW" id="QmN-rf-1eV"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="headerOptions" id="UGj-Vr-eWL">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UGj-Vr-eWL" id="6VB-Oz-loB">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYV-Sr-1M4">
+                                            <rect key="frame" x="15" y="10" width="64" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.90980392160000001" green="0.40784313729999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qYV-Sr-1M4" firstAttribute="leading" secondItem="6VB-Oz-loB" secondAttribute="leadingMargin" constant="7" id="KQA-e4-Hh7"/>
+                                        <constraint firstAttribute="centerY" secondItem="qYV-Sr-1M4" secondAttribute="centerY" constant="0.5" id="kIp-j0-NN8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="cellOptions" rowHeight="330" id="qiz-j1-49d" customClass="OptionsCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiz-j1-49d" id="JNY-cd-Ba3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-Ys-mqK">
+                                            <rect key="frame" x="311" y="4" width="51" height="31"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rO-Sh-Uv2">
+                                            <rect key="frame" x="15" y="8" width="98" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Show Individual Answer Totals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ed1-j8-lR2">
+                                            <rect key="frame" x="15" y="47" width="224" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-dw-yGV">
+                                            <rect key="frame" x="311" y="43" width="51" height="31"/>
+                                        </switch>
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Dp-vIJ">
+                                            <rect key="frame" x="27" y="155" width="320" height="162"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="450831174.98061299">
+                                                <!--2015-04-15 22:52:54 +0000-->
+                                            </date>
+                                        </datePicker>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-Fb-0gJ">
+                                            <rect key="frame" x="129" y="133" width="116" height="14"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Poll to Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKB-wv-aqI">
+                                            <rect key="frame" x="15" y="86" width="151" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1He-64-Tgd">
+                                            <rect key="frame" x="311" y="82" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="allowPollToExpireUISwitchTap:" destination="qiz-j1-49d" eventType="valueChanged" id="RDA-Jo-noP"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="ZKB-wv-aqI" secondAttribute="trailing" constant="-151" id="1yZ-1h-EHY"/>
+                                        <constraint firstAttribute="centerX" secondItem="m5U-Fb-0gJ" secondAttribute="centerX" constant="0.5" id="4aK-Hq-ARy"/>
+                                        <constraint firstItem="1He-64-Tgd" firstAttribute="trailing" secondItem="pcr-Ys-mqK" secondAttribute="trailing" id="5D6-iR-qUe"/>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="Ed1-j8-lR2" secondAttribute="leading" id="6a8-zc-rVx"/>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="top" secondItem="JNY-cd-Ba3" secondAttribute="topMargin" id="6yF-aI-486"/>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="9aL-dw-yGV" secondAttribute="leading" constant="-10" id="7lJ-9X-lQy"/>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="centerY" secondItem="pcr-Ys-mqK" secondAttribute="centerY" constant="0.5" id="8h0-in-khI"/>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="leading" secondItem="ZKB-wv-aqI" secondAttribute="trailing" constant="-151" id="8wZ-Lk-T5r"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="i7q-Dp-vIJ" secondAttribute="bottom" constant="5" id="FSs-F1-MDS"/>
+                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="centerY" secondItem="Ed1-j8-lR2" secondAttribute="centerY" constant="-0.5" id="NuN-Ao-V8G"/>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="JNY-cd-Ba3" secondAttribute="leadingMargin" constant="7" id="ROB-Q1-GmR"/>
+                                        <constraint firstItem="8rO-Sh-Uv2" firstAttribute="leading" secondItem="Ed1-j8-lR2" secondAttribute="leading" id="SXB-Kd-hzv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="pcr-Ys-mqK" secondAttribute="trailing" constant="7" id="VLr-jR-Xsz"/>
+                                        <constraint firstItem="i7q-Dp-vIJ" firstAttribute="top" secondItem="m5U-Fb-0gJ" secondAttribute="bottom" constant="8" id="csX-ys-MHn"/>
+                                        <constraint firstAttribute="centerY" secondItem="m5U-Fb-0gJ" secondAttribute="centerY" constant="25" id="dNy-MC-2m7"/>
+                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="top" secondItem="Ed1-j8-lR2" secondAttribute="bottom" constant="15" id="dla-7S-JjS"/>
+                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="centerY" secondItem="1He-64-Tgd" secondAttribute="centerY" id="khc-uo-mHO"/>
+                                        <constraint firstItem="9aL-dw-yGV" firstAttribute="trailing" secondItem="pcr-Ys-mqK" secondAttribute="trailing" id="rb1-7U-6Ds"/>
+                                        <constraint firstItem="ZKB-wv-aqI" firstAttribute="leading" secondItem="JNY-cd-Ba3" secondAttribute="leadingMargin" constant="7" id="s6B-zA-7u5"/>
+                                        <constraint firstItem="1He-64-Tgd" firstAttribute="trailing" secondItem="9aL-dw-yGV" secondAttribute="trailing" id="uLs-Hf-sEs"/>
+                                        <constraint firstAttribute="centerY" secondItem="i7q-Dp-vIJ" secondAttribute="centerY" constant="-71" id="vrm-UL-vv5"/>
+                                        <constraint firstAttribute="centerX" secondItem="i7q-Dp-vIJ" secondAttribute="centerX" constant="0.5" id="xuy-cu-dvx"/>
+                                        <constraint firstItem="Ed1-j8-lR2" firstAttribute="top" secondItem="8rO-Sh-Uv2" secondAttribute="bottom" constant="15" id="ztM-vA-LTw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="allowPollToExpireUISwitch" destination="1He-64-Tgd" id="6BS-B5-6S2"/>
+                                    <outlet property="pollExpirationDate" destination="i7q-Dp-vIJ" id="aRE-Vd-IiX"/>
+                                    <outlet property="pollExpirationLabel" destination="m5U-Fb-0gJ" id="mup-4i-WAC"/>
+                                    <outlet property="showActivityUISwitch" destination="pcr-Ys-mqK" id="S3R-M4-FdH"/>
+                                    <outlet property="showIndividualAnswerTotalsUISwitch" destination="9aL-dw-yGV" id="lsf-y1-cEw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -865,6 +851,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="u3S-Te-ief"/>
+        <segue reference="4rW-1p-dci"/>
     </inferredMetricsTieBreakers>
 </document>
