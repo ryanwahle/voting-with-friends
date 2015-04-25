@@ -11,6 +11,7 @@
 #import "VoteVC.h"
 #import "VFPush.h"
 #import "AddEditPollVC.h"
+#import "MyAccountVC.h"
 
 @interface PollsVC ()
 
@@ -182,6 +183,11 @@
 
         AddEditPollVC *destinationVC = [segue destinationViewController];
         destinationVC.pollData = self.pollsFromCloud[indexPath.row];
+    }
+    
+    if ([segue.identifier isEqualToString:@"MyAccountSegue"]) {
+        MyAccountVC *accountVC = [segue destinationViewController];
+        accountVC.userData = [PFUser currentUser];
     }
 }
 

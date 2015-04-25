@@ -38,6 +38,7 @@
 		68B4B0531AD1C50F000ABDB2 /* HeaderQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */; };
 		68B9E0921ABB94090093C5A4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9E0911ABB94090093C5A4 /* LoginVC.m */; };
 		68C54AF01ABF697900A51092 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C54AEF1ABF697900A51092 /* SignupVC.m */; };
+		68CEFA651AEB562000BA1331 /* MyAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CEFA641AEB562000BA1331 /* MyAccountVC.m */; };
 		68E0D6CA1ACD0C6600CC9508 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E0D6C91ACD0C6600CC9508 /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,8 @@
 		68B9E0911ABB94090093C5A4 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		68C54AEE1ABF697900A51092 /* SignupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupVC.h; sourceTree = "<group>"; };
 		68C54AEF1ABF697900A51092 /* SignupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupVC.m; sourceTree = "<group>"; };
+		68CEFA631AEB562000BA1331 /* MyAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountVC.h; sourceTree = "<group>"; };
+		68CEFA641AEB562000BA1331 /* MyAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountVC.m; sourceTree = "<group>"; };
 		68E0D6C91ACD0C6600CC9508 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +180,7 @@
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				68C841681ACFAA5300FE38CC /* Signup */,
 				68C841671ACFAA4900FE38CC /* Login */,
+				68CEFA621AEB55E700BA1331 /* MyAccount ViewController */,
 				68989C021AC2191700FD8323 /* Polls ViewController */,
 				68989C011AC218F700FD8323 /* Vote ViewController */,
 				68989C031AC2732100FD8323 /* AddEditPoll ViewController */,
@@ -293,6 +297,15 @@
 			name = Signup;
 			sourceTree = "<group>";
 		};
+		68CEFA621AEB55E700BA1331 /* MyAccount ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				68CEFA631AEB562000BA1331 /* MyAccountVC.h */,
+				68CEFA641AEB562000BA1331 /* MyAccountVC.m */,
+			);
+			name = "MyAccount ViewController";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,6 +419,7 @@
 				6835F32D1ACF201800695D63 /* AddEditPollAnswerCell.m in Sources */,
 				6835F3261ACE47D700695D63 /* VoteAnswerCell.m in Sources */,
 				6886167A1ADDB09E00207EE3 /* VFPush.m in Sources */,
+				68CEFA651AEB562000BA1331 /* MyAccountVC.m in Sources */,
 				68989C001AC2189100FD8323 /* QuestionCell.m in Sources */,
 				68C54AF01ABF697900A51092 /* SignupVC.m in Sources */,
 				680B36AD1ADF75B600A971E8 /* VoteActivityCell.m in Sources */,
