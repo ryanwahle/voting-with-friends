@@ -16,6 +16,7 @@
 @interface PollsVC ()
 
 @property NSArray *pollsFromCloud;
+@property NSArray *pollsFromCloudExpired;
 
 @end
 
@@ -44,6 +45,7 @@
 
 - (void)getPollDataFromCloud {
     self.pollsFromCloud = nil;
+    self.pollsFromCloudExpired = nil;
     
     PFQuery *pollsWhereCurrentUserIsOwner = [PFQuery queryWithClassName:@"Polls"];
     [pollsWhereCurrentUserIsOwner whereKey:@"pollOwner" equalTo:[PFUser currentUser]];
@@ -61,17 +63,29 @@
     
     [pollsForCurrentUser findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray *pollsArray = [[NSMutableArray alloc] init];
+        NSMutableArray *pollsExpiredArray = [[NSMutableArray alloc] init];
     
         for (PFObject *pollObject in objects) {
-            [pollsArray addObject:[VFPoll createPollWithPFObject:pollObject]];
+            VFPoll *vfPoll = [VFPoll createPollWithPFObject:pollObject];
+            
+            if (vfPoll.isPollExpired) {
+                [pollsExpiredArray addObject:vfPoll];
+            } else {
+                [pollsArray addObject:vfPoll];
+            }
         }
         
         [pollsArray sortUsingComparator:^NSComparisonResult(VFPoll *obj1, VFPoll *obj2) {
             return [obj1.expirationDate compare:obj2.expirationDate];
         }];
+        
+        [pollsExpiredArray sortUsingComparator:^NSComparisonResult(VFPoll *obj1, VFPoll *obj2) {
+            return [obj1.expirationDate compare:obj2.expirationDate];
+        }];
 
         
         self.pollsFromCloud = [NSArray arrayWithArray:pollsArray];
+        self.pollsFromCloudExpired = [NSArray arrayWithArray:pollsExpiredArray];
 
         [self updateTableView];
     }];
@@ -93,15 +107,33 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return nil;
+    }
+    
+    return @"Poll History";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _pollsFromCloud.count;
+    if (section == 0) {
+        return _pollsFromCloud.count;
+    }
+    
+    return _pollsFromCloudExpired.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VFPoll *pollData = _pollsFromCloud[indexPath.row];
+    VFPoll *pollData;
+    
+    if (indexPath.section == 0) {
+        pollData = _pollsFromCloud[indexPath.row];
+    } else {
+        pollData = _pollsFromCloudExpired[indexPath.row];
+    }
 
     PollCell *pollCell = [tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
     
@@ -143,7 +175,13 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *returnArray;
     
-    VFPoll *swipedPoll = self.pollsFromCloud[indexPath.row];
+    VFPoll *swipedPoll;
+    
+    if (indexPath.section == 0) {
+        swipedPoll = self.pollsFromCloud[indexPath.row];
+    } else {
+        swipedPoll = self.pollsFromCloudExpired[indexPath.row];
+    }
     
     if (swipedPoll.isCurrentUserPollOwner) {
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
@@ -175,14 +213,24 @@
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
         
         VoteVC *voteVC = [segue destinationViewController];
-        voteVC.pollData = self.pollsFromCloud[indexPath.row];
+        
+        if (indexPath.section == 0) {
+            voteVC.pollData = self.pollsFromCloud[indexPath.row];
+        } else {
+            voteVC.pollData = self.pollsFromCloudExpired[indexPath.row];
+        }
     }
     
     if ([segue.identifier isEqualToString:@"PollSettings"]) {
         NSIndexPath *indexPath = sender;
 
         AddEditPollVC *destinationVC = [segue destinationViewController];
-        destinationVC.pollData = self.pollsFromCloud[indexPath.row];
+        
+        if (indexPath.section == 0) {
+            destinationVC.pollData = self.pollsFromCloud[indexPath.row];
+        } else {
+            destinationVC.pollData = self.pollsFromCloudExpired[indexPath.row];
+        }
     }
     
     if ([segue.identifier isEqualToString:@"MyAccountSegue"]) {
