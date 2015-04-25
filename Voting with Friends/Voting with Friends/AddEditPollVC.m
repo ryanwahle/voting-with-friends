@@ -68,13 +68,26 @@
     savePoll.shouldDisplayAnswerTotals = optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
     
     if (optionsCell.allowPollToExpireUISwitch.isOn) {
+        if ( ! [optionsCell.pollExpirationDate.date isEqualToDate:savePoll.expirationDate]) {
+            [savePoll addActivityToPollWithDescription:[NSString stringWithFormat:@"Expiration date changed to %@", optionsCell.pollExpirationDate.date]];
+        }
+        
         savePoll.expirationDate = optionsCell.pollExpirationDate.date;
     } else {
+        if (savePoll.expirationDate != nil) {
+            [savePoll addActivityToPollWithDescription:@"The expiration date was removed."];
+        }
+        
         savePoll.expirationDate = nil;
     }
     
     // Question
     AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion]];
+    
+    if ( ! [savePoll.questionForPoll isEqualToString:addEditPollQuestionCell.questionUITextView.text]) {
+        [savePoll addActivityToPollWithDescription:@"The poll question was changed."];
+    }
+    
     savePoll.questionForPoll = addEditPollQuestionCell.questionUITextView.text;
     
     // Answers :: Remove all the answers the user removed that were already saved in parse and the poll
