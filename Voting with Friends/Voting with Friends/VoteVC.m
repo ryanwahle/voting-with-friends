@@ -11,55 +11,23 @@
 #import "VoteVC.h"
 #import "QuestionCell.h"
 #import "AddEditPollVC.h"
-#import "VoteAnswerCell.h"
 #import "HeaderQuestionCell.h"
-#import "VoteActivityCell.h"
 
 #import "VFAnswer.h"
 #import "VFActivity.h"
-
-@interface VoteVC ()
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *pollSettingsButton;
-
-@end
 
 @implementation VoteVC
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.pollData.isPollExpired) {
-        self.pollSettingsButton.enabled = NO;
-    } else {
-        self.pollSettingsButton.enabled = YES;
-    }
-    
     self.tableView.estimatedRowHeight = 50.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView reloadData];
-    
-    //[[NSNotificationCenter defaultCenter] addObserverForName:@"pollObjectUpdated" object:nil queue:nil usingBlock:^(NSNotification *note) {
-    //    [self.tableView reloadData];
-    //    NSLog(@"Notification pollObjectUpdated");
-    //}];
-    
-    //[[NSNotificationCenter defaultCenter] addObserverForName:@"cloudDataRefreshed" object:nil queue:nil usingBlock:^(NSNotification *note) {
-    //    [self.pollData refreshPoll];
-    //    NSLog(@"Notification cloudDataRefreshed");
-    //}];
 }
 
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
-//}
-
 #pragma mark - Tweet
-
 
 - (IBAction)tweetButtonTapped:(UIBarButtonItem *)sender {
     
@@ -115,43 +83,74 @@
         
         return cell;
     } else if (indexPath.section == 1) { // Answer Section
-        VoteAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
         
         if (self.pollData.shouldDisplayAnswerTotals) {
-            cell.totalVotesUILabel.hidden = NO;
+            cell.detailTextLabel.hidden = NO;
         } else {
-            cell.totalVotesUILabel.hidden = YES;
+            cell.detailTextLabel.hidden = YES;
         }
         
         VFAnswer *answer = self.pollData.possibleAnswersForPoll[indexPath.row];
  
-        cell.totalVotesUILabel.text = [NSString stringWithFormat:@"%ld votes", (long)answer.totalVotesForPoll];
-        cell.answerUILabel.text = answer.answerText;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld votes", (long)answer.totalVotesForPoll];
+        cell.textLabel.text = answer.answerText;
         
         if (self.pollData.indexOfSelectedAnswerFromCurrentUser == indexPath.row) {
-            cell.selectedVoteButton.selected = YES;
+            cell.imageView.image = [UIImage imageNamed:@"AnswerChecked"];
         } else {
-            cell.selectedVoteButton.selected = NO;
+            cell.imageView.image = [UIImage imageNamed:@"AnswerUnchecked"];
         }
         
         return cell;
     } else if (indexPath.section == 2) { // Activity Section
-        VoteActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
         
         VFActivity *activity = self.pollData.pollActivity[indexPath.row];
         
-        cell.labelActivityDescription.text = activity.descriptionOfActivity;
+        cell.detailTextLabel.text = activity.descriptionOfActivity;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 
-        cell.labelDateTime.text = [dateFormatter stringFromDate:activity.dateAndTimeOfActivity];
+        cell.textLabel.text = [dateFormatter stringFromDate:activity.dateAndTimeOfActivity];
         
         return cell;
     }
     
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"indexPath: %@" , indexPath);
+    if (indexPath.section == 1) { // Answer Section
+        if (self.pollData.isPollExpired) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to change your vote." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        
+        // Remove the currently selected answer from database
+        if (self.pollData.indexOfSelectedAnswerFromCurrentUser != indexPath.row) {
+            if (self.pollData.indexOfSelectedAnswerFromCurrentUser != -1) {
+                VFAnswer *existingAnswer = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
+                [existingAnswer removeSelectedAnswerForCurrentUser];
+                [existingAnswer save];
+            }
+            
+            VFAnswer *newAnswer = self.pollData.possibleAnswersForPoll[indexPath.row];
+            [newAnswer selectAnswerForCurrentUser];
+            [newAnswer save];
+            
+            [self.pollData addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ chose the answer %@", [PFUser currentUser][@"name"], newAnswer.answerText]];
+            [self.pollData save];
+        }
+        
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -190,39 +189,4 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 65;
 }
-
-
-# pragma mark - Answers
-
-- (IBAction)buttonCheckTouched:(UIButton *)sender {
-    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
-    
-    if (self.pollData.isPollExpired) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to change your vote." preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    // Remove the currently selected answer from database
-    if (self.pollData.indexOfSelectedAnswerFromCurrentUser != indexPath.row) {
-        if (self.pollData.indexOfSelectedAnswerFromCurrentUser != -1) {
-            VFAnswer *existingAnswer = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
-            [existingAnswer removeSelectedAnswerForCurrentUser];
-            [existingAnswer save];
-        }
-        
-        VFAnswer *newAnswer = self.pollData.possibleAnswersForPoll[indexPath.row];
-        [newAnswer selectAnswerForCurrentUser];
-        [newAnswer save];
-        
-        [self.pollData addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ chose the answer %@", [PFUser currentUser][@"name"], newAnswer.answerText]];
-        [self.pollData save];
-    }
-    
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 @end

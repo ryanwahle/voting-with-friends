@@ -188,11 +188,15 @@
             [swipedPoll deletePoll];
         }];
         
-        UITableViewRowAction *settingsAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Settings" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            [self performSegueWithIdentifier:@"PollSettings" sender:indexPath];
-        }];
-        
-        returnArray = @[deleteAction, settingsAction];
+        if (swipedPoll.isPollExpired) {
+            returnArray = @[deleteAction];
+        } else {
+            UITableViewRowAction *settingsAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Settings" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                [self performSegueWithIdentifier:@"PollSettings" sender:indexPath];
+            }];
+            
+            returnArray = @[deleteAction, settingsAction];
+        }
     } else {
         UITableViewRowAction *notPollOwnerAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Ask Poll Owner\nto Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) { }];
         

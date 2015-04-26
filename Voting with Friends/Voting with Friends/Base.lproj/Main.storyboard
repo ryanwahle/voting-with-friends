@@ -27,7 +27,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2l-xJ-kO4">
                                 <rect key="frame" x="0.0" y="260" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.90588235855102539" green="0.29803922772407532" blue="0.23529411852359772" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LPy-k2-UYW"/>
                                 </constraints>
@@ -58,7 +58,7 @@
                                 <rect key="frame" x="242" y="318" width="117" height="36"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="First Time User">
-                                    <color key="titleColor" red="0.90588235855102539" green="0.29803922772407532" blue="0.23529411852359772" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -69,7 +69,7 @@
                                 <rect key="frame" x="16" y="318" width="131" height="36"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="Forget Password">
-                                    <color key="titleColor" red="0.90588235859999999" green="0.29803922770000002" blue="0.23529411850000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -85,7 +85,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32941176470588235" green="0.396078431372549" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="trailing" secondItem="sJt-m8-ynZ" secondAttribute="trailing" id="9AJ-UX-GOK"/>
                             <constraint firstItem="QxL-QS-Py1" firstAttribute="top" secondItem="gNm-E3-v1Q" secondAttribute="bottom" constant="20" id="B0p-b6-xjT"/>
@@ -352,12 +352,12 @@
         <scene sceneID="yp1-mC-lD6">
             <objects>
                 <tableViewController title="Vote" hidesBottomBarWhenPushed="YES" id="NW5-dC-IBu" customClass="VoteVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Mu1-tu-8Ti">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Mu1-tu-8Ti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerQuestion" rowHeight="65" id="gtc-Ot-Gop" customClass="HeaderQuestionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerQuestion" rowHeight="65" id="gtc-Ot-Gop" customClass="HeaderQuestionCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gtc-Ot-Gop" id="KYZ-I4-0ez">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -389,7 +389,7 @@
                                     <outlet property="pollExpirationDate" destination="iwd-Pi-O86" id="eKN-Fo-qNV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellQuestion" rowHeight="90" id="Oe3-Xp-9mL" customClass="QuestionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellQuestion" rowHeight="90" id="Oe3-Xp-9mL" customClass="QuestionCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oe3-Xp-9mL" id="RBh-aF-w8s">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -412,50 +412,30 @@
                                     <outlet property="pollQuestion" destination="H6z-ig-Njt" id="N9a-1Y-TAT"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellAnswer" id="hya-3U-tAN" customClass="VoteAnswerCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAnswer" textLabel="7MC-1l-qUH" detailTextLabel="xQ4-93-fSF" imageView="76j-iZ-33d" style="IBUITableViewCellStyleValue1" id="pcT-Dn-qkJ">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hya-3U-tAN" id="toO-gN-hbQ">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pcT-Dn-qkJ" id="xvH-m6-rlu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-HD-6Kr">
-                                            <rect key="frame" x="15" y="8" width="28" height="28"/>
-                                            <state key="normal" image="AnswerUnchecked">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" image="AnswerChecked"/>
-                                            <connections>
-                                                <action selector="buttonCheckTouched:" destination="NW5-dC-IBu" eventType="touchUpInside" id="o42-z8-MEt"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-BF-k1s">
-                                            <rect key="frame" x="320" y="14" width="40" height="17"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7MC-1l-qUH">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wendy's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffl-Qf-foS">
-                                            <rect key="frame" x="51" y="10" width="67" height="24"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0 votes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xQ4-93-fSF">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AnswerUnchecked" id="76j-iZ-33d">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="8Zg-BF-k1s" secondAttribute="centerY" id="7Q0-Js-x6T"/>
-                                        <constraint firstAttribute="centerY" secondItem="lXA-HD-6Kr" secondAttribute="centerY" constant="0.5" id="Ity-2P-CqZ"/>
-                                        <constraint firstAttribute="centerY" secondItem="Ffl-Qf-foS" secondAttribute="centerY" id="Joi-Zg-O94"/>
-                                        <constraint firstItem="Ffl-Qf-foS" firstAttribute="leading" secondItem="lXA-HD-6Kr" secondAttribute="trailing" constant="8" id="Mhb-Zc-xtC"/>
-                                        <constraint firstItem="8Zg-BF-k1s" firstAttribute="trailing" secondItem="toO-gN-hbQ" secondAttribute="trailingMargin" constant="-7" id="amd-ht-TcL"/>
-                                        <constraint firstItem="lXA-HD-6Kr" firstAttribute="leading" secondItem="toO-gN-hbQ" secondAttribute="leadingMargin" constant="7" id="cDy-v9-Kv7"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="answerUILabel" destination="Ffl-Qf-foS" id="h3B-nt-GaY"/>
-                                    <outlet property="selectedVoteButton" destination="lXA-HD-6Kr" id="ALb-NL-Dts"/>
-                                    <outlet property="totalVotesUILabel" destination="8Zg-BF-k1s" id="ToJ-a3-MBO"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerActivity" id="IJa-Er-yXQ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerActivity" id="IJa-Er-yXQ">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IJa-Er-yXQ" id="GeP-1U-lsR">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -473,35 +453,25 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellActivity" id="AqB-H6-XGd" customClass="VoteActivityCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellActivity" textLabel="DAm-ZH-3JW" detailTextLabel="n9H-W8-Nw9" style="IBUITableViewCellStyleValue2" id="AqB-H6-XGd">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqB-H6-XGd" id="RQs-Gb-pcf">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today 2p" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-7r-eY3">
-                                            <rect key="frame" x="321" y="16" width="39" height="13"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="9"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DAm-ZH-3JW">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan voted for Wendy's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9c-7r-yAA">
-                                            <rect key="frame" x="15" y="14" width="121" height="16"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9H-W8-Nw9">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="v9c-7r-yAA" secondAttribute="centerY" id="5jy-e7-z67"/>
-                                        <constraint firstItem="OVz-7r-eY3" firstAttribute="trailing" secondItem="RQs-Gb-pcf" secondAttribute="trailingMargin" constant="-7" id="KaL-Ch-bt4"/>
-                                        <constraint firstItem="OVz-7r-eY3" firstAttribute="centerY" secondItem="v9c-7r-yAA" secondAttribute="centerY" id="SOo-T3-55B"/>
-                                        <constraint firstItem="v9c-7r-yAA" firstAttribute="leading" secondItem="RQs-Gb-pcf" secondAttribute="leadingMargin" constant="7" id="vqb-lz-z2P"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="labelActivityDescription" destination="v9c-7r-yAA" id="HSx-k5-Qfw"/>
-                                    <outlet property="labelDateTime" destination="OVz-7r-eY3" id="zJF-hR-heH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -946,7 +916,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AnswerChecked" width="28" height="28"/>
         <image name="AnswerUnchecked" width="28" height="28"/>
         <image name="BackIcon" width="13" height="11"/>
         <image name="Voting with Friends" width="256" height="256"/>
