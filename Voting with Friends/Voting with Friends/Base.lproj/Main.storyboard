@@ -412,28 +412,44 @@
                                     <outlet property="pollQuestion" destination="H6z-ig-Njt" id="N9a-1Y-TAT"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAnswer" textLabel="7MC-1l-qUH" detailTextLabel="xQ4-93-fSF" imageView="76j-iZ-33d" style="IBUITableViewCellStyleValue1" id="pcT-Dn-qkJ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAnswer" id="pcT-Dn-qkJ" customClass="AnswerCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pcT-Dn-qkJ" id="xvH-m6-rlu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7MC-1l-qUH">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" verticalCompressionResistancePriority="250" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSl-dk-Xra">
+                                            <rect key="frame" x="58" y="12" width="31" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0 votes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xQ4-93-fSF">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" image="AnswerUnchecked" translatesAutoresizingMaskIntoConstraints="NO" id="yxl-Qq-8hB">
+                                            <rect key="frame" x="15" y="8" width="28" height="28"/>
+                                        </imageView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpe-Ph-AFT">
+                                            <rect key="frame" x="318" y="12" width="42" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AnswerUnchecked" id="76j-iZ-33d">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="TSl-dk-Xra" firstAttribute="leading" secondItem="yxl-Qq-8hB" secondAttribute="trailing" priority="250" constant="15" id="0Ns-z1-349"/>
+                                        <constraint firstItem="TSl-dk-Xra" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Fpe-Ph-AFT" secondAttribute="leading" constant="-15" id="D26-pP-axS"/>
+                                        <constraint firstItem="yxl-Qq-8hB" firstAttribute="leading" secondItem="xvH-m6-rlu" secondAttribute="leadingMargin" priority="250" constant="7" id="D7s-DQ-qvm"/>
+                                        <constraint firstItem="TSl-dk-Xra" firstAttribute="leading" secondItem="xvH-m6-rlu" secondAttribute="leading" constant="58" id="Ggq-V8-BMg"/>
+                                        <constraint firstAttribute="centerY" secondItem="TSl-dk-Xra" secondAttribute="centerY" id="Jj6-wb-3tQ"/>
+                                        <constraint firstAttribute="centerY" secondItem="yxl-Qq-8hB" secondAttribute="centerY" priority="250" id="T0R-yt-YfO"/>
+                                        <constraint firstItem="TSl-dk-Xra" firstAttribute="top" secondItem="xvH-m6-rlu" secondAttribute="topMargin" constant="4" id="cb8-th-ioJ"/>
+                                        <constraint firstItem="Fpe-Ph-AFT" firstAttribute="trailing" secondItem="xvH-m6-rlu" secondAttribute="trailingMargin" constant="-7" id="nia-h2-4J4"/>
+                                        <constraint firstAttribute="centerY" secondItem="Fpe-Ph-AFT" secondAttribute="centerY" id="yEU-6M-lLh"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellDetailLabel" destination="Fpe-Ph-AFT" id="JON-Yp-70P"/>
+                                    <outlet property="cellImageView" destination="yxl-Qq-8hB" id="0bX-v3-A1h"/>
+                                    <outlet property="cellTextLabel" destination="TSl-dk-Xra" id="4Hh-aZ-eOR"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerActivity" id="IJa-Er-yXQ">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -464,7 +480,7 @@
                                             <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9H-W8-Nw9">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9H-W8-Nw9">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -586,7 +602,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d7A-DA-Mf6" id="sYG-XV-YgC">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possible Answer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Pv-JDl">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possible Answer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Pv-JDl">
                                             <rect key="frame" x="15" y="12" width="103" height="20"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

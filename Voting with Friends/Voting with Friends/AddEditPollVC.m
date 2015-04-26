@@ -53,7 +53,6 @@
 }
 
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
-    NSLog(@"touched");
     [self.tableView endEditing:YES];
 }
 

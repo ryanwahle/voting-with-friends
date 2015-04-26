@@ -12,9 +12,10 @@
 #import "QuestionCell.h"
 #import "AddEditPollVC.h"
 #import "HeaderQuestionCell.h"
-
+#import "AnswerCell.h"
 #import "VFAnswer.h"
 #import "VFActivity.h"
+
 
 @implementation VoteVC
 
@@ -83,24 +84,24 @@
         
         return cell;
     } else if (indexPath.section == 1) { // Answer Section
-         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
+        AnswerCell *cell = (AnswerCell *)[tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
         
         if (self.pollData.shouldDisplayAnswerTotals) {
-            cell.detailTextLabel.hidden = NO;
+            cell.cellDetailLabel.hidden = NO;
         } else {
-            cell.detailTextLabel.hidden = YES;
+            cell.cellDetailLabel.hidden = YES;
         }
         
         VFAnswer *answer = self.pollData.possibleAnswersForPoll[indexPath.row];
- 
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld votes", (long)answer.totalVotesForPoll];
-        cell.textLabel.text = answer.answerText;
         
         if (self.pollData.indexOfSelectedAnswerFromCurrentUser == indexPath.row) {
-            cell.imageView.image = [UIImage imageNamed:@"AnswerChecked"];
+            cell.cellImageView.image = [UIImage imageNamed:@"AnswerChecked"];
         } else {
-            cell.imageView.image = [UIImage imageNamed:@"AnswerUnchecked"];
+            cell.cellImageView.image = [UIImage imageNamed:@"AnswerUnchecked"];
         }
+        
+        cell.cellTextLabel.text = answer.answerText;
+        cell.cellDetailLabel.text = [NSString stringWithFormat:@"%ld votes", (long)answer.totalVotesForPoll];
         
         return cell;
     } else if (indexPath.section == 2) { // Activity Section

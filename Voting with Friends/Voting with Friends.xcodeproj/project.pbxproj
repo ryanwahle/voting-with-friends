@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		680B36AA1ADF6E3100A971E8 /* VFActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 680B36A91ADF6E3100A971E8 /* VFActivity.m */; };
+		680E81181AED8A7C00BB0C66 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 680E81171AED8A7C00BB0C66 /* AnswerCell.m */; };
 		6818BC671AC27B300088D9EB /* OptionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818BC661AC27B300088D9EB /* OptionsCell.m */; };
 		6818BC6D1AC27EC30088D9EB /* AddEditPollQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818BC6C1AC27EC30088D9EB /* AddEditPollQuestionCell.m */; };
 		681A00051AB9F285000FD77B /* Voting_with_FriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 681A00041AB9F285000FD77B /* Voting_with_FriendsTests.m */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		680B36A81ADF6E3100A971E8 /* VFActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFActivity.h; sourceTree = "<group>"; };
 		680B36A91ADF6E3100A971E8 /* VFActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFActivity.m; sourceTree = "<group>"; };
+		680E81161AED8A7C00BB0C66 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
+		680E81171AED8A7C00BB0C66 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		6818BC651AC27B300088D9EB /* OptionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsCell.h; sourceTree = "<group>"; };
 		6818BC661AC27B300088D9EB /* OptionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsCell.m; sourceTree = "<group>"; };
 		6818BC6B1AC27EC30088D9EB /* AddEditPollQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollQuestionCell.h; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 				681A00151ABA4533000FD77B /* VoteVC.m */,
 				68989BFE1AC2189100FD8323 /* QuestionCell.h */,
 				68989BFF1AC2189100FD8323 /* QuestionCell.m */,
+				680E81161AED8A7C00BB0C66 /* AnswerCell.h */,
+				680E81171AED8A7C00BB0C66 /* AnswerCell.m */,
 				68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */,
 				68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */,
 			);
@@ -397,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680E81181AED8A7C00BB0C66 /* AnswerCell.m in Sources */,
 				68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */,
 				68B3F9DF1AD4A16A00949BC4 /* VFAnswer.m in Sources */,
 				6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */,
