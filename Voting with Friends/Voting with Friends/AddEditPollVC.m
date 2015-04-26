@@ -51,12 +51,17 @@
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
-    
+
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
+    NSLog(@"touched");
+    [self.tableView endEditing:YES];
+}
+
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     VFPoll *savePoll = nil;
     
     // If no pollData, then this is a new poll we are creating.
-    if (self.pollData == nil) {
+    if ( ! self.pollData) {
         savePoll = [VFPoll createPollForUser:[PFUser currentUser]];
     } else {
         savePoll = self.pollData;
@@ -74,7 +79,7 @@
         
         savePoll.expirationDate = optionsCell.pollExpirationDate.date;
     } else {
-        if (savePoll.expirationDate != nil) {
+        if (savePoll.expirationDate) {
             [savePoll addActivityToPollWithDescription:@"The expiration date was removed."];
         }
         
@@ -184,6 +189,9 @@
                 [cell.allowPollToExpireUISwitch setOn:NO animated:NO];
                 [cell allowPollToExpireUISwitchTap:nil];
             }
+        } else {
+            [cell.allowPollToExpireUISwitch setOn:NO animated:NO];
+            [cell allowPollToExpireUISwitchTap:nil];
         }
         
         return cell;

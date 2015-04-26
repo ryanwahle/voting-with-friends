@@ -37,8 +37,6 @@
     [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
-
-
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if ([textView.text isEqualToString:_placeholderString]) {
         textView.text = @"";
@@ -51,8 +49,6 @@
         textView.text = _placeholderString;
         textView.textColor = [UIColor lightGrayColor];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addEditPoll_saveQuestionForPoll" object:textView];
 }
 
 -(UITableView *) parentTableView {

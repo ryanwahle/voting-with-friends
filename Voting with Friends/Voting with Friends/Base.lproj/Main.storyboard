@@ -499,10 +499,11 @@
         <scene sceneID="fIZ-nu-Zmc">
             <objects>
                 <tableViewController title="Add/Edit Poll Settings" hidesBottomBarWhenPushed="YES" id="2rD-8c-jZY" customClass="AddEditPollVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="60Y-RF-Ndn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="60Y-RF-Ndn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="832"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="headerQuestion" rowHeight="52" id="zD0-0G-tbw">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -521,6 +522,7 @@
                                         <constraint firstItem="gA1-3l-tmw" firstAttribute="leading" secondItem="TZp-SA-Sgu" secondAttribute="leadingMargin" constant="7" id="pfz-YD-Y6m"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="cellQuestion" rowHeight="88" id="8a8-4t-rS7" customClass="AddEditPollQuestionCell">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -528,7 +530,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8a8-4t-rS7" id="9VK-ls-iqN">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="uUf-Ih-Huj">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="uUf-Ih-Huj">
                                             <rect key="frame" x="20" y="0.0" width="335" height="88"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -756,6 +758,7 @@
                         <connections>
                             <outlet property="dataSource" destination="2rD-8c-jZY" id="9V1-GF-3Co"/>
                             <outlet property="delegate" destination="2rD-8c-jZY" id="843-7k-faw"/>
+                            <outletCollection property="gestureRecognizers" destination="aMN-ts-Irw" appends="YES" id="2w2-QP-6US"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Poll Settings" id="7Zc-bF-iWi">
@@ -776,6 +779,11 @@
                     <size key="freeformSize" width="375" height="832"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JYH-cU-x41" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="aMN-ts-Irw">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="2rD-8c-jZY" id="gnj-CA-Npc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2028.5" y="1460.5"/>
         </scene>
