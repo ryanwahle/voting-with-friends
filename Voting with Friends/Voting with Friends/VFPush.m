@@ -43,6 +43,12 @@
     PFPush *pushNotification = [[PFPush alloc] init];
     [pushNotification setQuery:pushQuery];
     [pushNotification setMessage:notificationString];
+    
+    if (notificationString.length) {
+        [pushNotification setData:@{@"sound":@"default", @"alert":notificationString}];
+        NSLog(@"Notification String: %@", notificationString);
+    }
+    
     [pushNotification sendPushInBackground];
 }
 
