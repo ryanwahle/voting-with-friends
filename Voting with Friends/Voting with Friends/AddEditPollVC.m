@@ -9,7 +9,6 @@
 #import "AddEditPollVC.h"
 #import "OptionsCell.h"
 #import "AddEditPollQuestionCell.h"
-//#import "AddEditPollAnswerCell.h"
 #import "AddEditPollFriendCell.h"
 
 #import "VFPoll.h"
@@ -53,6 +52,7 @@
 }
 
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
+    NSLog(@"tap");
     [self.tableView endEditing:YES];
 }
 
