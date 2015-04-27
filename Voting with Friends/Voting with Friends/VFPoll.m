@@ -153,8 +153,6 @@
         [possibleAnswersForPoll addObject:[VFAnswer createAnswerUsingPFObject:answer]];
     }
     
-    NSLog(@"Possible Answers Count: %lu", (unsigned long)possibleAnswersForPoll.count);
-    
     return [NSArray arrayWithArray:possibleAnswersForPoll];
 }
 

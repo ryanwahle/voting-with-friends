@@ -60,6 +60,8 @@
         }
         aView = aView.superview;
     }
+    
+    NSLog(@"returning nil: %@", aView);
     return nil; // this view is not within a tableView
 }
 

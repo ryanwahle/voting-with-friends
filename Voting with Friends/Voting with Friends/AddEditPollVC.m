@@ -23,6 +23,9 @@
     NSMutableArray *pollFriends;
     NSMutableArray *pollFriendsToDelete;
     NSMutableArray *pollFriendsToAdd;
+    
+    AddEditPollQuestionCell *addEditPollQuestionCell;
+    OptionsCell *optionsCell;
 }
 
 @end
@@ -52,7 +55,6 @@
 }
 
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
-    NSLog(@"tap");
     [self.tableView endEditing:YES];
 }
 
@@ -67,16 +69,15 @@
     }
     
     // Options
-    OptionsCell *optionsCell = (OptionsCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionOptions]];
-    savePoll.shouldDisplayActivity = optionsCell.showActivityUISwitch.isOn;
-    savePoll.shouldDisplayAnswerTotals = optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
+    savePoll.shouldDisplayActivity = self->optionsCell.showActivityUISwitch.isOn;
+    savePoll.shouldDisplayAnswerTotals = self->optionsCell.showIndividualAnswerTotalsUISwitch.isOn;
     
-    if (optionsCell.allowPollToExpireUISwitch.isOn) {
-        if ( ! [optionsCell.pollExpirationDate.date isEqualToDate:savePoll.expirationDate]) {
-            [savePoll addActivityToPollWithDescription:[NSString stringWithFormat:@"Expiration date changed to %@", optionsCell.pollExpirationDate.date]];
+    if (self->optionsCell.allowPollToExpireUISwitch.isOn) {
+        if ( ! [self->optionsCell.pollExpirationDate.date isEqualToDate:savePoll.expirationDate]) {
+            [savePoll addActivityToPollWithDescription:[NSString stringWithFormat:@"Expiration date changed to %@", self->optionsCell.pollExpirationDate.date]];
         }
         
-        savePoll.expirationDate = optionsCell.pollExpirationDate.date;
+        savePoll.expirationDate = self->optionsCell.pollExpirationDate.date;
     } else {
         if (savePoll.expirationDate) {
             [savePoll addActivityToPollWithDescription:@"The expiration date was removed."];
@@ -86,13 +87,10 @@
     }
     
     // Question
-    AddEditPollQuestionCell *addEditPollQuestionCell = (AddEditPollQuestionCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion]];
-    
-    if ( ! [savePoll.questionForPoll isEqualToString:addEditPollQuestionCell.questionUITextView.text]) {
+    if ( ! [savePoll.questionForPoll isEqualToString:self->addEditPollQuestionCell.questionUITextView.text]) {
         [savePoll addActivityToPollWithDescription:@"The poll question was changed."];
+        savePoll.questionForPoll = self->addEditPollQuestionCell.questionUITextView.text;
     }
-    
-    savePoll.questionForPoll = addEditPollQuestionCell.questionUITextView.text;
     
     // Answers :: Remove all the answers the user removed that were already saved in parse and the poll
     for (VFAnswer *answer in self->pollAnswersToDelete) {
@@ -175,36 +173,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == VFSettingsSectionOptions) { // Options
-        OptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions" forIndexPath:indexPath];
-        
-        if (self.pollData) {
-            [cell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
-            [cell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
-            
-            if (self.pollData.expirationDate) {
-                [cell.allowPollToExpireUISwitch setOn:YES animated:YES];
-                [cell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
-            } else {
-                [cell.allowPollToExpireUISwitch setOn:NO animated:NO];
-                [cell allowPollToExpireUISwitchTap:nil];
-            }
-        } else {
-            [cell.allowPollToExpireUISwitch setOn:NO animated:NO];
-            [cell allowPollToExpireUISwitchTap:nil];
+        if (self->optionsCell) {
+            return self->optionsCell;
         }
         
-        return cell;
+        self->optionsCell = [tableView dequeueReusableCellWithIdentifier:@"cellOptions"];
+        
+        if (self.pollData) {
+            [self->optionsCell.showActivityUISwitch setOn:self.pollData.shouldDisplayActivity animated:YES];
+            [self->optionsCell.showIndividualAnswerTotalsUISwitch setOn:self.pollData.shouldDisplayAnswerTotals animated:YES];
+            
+            if (self.pollData.expirationDate) {
+                [self->optionsCell.allowPollToExpireUISwitch setOn:YES animated:YES];
+                [self->optionsCell.pollExpirationDate setDate:self.pollData.expirationDate animated:YES];
+            } else {
+                [self->optionsCell.allowPollToExpireUISwitch setOn:NO animated:NO];
+                [self->optionsCell allowPollToExpireUISwitchTap:nil];
+            }
+        } else {
+            [self->optionsCell.allowPollToExpireUISwitch setOn:NO animated:NO];
+            [self->optionsCell allowPollToExpireUISwitchTap:nil];
+        }
+        
+        return self->optionsCell;
     }
     
     if (indexPath.section == VFSettingsSectionQuestion) { // Question
-        AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
-        
-        if (self.pollData) {
-            cell.questionUITextView.text = self.pollData.questionForPoll;
-            cell.questionUITextView.textColor = [UIColor blackColor];
+        if (self->addEditPollQuestionCell) {
+            return self->addEditPollQuestionCell;
         }
         
-        return cell;
+        self->addEditPollQuestionCell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion"];
+        
+        if (self.pollData) {
+            self->addEditPollQuestionCell.questionUITextView.text = self.pollData.questionForPoll;
+            self->addEditPollQuestionCell.questionUITextView.textColor = [UIColor blackColor];
+        }
+        
+        return self->addEditPollQuestionCell;
     }
     
     if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
