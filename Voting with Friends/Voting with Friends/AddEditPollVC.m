@@ -9,7 +9,7 @@
 #import "AddEditPollVC.h"
 #import "OptionsCell.h"
 #import "AddEditPollQuestionCell.h"
-#import "AddEditPollAnswerCell.h"
+//#import "AddEditPollAnswerCell.h"
 #import "AddEditPollFriendCell.h"
 
 #import "VFPoll.h"
@@ -204,10 +204,10 @@
         
         return cell;
     } else if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
-        AddEditPollAnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
 
         VFAnswer *answer = self->pollAnswers[indexPath.row];
-        cell.answerUILabel.text = answer.answerText;
+        cell.textLabel.text = answer.answerText;
         
         return cell;
     } else if (indexPath.section == VFSettingsSectionFriendsList) { // Friends
