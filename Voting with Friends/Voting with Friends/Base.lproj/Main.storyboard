@@ -783,6 +783,7 @@
                         <connections>
                             <outlet property="dataSource" destination="2rD-8c-jZY" id="9V1-GF-3Co"/>
                             <outlet property="delegate" destination="2rD-8c-jZY" id="843-7k-faw"/>
+                            <outletCollection property="gestureRecognizers" destination="aMN-ts-Irw" appends="YES" id="d2Q-p6-rsf"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Poll Settings" id="7Zc-bF-iWi">

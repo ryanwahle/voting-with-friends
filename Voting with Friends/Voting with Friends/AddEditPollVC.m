@@ -194,7 +194,9 @@
         }
         
         return cell;
-    } else if (indexPath.section == VFSettingsSectionQuestion) { // Question
+    }
+    
+    if (indexPath.section == VFSettingsSectionQuestion) { // Question
         AddEditPollQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellQuestion" forIndexPath:indexPath];
         
         if (self.pollData) {
@@ -203,20 +205,22 @@
         }
         
         return cell;
-    } else if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
+    }
+    
+    if (indexPath.section == VFSettingsSectionAnswerKey) { // Answers
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellAnswerKey" forIndexPath:indexPath];
 
         VFAnswer *answer = self->pollAnswers[indexPath.row];
         cell.textLabel.text = answer.answerText;
         
         return cell;
-    } else if (indexPath.section == VFSettingsSectionFriendsList) { // Friends
+    }
+    
+    if (indexPath.section == VFSettingsSectionFriendsList) { // Friends
         AddEditPollFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFriendList" forIndexPath:indexPath];
         
-        if (self.pollData) {
-            VFFriend *friend = self->pollFriends[indexPath.row];
-            cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend.name, friend.email];
-        }
+        VFFriend *friend = self->pollFriends[indexPath.row];
+        cell.nameAndEmailUITextView.text = [NSString stringWithFormat:@"%@ (%@)", friend.name, friend.email];
         
         return cell;
     }
