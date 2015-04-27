@@ -22,6 +22,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bDk-g6-odZ"/>
                                 </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
@@ -44,7 +45,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-p2-b7c">
                                 <rect key="frame" x="150" y="20" width="75" height="33"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
-                                <color key="textColor" red="0.20392157137393951" green="0.28627452254295349" blue="0.36862745881080627" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Voting with Friends" translatesAutoresizingMaskIntoConstraints="NO" id="gNm-E3-v1Q">
@@ -81,6 +82,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="hPQ-h3-ziq"/>
                                 </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
@@ -498,9 +500,9 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Vote" id="KOv-W6-2YQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="31d-uu-ebP"/>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="9Cf-tf-q7H">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="9Cf-tf-q7H">
                             <connections>
-                                <action selector="tweetButtonTapped:" destination="NW5-dC-IBu" id="8xg-zz-BJN"/>
+                                <action selector="shareButtonTapped:" destination="NW5-dC-IBu" id="2qX-rk-kmI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -596,7 +598,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAnswerKey" textLabel="FQH-jn-mLj" style="IBUITableViewCellStyleDefault" id="d7A-DA-Mf6" customClass="AddEditPollAnswerCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAnswerKey" textLabel="FQH-jn-mLj" style="IBUITableViewCellStyleDefault" id="d7A-DA-Mf6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d7A-DA-Mf6" id="sYG-XV-YgC">
@@ -935,7 +937,7 @@
     <resources>
         <image name="AnswerUnchecked" width="28" height="28"/>
         <image name="BackIcon" width="13" height="11"/>
-        <image name="Voting with Friends" width="256" height="256"/>
+        <image name="Voting with Friends" width="240" height="215"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

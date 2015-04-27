@@ -96,8 +96,8 @@
     
     // Answers :: Remove all the answers the user removed that were already saved in parse and the poll
     for (VFAnswer *answer in self->pollAnswersToDelete) {
+        //[answer deleteAnswer];
         [savePoll removeAnswerObjectFromPoll:answer];
-        [answer deleteAnswer];
     }
     
     [savePoll save];

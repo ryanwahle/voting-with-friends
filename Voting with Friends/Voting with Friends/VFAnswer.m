@@ -51,6 +51,8 @@
 - (NSArray *)votedForByUsers {
     NSMutableArray *votedForByUsers = [[NSMutableArray alloc] init];
     
+    NSLog(@"\n\n\nVOTED BY FOR USERS\n%@", self.answerFromParse[@"votedForByUsers"]);
+    
     for (PFUser *user in self.answerFromParse[@"votedForByUsers"]) {
         [votedForByUsers addObject:user];
     }

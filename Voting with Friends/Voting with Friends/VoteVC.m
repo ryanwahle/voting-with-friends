@@ -30,31 +30,19 @@
 
 #pragma mark - Tweet
 
-- (IBAction)tweetButtonTapped:(UIBarButtonItem *)sender {
-    
+- (IBAction)shareButtonTapped:(UIBarButtonItem *)sender {
     if (self.pollData.indexOfSelectedAnswerFromCurrentUser == -1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Twitter" message:@"You need to select an answer before you can tweet about it!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share" message:@"You need to select an answer before you can share it!" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        VFAnswer *answerForTweet = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
-    
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-            SLComposeViewController *twitterComposeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        
-            NSString *tweetString = [NSString stringWithFormat:@"I just voted for '%@' for a poll created with #VotingWithFriends -- Download now!", answerForTweet.answerText];
-        
-            [twitterComposeVC setInitialText:tweetString];
-        
-            [self presentViewController:twitterComposeVC animated:YES completion:nil];
-        } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Twitter" message:@"Please login to Twitter in the Settings app to share this poll." preferredStyle:UIAlertControllerStyleAlert];
-        
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+        return;
     }
+    
+    VFAnswer *answerForShare = self.pollData.possibleAnswersForPoll[self.pollData.indexOfSelectedAnswerFromCurrentUser];
+    NSString *shareString = [NSString stringWithFormat:@"I just voted for '%@' for a poll created with #VotingWithFriends -- Download now!", answerForShare.answerText];
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString] applicationActivities:nil];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 
@@ -67,9 +55,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) { // Question Section
         return 1;
-    } else if (section == 1) { // Answer Section
+    }
+    
+    if (section == 1) { // Answer Section
         return self.pollData.possibleAnswersForPoll.count;
-    } else if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
+    }
+    
+    if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
         return self.pollData.pollActivity.count;
     }
 
@@ -83,7 +75,9 @@
         cell.pollQuestion.text = self.pollData.questionForPoll;
         
         return cell;
-    } else if (indexPath.section == 1) { // Answer Section
+    }
+    
+    if (indexPath.section == 1) { // Answer Section
         AnswerCell *cell = (AnswerCell *)[tableView dequeueReusableCellWithIdentifier:@"cellAnswer" forIndexPath:indexPath];
         
         if (self.pollData.shouldDisplayAnswerTotals) {
@@ -104,7 +98,9 @@
         cell.cellDetailLabel.text = [NSString stringWithFormat:@"%ld votes", (long)answer.totalVotesForPoll];
         
         return cell;
-    } else if (indexPath.section == 2) { // Activity Section
+    }
+    
+    if (indexPath.section == 2) { // Activity Section
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
         
         VFActivity *activity = self.pollData.pollActivity[indexPath.row];
@@ -177,9 +173,13 @@
         }
         
         return headerQuestionCell.contentView;
-    } else if (section == 1) { // Answer Section
+    }
+    
+    if (section == 1) { // Answer Section
         // There is no header for the answers
-    } else if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
+    }
+    
+    if ((section == 2) && self.pollData.shouldDisplayActivity) { // Activity Section
         sectionCell = [tableView dequeueReusableCellWithIdentifier:@"headerActivity"];
     }
     
