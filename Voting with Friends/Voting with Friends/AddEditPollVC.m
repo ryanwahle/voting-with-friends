@@ -74,7 +74,7 @@
     
     if (self->optionsCell.allowPollToExpireUISwitch.isOn) {
         if ( ! [self->optionsCell.pollExpirationDate.date isEqualToDate:savePoll.expirationDate]) {
-            [savePoll addActivityToPollWithDescription:[NSString stringWithFormat:@"Expiration date changed to %@", self->optionsCell.pollExpirationDate.date]];
+            [savePoll addActivityToPollWithDescription:[NSString stringWithFormat:@"Expiration date was changed."]];
         }
         
         savePoll.expirationDate = self->optionsCell.pollExpirationDate.date;
