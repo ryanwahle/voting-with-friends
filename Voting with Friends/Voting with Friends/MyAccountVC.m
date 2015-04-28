@@ -7,6 +7,7 @@
 //
 
 #import "MyAccountVC.h"
+#import "VFPush.h"
 
 @interface MyAccountVC ()
 
@@ -43,6 +44,12 @@
 
 - (IBAction)cancelButtonTap:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)logoutButtonTap:(id)sender {
+    [VFPush deregisterPushNotifications];
+    [PFUser logOut];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
