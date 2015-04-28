@@ -107,15 +107,37 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    NSInteger sectionCount = 0;
+    
+    if (self.pollsFromCloud.count) {
+        sectionCount = 1;
+    }
+    
+    if (self.pollsFromCloudExpired.count) {
+        sectionCount = 2;
+    }
+    
+    if (sectionCount) {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.backgroundView = nil;
+    } else {
+        //UILabel *messageLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
+        UIImageView *emptyTable = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        emptyTable.image = [UIImage imageNamed:@"EmptyTable"];
+        
+        self.tableView.backgroundView = emptyTable;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    
+    return sectionCount;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return nil;
+    if ((section == 1) && self.pollsFromCloudExpired.count) {
+        return @"Poll History";
     }
     
-    return @"Poll History";
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
