@@ -353,7 +353,7 @@
         <!--Vote-->
         <scene sceneID="yp1-mC-lD6">
             <objects>
-                <tableViewController title="Vote" hidesBottomBarWhenPushed="YES" id="NW5-dC-IBu" customClass="VoteVC" sceneMemberID="viewController">
+                <tableViewController title="Vote" id="NW5-dC-IBu" customClass="VoteVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Mu1-tu-8Ti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,16 +493,24 @@
                             <outlet property="delegate" destination="NW5-dC-IBu" id="Wa4-np-J5K"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Vote" id="KOv-W6-2YQ">
-                        <barButtonItem key="backBarButtonItem" title=" " id="31d-uu-ebP"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="9Cf-tf-q7H">
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="0jk-ob-HAQ"/>
+                        <barButtonItem systemItem="action" id="9Cf-tf-q7H">
                             <connections>
                                 <action selector="shareButtonTapped:" destination="NW5-dC-IBu" id="2qX-rk-kmI"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DHj-mY-ctb"/>
+                        <barButtonItem systemItem="compose" id="GhH-0A-rFv">
+                            <connections>
+                                <action selector="addCommentButtonTapped:" destination="NW5-dC-IBu" id="5mK-UQ-51q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qKm-0d-Pbo"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Vote" id="KOv-W6-2YQ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="31d-uu-ebP"/>
                     </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dt-NR-j10" userLabel="First Responder" sceneMemberID="firstResponder"/>

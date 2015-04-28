@@ -39,6 +39,20 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+    
+    NSString *alertString = userInfo[@"aps"][@"alert"];
+    
+    if (alertString.length) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Voting with Friends" message:alertString preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:alertOK];
+        
+        [self.window.rootViewController.presentedViewController presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

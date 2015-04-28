@@ -299,6 +299,7 @@
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Type your answer here";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
@@ -383,6 +384,11 @@
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Tap to enter e-mail address";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        
+        
     }];
     
     [self presentViewController:alert animated:YES completion:nil];

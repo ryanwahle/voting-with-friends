@@ -45,8 +45,7 @@
     [pushNotification setMessage:notificationString];
     
     if (notificationString.length) {
-        [pushNotification setData:@{@"sound":@"default", @"alert":notificationString}];
-        NSLog(@"Notification String: %@", notificationString);
+        [pushNotification setData:@{@"sound":@"default",@"alert":notificationString}];
     }
     
     [pushNotification sendPushInBackground];

@@ -46,6 +46,8 @@
 - (void)deletePoll;
 - (void)refreshPoll;
 
+- (void)sendNotificationToAllPollFriends:(NSString *)notificationText ;
+
 - (void)save;
 
 @end

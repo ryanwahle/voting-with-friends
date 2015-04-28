@@ -16,7 +16,6 @@
 #import "VFAnswer.h"
 #import "VFActivity.h"
 
-
 @implementation VoteVC
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -25,10 +24,30 @@
     self.tableView.estimatedRowHeight = 50.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPoll) name:@"cloudDataRefreshed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"pollObjectUpdated" object:nil];
+    
     [self.tableView reloadData];
 }
 
-#pragma mark - Tweet
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
+}
+
+- (void)refreshPoll {
+    //NSLog(@"VoteVC :: refreshPoll");
+    [self.pollData refreshPoll];
+}
+
+- (void)reloadTableView {
+    //NSLog(@"VoteVC :: reloadTableView");
+    [self.tableView reloadData];
+}
+
+#pragma mark - Sharing
 
 - (IBAction)shareButtonTapped:(UIBarButtonItem *)sender {
     if (self.pollData.indexOfSelectedAnswerFromCurrentUser == -1) {
@@ -45,6 +64,33 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+- (IBAction)addCommentButtonTapped:(UIBarButtonItem *)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add Comment to Poll" message:@"Enter your comment:" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *answerTextField = alert.textFields[0];
+        NSString *commentString = [NSString stringWithFormat:@"%@ says . . .\n%@", [PFUser currentUser][@"name"], answerTextField.text];
+        
+        [self.pollData addActivityToPollWithDescription:commentString];
+        [self.pollData save];
+        
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:alertOK];
+    [alert addAction:alertCancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Type your comment here";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 #pragma mark - Table view data source
 
@@ -120,7 +166,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath: %@" , indexPath);
     if (indexPath.section == 1) { // Answer Section
         if (self.pollData.isPollExpired) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to change your vote." preferredStyle:UIAlertControllerStyleAlert];
@@ -141,8 +186,11 @@
             [newAnswer selectAnswerForCurrentUser];
             [newAnswer save];
             
-            [self.pollData addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ chose the answer %@", [PFUser currentUser][@"name"], newAnswer.answerText]];
+            NSString *newAnswerChosenString = [NSString stringWithFormat:@"%@ has voted for '%@' on the poll '%@'", [PFUser currentUser][@"name"], newAnswer.answerText, self.pollData.questionForPoll];
+            [self.pollData addActivityToPollWithDescription:newAnswerChosenString];
             [self.pollData save];
+            
+            [self.pollData sendNotificationToAllPollFriends:newAnswerChosenString];
         }
         
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];

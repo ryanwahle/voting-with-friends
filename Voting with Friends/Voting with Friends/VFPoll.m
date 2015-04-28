@@ -226,6 +226,25 @@
     [self addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ removed from answers", answer.answerText]];
 }
 
+- (void)sendNotificationToAllPollFriends:(NSString *)notificationText {
+    
+    // Add the list of poll friends
+    NSMutableArray *allPollFriends = [NSMutableArray arrayWithArray:self.friendsOfPoll];
+    
+    // Add the poll owner
+    [allPollFriends addObject:[VFFriend friendFromPFUser:self.pollOwner]];
+    
+    // Remove current user
+    for (VFFriend *friend in allPollFriends) {
+        if ([friend.pollFriend.objectId isEqualToString:[PFUser currentUser].objectId]) {
+            [allPollFriends removeObject:friend];
+            break;
+        }
+    }
+    
+    [VFPush sendPushNotificationToFriends:[NSArray arrayWithArray:allPollFriends] withNotificationString:notificationText];
+}
+
 - (void)refreshPoll {
     
     PFQuery *pollQuery = [PFQuery queryWithClassName:@"Polls"];
@@ -263,6 +282,7 @@
 - (void)save {
     [self.pollFromParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+        [VFPush sendPushNotificationToFriends:self.friendsOfPoll withNotificationString:[NSString stringWithFormat:@""]];
     }];
 }
 
