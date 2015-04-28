@@ -27,18 +27,39 @@
 }
 
 - (IBAction)saveButtonTap:(UIBarButtonItem *)sender {
-    self.userData[@"name"] = self.nameUITextField.text;
-    self.userData[@"username"] = self.emailAddressUITextField.text;
-    self.userData[@"email"] = self.emailAddressUITextField.text;
-    
-    if ( ! [self.passwordUITextField.text isEqualToString:@""]) {
-        NSLog(@"Saving password also . . .");
-        self.userData.password = self.passwordUITextField.text;
+    NSString *emailString = [self.emailAddressUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *passwordString = [self.passwordUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *nameString = [self.nameUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    if ( ! emailString.length) {
+        [self showAlert:@"You must enter an email address."];
+        return;
+    } else if ( ! nameString.length) {
+        [self showAlert:@"You must enter your name."];
+        return;
     }
+
     
-    [self.userData saveInBackground];
+    self.userData[@"email"] = emailString;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.userData saveInBackgroundWithBlock:^(BOOL successful, NSError *parseError) {
+        if (!successful) {
+            [self showAlert:@"You must enter a correct email address."];
+            return;
+        }
+        
+        self.userData[@"name"] = nameString;
+        self.userData[@"username"] = emailString;
+        
+        if ( ! [passwordString isEqualToString:@""]) {
+            NSLog(@"Saving password also . . .");
+            self.userData.password = passwordString;
+        }
+
+        [self.userData saveInBackground];
+            
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 
@@ -51,5 +72,12 @@
     [PFUser logOut];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)showAlert:(NSString *)alertString {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Account Update Failed" message:alertString preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 @end

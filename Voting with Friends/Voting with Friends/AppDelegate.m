@@ -45,7 +45,7 @@
     if (alertString.length) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Voting with Friends" message:alertString preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             [alert dismissViewControllerAnimated:YES completion:nil];
         }];
         
