@@ -267,11 +267,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="MZX-rd-pc7" firstAttribute="leading" secondItem="Zbz-0O-QIG" secondAttribute="leadingMargin" id="92j-Or-8L5"/>
-                                                <constraint firstItem="bAm-Ia-jaN" firstAttribute="leading" secondItem="MZX-rd-pc7" secondAttribute="trailing" constant="54" id="Wph-Mh-Uwu"/>
-                                                <constraint firstItem="bAm-Ia-jaN" firstAttribute="centerY" secondItem="MZX-rd-pc7" secondAttribute="centerY" constant="0.5" id="cqd-sx-Z57"/>
-                                                <constraint firstAttribute="centerY" secondItem="bAm-Ia-jaN" secondAttribute="centerY" id="h5x-TK-xkt"/>
-                                                <constraint firstItem="bAm-Ia-jaN" firstAttribute="trailing" secondItem="Zbz-0O-QIG" secondAttribute="trailingMargin" id="x1j-op-k7Q"/>
+                                                <constraint firstItem="MZX-rd-pc7" firstAttribute="leading" secondItem="Zbz-0O-QIG" secondAttribute="leadingMargin" id="Kt5-pf-GgL"/>
+                                                <constraint firstAttribute="centerY" secondItem="MZX-rd-pc7" secondAttribute="centerY" constant="0.5" id="U62-4l-XS0"/>
+                                                <constraint firstItem="bAm-Ia-jaN" firstAttribute="trailing" secondItem="Zbz-0O-QIG" secondAttribute="trailingMargin" id="WB0-d0-hxP"/>
+                                                <constraint firstItem="bAm-Ia-jaN" firstAttribute="leading" secondItem="MZX-rd-pc7" secondAttribute="trailing" constant="54" id="sqd-7S-fi0"/>
+                                                <constraint firstItem="MZX-rd-pc7" firstAttribute="centerY" secondItem="bAm-Ia-jaN" secondAttribute="centerY" constant="-0.5" id="tpv-ZZ-NX0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -293,11 +293,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="bm4-D4-fFv" secondAttribute="centerY" id="MLY-NL-ooa"/>
-                                                <constraint firstItem="5bf-4e-74J" firstAttribute="leading" secondItem="6dY-lu-yiy" secondAttribute="leadingMargin" id="Wua-e6-o4I"/>
-                                                <constraint firstItem="bm4-D4-fFv" firstAttribute="leading" secondItem="5bf-4e-74J" secondAttribute="trailing" constant="10" id="drE-1T-Fbf"/>
-                                                <constraint firstItem="5bf-4e-74J" firstAttribute="centerY" secondItem="bm4-D4-fFv" secondAttribute="centerY" constant="-0.5" id="om7-AL-JJZ"/>
-                                                <constraint firstItem="bm4-D4-fFv" firstAttribute="trailing" secondItem="6dY-lu-yiy" secondAttribute="trailingMargin" id="zNj-2m-cb4"/>
+                                                <constraint firstItem="bm4-D4-fFv" firstAttribute="centerY" secondItem="6dY-lu-yiy" secondAttribute="centerY" id="GHY-OZ-vFJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bm4-D4-fFv" secondAttribute="trailing" id="NT3-MM-WxB"/>
+                                                <constraint firstItem="bm4-D4-fFv" firstAttribute="leading" secondItem="5bf-4e-74J" secondAttribute="trailing" constant="10" id="bvP-A5-nrW"/>
+                                                <constraint firstItem="5bf-4e-74J" firstAttribute="leading" secondItem="6dY-lu-yiy" secondAttribute="leadingMargin" id="syO-SS-YXQ"/>
+                                                <constraint firstItem="5bf-4e-74J" firstAttribute="centerY" secondItem="bm4-D4-fFv" secondAttribute="centerY" constant="-0.5" id="vR4-69-Jzf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -319,11 +319,11 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="z3J-ZR-eNa" secondAttribute="centerY" constant="1" id="DbW-9N-vO9"/>
-                                                <constraint firstItem="z3J-ZR-eNa" firstAttribute="leading" secondItem="vdx-Jf-8aY" secondAttribute="trailing" constant="35" id="TQe-0y-9Zj"/>
-                                                <constraint firstItem="z3J-ZR-eNa" firstAttribute="trailing" secondItem="KhP-5b-5jl" secondAttribute="trailingMargin" id="Tth-St-HWj"/>
-                                                <constraint firstItem="vdx-Jf-8aY" firstAttribute="leading" secondItem="KhP-5b-5jl" secondAttribute="leadingMargin" id="bUp-uy-3aD"/>
-                                                <constraint firstItem="vdx-Jf-8aY" firstAttribute="centerY" secondItem="z3J-ZR-eNa" secondAttribute="centerY" constant="0.5" id="kET-Xr-Phq"/>
+                                                <constraint firstItem="z3J-ZR-eNa" firstAttribute="top" secondItem="KhP-5b-5jl" secondAttribute="topMargin" constant="3" id="47Q-8V-BYO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="z3J-ZR-eNa" secondAttribute="trailing" id="Cmg-V3-TG4"/>
+                                                <constraint firstItem="z3J-ZR-eNa" firstAttribute="leading" secondItem="vdx-Jf-8aY" secondAttribute="trailing" constant="35" id="gSn-ed-V26"/>
+                                                <constraint firstItem="vdx-Jf-8aY" firstAttribute="centerY" secondItem="z3J-ZR-eNa" secondAttribute="centerY" constant="0.5" id="urf-Fd-C6c"/>
+                                                <constraint firstItem="vdx-Jf-8aY" firstAttribute="leading" secondItem="KhP-5b-5jl" secondAttribute="leadingMargin" id="vOq-hr-xZ8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -333,8 +333,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-Bt-4DZ">
-                                                    <rect key="frame" x="0.0" y="2" width="375" height="40"/>
+                                                    <rect key="frame" x="0.0" y="-3" width="375" height="51"/>
                                                     <color key="backgroundColor" red="0.33333333333333331" green="0.3843137254901961" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="dyX-t5-QBn"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                                     <state key="normal" title="Logoff this Account">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -345,12 +348,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="lx1-Bt-4DZ" secondAttribute="centerX" id="1Tz-pX-or6"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="lx1-Bt-4DZ" secondAttribute="bottom" constant="-6" id="5c2-t2-lYf"/>
-                                                <constraint firstAttribute="centerY" secondItem="lx1-Bt-4DZ" secondAttribute="centerY" constant="0.5" id="SEf-q6-ZmC"/>
-                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="leading" secondItem="2Sg-M2-NvX" secondAttribute="leadingMargin" constant="-8" id="jaf-1q-VfN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lx1-Bt-4DZ" secondAttribute="trailing" constant="-8" id="lSj-6h-vdL"/>
-                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="top" secondItem="2Sg-M2-NvX" secondAttribute="topMargin" constant="-6" id="tpI-FQ-Crc"/>
+                                                <constraint firstAttribute="centerY" secondItem="lx1-Bt-4DZ" secondAttribute="centerY" id="9ZM-wu-Aow"/>
+                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="trailing" secondItem="2Sg-M2-NvX" secondAttribute="trailing" id="Abh-x3-NEt"/>
+                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="leading" secondItem="2Sg-M2-NvX" secondAttribute="leading" id="lnI-Mq-IrJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -494,13 +494,17 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IJa-Er-yXQ" id="GeP-1U-lsR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dav-d4-p8U">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dav-d4-p8U">
                                             <rect key="frame" x="168" y="14" width="48" height="17"/>
                                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="dav-d4-p8U" secondAttribute="centerY" constant="-0.5" id="LE6-jf-rVy"/>
+                                        <constraint firstAttribute="centerX" secondItem="dav-d4-p8U" secondAttribute="centerX" constant="-4.5" id="Mzr-oh-9Iz"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellActivity" textLabel="DAm-ZH-3JW" detailTextLabel="n9H-W8-Nw9" style="IBUITableViewCellStyleValue2" id="AqB-H6-XGd">
