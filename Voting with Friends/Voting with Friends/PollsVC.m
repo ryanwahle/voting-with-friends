@@ -30,8 +30,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getPollDataFromCloud) name:@"cloudDataRefreshed" object:nil];
     
-    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1];
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    //self.refreshControl.backgroundColor = [UIColor colorWithRed:199.0/255.0f green:244.0/255.0f blue:100.0/255.0f alpha:1];
+    self.refreshControl.tintColor = [UIColor blackColor];
     [self.refreshControl addTarget:self action:@selector(getPollDataFromCloud) forControlEvents:UIControlEventValueChanged];
     
     [self getPollDataFromCloud];
@@ -131,7 +131,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
     NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
     self.refreshControl.attributedTitle = attributedTitle;
     
