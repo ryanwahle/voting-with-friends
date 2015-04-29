@@ -44,8 +44,8 @@
                                     <action selector="signInButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="c0P-Zk-IVf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-p2-b7c">
-                                <rect key="frame" x="154" y="20" width="68" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-p2-b7c">
+                                <rect key="frame" x="154" y="20" width="67" height="27"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -56,8 +56,8 @@
                                     <constraint firstAttribute="width" constant="75" id="gZr-gj-Hn1"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0P-1i-stE">
-                                <rect key="frame" x="242" y="312" width="117" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0P-1i-stE">
+                                <rect key="frame" x="263" y="312" width="96" height="29"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="14"/>
                                 <state key="normal" title="First Time User">
                                     <color key="titleColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,8 +67,8 @@
                                     <segue destination="s30-mf-Ys8" kind="modal" id="f3N-0B-h7j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-CJ-jL4">
-                                <rect key="frame" x="16" y="312" width="125" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-CJ-jL4">
+                                <rect key="frame" x="16" y="312" width="105" height="29"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="14"/>
                                 <state key="normal" title="Forget Password">
                                     <color key="titleColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,8 +86,8 @@
                                 <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJt-m8-ynZ">
-                                <rect key="frame" x="16" y="199" width="343" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJt-m8-ynZ">
+                                <rect key="frame" x="16" y="200" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bDk-g6-odZ"/>
                                 </constraints>
@@ -954,24 +954,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mq4-CA-25R">
-                                <rect key="frame" x="16" y="159" width="343" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mq4-CA-25R">
+                                <rect key="frame" x="16" y="152" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="jDg-gi-fFP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="CHOOSE A PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-Sa-TJr">
-                                <rect key="frame" x="16" y="207" width="343" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="CHOOSE A PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-Sa-TJr">
+                                <rect key="frame" x="16" y="200" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5JZ-Zd-kwl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mY-8A-zhZ">
-                                <rect key="frame" x="0.0" y="255" width="375" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mY-8A-zhZ">
+                                <rect key="frame" x="0.0" y="248" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="D0B-83-ibY"/>
@@ -985,22 +985,22 @@
                                     <action selector="signupNewUser:" destination="s30-mf-Ys8" eventType="touchUpInside" id="iaw-8h-4OG"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62i-0P-OsE">
-                                <rect key="frame" x="16" y="111" width="343" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62i-0P-OsE">
+                                <rect key="frame" x="16" y="104" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wNW-B0-9SQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create an Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZ5-6O-6Od">
-                                <rect key="frame" x="96" y="20" width="183" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZ5-6O-6Od">
+                                <rect key="frame" x="114" y="20" width="147" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-tn-eV7">
-                                <rect key="frame" x="162" y="313" width="51" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-tn-eV7">
+                                <rect key="frame" x="162" y="306" width="51" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="flT-xA-usw"/>
                                 </constraints>
@@ -1013,11 +1013,19 @@
                                     <action selector="dismissSignup:" destination="s30-mf-Ys8" eventType="touchUpInside" id="E9m-Bm-dnu"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Voting with Friends" translatesAutoresizingMaskIntoConstraints="NO" id="l9T-SR-ksg">
+                                <rect key="frame" x="162" y="46" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="0SQ-KG-viJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="Zgd-zR-tqp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="62i-0P-OsE" firstAttribute="leading" secondItem="HdK-Sa-TJr" secondAttribute="leading" id="1UK-M1-O6Q"/>
                             <constraint firstItem="FZ5-6O-6Od" firstAttribute="top" secondItem="9Xd-9M-3R9" secondAttribute="bottom" id="3H8-fa-Ci8"/>
+                            <constraint firstItem="l9T-SR-ksg" firstAttribute="top" secondItem="FZ5-6O-6Od" secondAttribute="bottom" constant="5" id="8Lq-bg-d9k"/>
                             <constraint firstAttribute="centerX" secondItem="62i-0P-OsE" secondAttribute="centerX" id="BWn-jl-raN"/>
                             <constraint firstItem="dqj-tn-eV7" firstAttribute="top" secondItem="2mY-8A-zhZ" secondAttribute="bottom" constant="8" id="Drr-7f-maq"/>
                             <constraint firstItem="2mY-8A-zhZ" firstAttribute="top" secondItem="HdK-Sa-TJr" secondAttribute="bottom" constant="8" id="IE2-ZZ-ipQ"/>
@@ -1031,6 +1039,7 @@
                             <constraint firstAttribute="centerX" secondItem="dqj-tn-eV7" secondAttribute="centerX" id="Zl1-6c-KBB"/>
                             <constraint firstItem="62i-0P-OsE" firstAttribute="leading" secondItem="CSr-2u-zgE" secondAttribute="leadingMargin" id="ekd-sb-0Qs"/>
                             <constraint firstItem="HdK-Sa-TJr" firstAttribute="top" secondItem="Mq4-CA-25R" secondAttribute="bottom" constant="8" id="miL-aS-kq9"/>
+                            <constraint firstAttribute="centerX" secondItem="l9T-SR-ksg" secondAttribute="centerX" constant="0.5" id="qqG-L2-SzO"/>
                             <constraint firstItem="62i-0P-OsE" firstAttribute="trailing" secondItem="CSr-2u-zgE" secondAttribute="trailingMargin" id="rfz-q4-1EZ"/>
                             <constraint firstItem="62i-0P-OsE" firstAttribute="trailing" secondItem="HdK-Sa-TJr" secondAttribute="trailing" id="zIQ-fh-Dwu"/>
                         </constraints>
