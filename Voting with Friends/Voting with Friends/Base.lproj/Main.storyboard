@@ -670,7 +670,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="addFriendButtonTouched:" destination="2rD-8c-jZY" eventType="touchUpInside" id="1d5-F5-aGi"/>
+                                                <segue destination="zaM-up-Btl" kind="push" identifier="AddFriendsSegue" id="RQP-OX-36B"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -854,7 +854,83 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2028.5" y="1459.5"/>
+            <point key="canvasLocation" x="1422.5" y="1490.5"/>
+        </scene>
+        <!--Add a Friend-->
+        <scene sceneID="v3y-Bt-0sf">
+            <objects>
+                <tableViewController id="zaM-up-Btl" customClass="AddFriendsVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2rb-TJ-1ID">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellPreviousFriend" textLabel="hN0-Hs-77V" detailTextLabel="9JG-bp-ylo" style="IBUITableViewCellStyleValue1" id="mBb-An-QJr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mBb-An-QJr" id="R1X-Pu-FbZ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hN0-Hs-77V">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="E-Mail Address" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9JG-bp-ylo">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAddNewEmail" id="jql-CJ-e9Y" customClass="AddNewEmailCell">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jql-CJ-e9Y" id="n1t-Ub-IQv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter new email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZn-zC-uWs">
+                                            <rect key="frame" x="15" y="14" width="206" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                            <connections>
+                                                <action selector="emailTextfieldEditingChanged:" destination="jql-CJ-e9Y" eventType="editingChanged" id="B6j-Mm-yyt"/>
+                                            </connections>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-Hs-OFh">
+                                            <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                            <connections>
+                                                <action selector="addEmailButtonTapped:" destination="zaM-up-Btl" eventType="touchUpInside" id="ujG-8c-nCd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="CZn-zC-uWs" firstAttribute="leading" secondItem="n1t-Ub-IQv" secondAttribute="leadingMargin" constant="7" id="74o-oM-ZZ2"/>
+                                        <constraint firstAttribute="centerY" secondItem="ffq-Hs-OFh" secondAttribute="centerY" constant="-0.5" id="FeV-lS-gkw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ffq-Hs-OFh" secondAttribute="trailing" constant="8" id="Gav-aj-9vE"/>
+                                        <constraint firstAttribute="centerY" secondItem="CZn-zC-uWs" secondAttribute="centerY" constant="-0.5" id="SrA-ff-rz6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addButton" destination="ffq-Hs-OFh" id="i2X-Fa-IId"/>
+                                    <outlet property="emailTextField" destination="CZn-zC-uWs" id="9Mq-FF-iqT"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zaM-up-Btl" id="dY2-KC-YyC"/>
+                            <outlet property="delegate" destination="zaM-up-Btl" id="vL5-xZ-zMY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add a Friend" id="dZT-65-vIt"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5o-Zr-3TY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028.5" y="1386.5"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="cI6-rr-AYQ">

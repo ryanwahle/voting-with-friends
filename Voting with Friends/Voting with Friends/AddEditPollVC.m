@@ -10,6 +10,7 @@
 #import "OptionsCell.h"
 #import "AddEditPollQuestionCell.h"
 #import "AddEditPollFriendCell.h"
+#import "AddFriendsVC.h"
 
 #import "VFPoll.h"
 #import "VFAnswer.h"
@@ -23,6 +24,8 @@
     NSMutableArray *pollFriends;
     NSMutableArray *pollFriendsToDelete;
     NSMutableArray *pollFriendsToAdd;
+    
+    NSArray *currentUsersFriendsList;
     
     AddEditPollQuestionCell *addEditPollQuestionCell;
     OptionsCell *optionsCell;
@@ -49,9 +52,19 @@
         self->pollFriends = [[NSMutableArray alloc] init];
     }
     
+    self->currentUsersFriendsList = [PFUser currentUser][@"friendsList"];
+    for (PFUser *user in self->currentUsersFriendsList) {
+        [user fetchIfNeededInBackground];
+    }
+    
     self.editing = YES;
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
@@ -118,9 +131,12 @@
     
     [savePoll save];
     
-    // Friends :: Add any new friends to the poll
+    // Friends :: Add any new friends to the poll and add friend to current users friendsList
     for (VFFriend *friend in self->pollFriendsToAdd) {
         [savePoll addFriendObjectToPoll:friend];
+        
+        [[PFUser currentUser] addUniqueObject:friend.pollFriend forKey:@"friendsList"];
+        [[PFUser currentUser] saveInBackground];
     }
     
     // Save and return back to previous screen
@@ -307,40 +323,6 @@
 
 # pragma mark - Friends
 
-- (void)addEmailAddressToPoll:(NSString *)email {
-    NSLog(@"Verifying %@ is part of Voting with Friends", email);
-    
-    PFQuery *userVerify = [PFUser query];
-    [userVerify whereKey:@"email" equalTo:email.lowercaseString];
-    
-    [userVerify getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (object) {
-            NSLog(@"Found email address");
-            
-            // Add to the new friends array
-            [self->pollFriendsToAdd addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
-            
-            // Add to the main friends array holding new and old friends.
-            [self->pollFriends addObject:[VFFriend friendFromPFUser:(PFUser *)object]];
-            
-            
-            // Reload friends section
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionFriendsList] withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Signed Up" message:[NSString stringWithFormat:@"%@ has not signed up with Voting with Friends yet.", email] preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                [alert dismissViewControllerAnimated:YES completion:nil];
-            }];
-            
-            [alert addAction:alertOK];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-
-        }
-    }];
-}
-
 - (void)deleteFriendFromPollUsingIndex:(NSInteger)friendIndex {
     // Get the friend to delete from the poll
     VFFriend *friend = self->pollFriends[friendIndex];
@@ -355,78 +337,14 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:VFSettingsSectionFriendsList] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    ABMultiValueRef emails = ABRecordCopyValue(person, property);
-    CFIndex index = ABMultiValueGetIndexForIdentifier(emails, identifier);
-    
-    NSString *selectedEmail = CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, index));
-    
-    CFRelease(emails);
-
-    [self addEmailAddressToPoll:selectedEmail];
-}
-
-- (void)getManualEmailAddress {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add E-Mail Address" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Add E-Mail" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        UITextField *emailAddressTextField = alert.textFields[0];
-        [self addEmailAddressToPoll:emailAddressTextField.text];
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [alert addAction:alertOK];
-    [alert addAction:alertCancel];
-    
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Tap to enter e-mail address";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
-        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AddFriendsSegue"]) {
+        AddFriendsVC *addFriendsVC = [segue destinationViewController];
         
-        
-    }];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-
-}
-
-- (IBAction)addFriendButtonTouched:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add Friend to Vote" message:@"How would you like to enter the email address?" preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *alertContacts = [UIAlertAction actionWithTitle:@"From Contacts" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        ABPeoplePickerNavigationController *emailPickerFromContacts = [[ABPeoplePickerNavigationController alloc] init];
-        emailPickerFromContacts.peoplePickerDelegate = self;
-        
-        emailPickerFromContacts.predicateForEnablingPerson = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
-        emailPickerFromContacts.displayedProperties = @[@(kABPersonEmailProperty)];
-        
-        [self presentViewController:emailPickerFromContacts animated:YES completion:nil];
-        
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    UIAlertAction *alertEmailAddress = [UIAlertAction actionWithTitle:@"Manually" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self getManualEmailAddress];
-        [alert dismissViewControllerAnimated:YES completion:^{
-            [self getManualEmailAddress];
-        }];
-    }];
-    
-    UIAlertAction *alertCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [alert addAction:alertContacts];
-    [alert addAction:alertEmailAddress];
-    [alert addAction:alertCancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+        addFriendsVC.friendsList= self->currentUsersFriendsList;
+        addFriendsVC.pollFriends = self->pollFriends;
+        addFriendsVC.pollFriendsToAdd = self->pollFriendsToAdd;
+    }
 }
 
 

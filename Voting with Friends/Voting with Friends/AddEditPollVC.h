@@ -7,12 +7,10 @@
 //
 
 @import UIKit;
-@import AddressBook;
-@import AddressBookUI;
 
 @class VFPoll;
 
-@interface AddEditPollVC : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface AddEditPollVC : UITableViewController
 
 @property (weak) VFPoll *pollData;
 
