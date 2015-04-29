@@ -55,6 +55,20 @@
     }
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:notification.alertTitle message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:alertOK];
+    
+    [self.window.rootViewController.presentedViewController presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];

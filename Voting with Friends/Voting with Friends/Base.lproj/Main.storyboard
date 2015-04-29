@@ -785,18 +785,18 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Dp-vIJ">
-                                            <rect key="frame" x="27" y="219" width="320" height="162"/>
-                                            <date key="date" timeIntervalSinceReferenceDate="450831174.98061299">
-                                                <!--2015-04-15 22:52:54 +0000-->
-                                            </date>
-                                        </datePicker>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Show Individual Answer Totals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ed1-j8-lR2">
                                             <rect key="frame" x="15" y="75" width="206" height="20"/>
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Dp-vIJ">
+                                            <rect key="frame" x="27" y="219" width="320" height="162"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="450831174.98061299">
+                                                <!--2015-04-15 22:52:54 +0000-->
+                                            </date>
+                                        </datePicker>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="1He-64-Tgd" firstAttribute="centerY" secondItem="ZKB-wv-aqI" secondAttribute="centerY" id="0KR-8h-xDj"/>

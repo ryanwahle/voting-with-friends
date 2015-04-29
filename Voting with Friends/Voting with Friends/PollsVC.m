@@ -88,6 +88,38 @@
         self.pollsFromCloudExpired = [NSArray arrayWithArray:pollsExpiredArray];
 
         [self updateTableView];
+        
+        
+        // First remove all local notifications currently scheduled
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        // Schedule local notifications for reminders to vote and alerts for polls that expired.
+        for (VFPoll *poll in pollsArray) {
+            if (poll.expirationDate) {
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.fireDate = poll.expirationDate;
+                notification.alertBody = [NSString stringWithFormat:@"The poll '%@' by %@ just finished and is now expired. We hope you got what you wanted!", poll.questionForPoll, poll.nameOfPollOwner];
+                notification.alertTitle = @"Poll Expired";
+                notification.soundName = UILocalNotificationDefaultSoundName;
+                [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+                
+                if (poll.indexOfSelectedAnswerFromCurrentUser == -1) {
+                    NSDate *hourNoticeExpireDateTime = [poll.expirationDate dateByAddingTimeInterval:-3600];
+                    NSDate *nowDateTime = [NSDate date];
+                    
+                    if ([nowDateTime compare:hourNoticeExpireDateTime] == NSOrderedAscending) {
+                        UILocalNotification *notification = [[UILocalNotification alloc] init];
+                        notification.fireDate = [poll.expirationDate dateByAddingTimeInterval:-3600];
+                        notification.alertBody = [NSString stringWithFormat:@"Vote on the poll '%@' by %@. Poll ends in 1 hour!", poll.questionForPoll, poll.nameOfPollOwner];
+                        notification.alertTitle = @"Vote Needed";
+                        notification.soundName = UILocalNotificationDefaultSoundName;
+                        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+                    }
+                }
+            }
+        }
+        
+        //NSLog(@"\n\nNotfications Scheduled After: %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
     }];
 }
 
