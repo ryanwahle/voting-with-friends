@@ -72,6 +72,13 @@
 }
 
 - (IBAction)addCommentButtonTapped:(UIBarButtonItem *)sender {
+    if (self.pollData.isPollExpired) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to add any comments." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Add Comment to Poll" message:@"Enter your comment:" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertOK = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
