@@ -18,6 +18,13 @@
 
 @implementation VoteVC
 
+- (void)viewDidLoad {
+    UIBarButtonItem *shareButtonBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
+    UIBarButtonItem *addCommentButtonBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addCommentButtonTapped:)];
+    
+    self.navigationItem.rightBarButtonItems = @[shareButtonBarItem, addCommentButtonBarItem];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
