@@ -902,8 +902,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jql-CJ-e9Y" id="n1t-Ub-IQv">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter new email address" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZn-zC-uWs">
-                                            <rect key="frame" x="15" y="13" width="280" height="24"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter new email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZn-zC-uWs">
+                                            <rect key="frame" x="15" y="13" width="266" height="24"/>
                                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                             <connections>
@@ -922,6 +922,7 @@
                                         <constraint firstAttribute="centerY" secondItem="ffq-Hs-OFh" secondAttribute="centerY" constant="-0.5" id="FeV-lS-gkw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ffq-Hs-OFh" secondAttribute="trailing" constant="8" id="Gav-aj-9vE"/>
                                         <constraint firstAttribute="centerY" secondItem="CZn-zC-uWs" secondAttribute="centerY" constant="-0.5" id="SrA-ff-rz6"/>
+                                        <constraint firstItem="CZn-zC-uWs" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ffq-Hs-OFh" secondAttribute="leading" constant="-5" id="WRF-6U-Rbv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
