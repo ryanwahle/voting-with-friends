@@ -27,12 +27,11 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2l-xJ-kO4">
                                 <rect key="frame" x="0.0" y="255" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LPy-k2-UYW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
-                                <size key="titleShadowOffset" width="0.0" height="1"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.92549020051956177" green="0.94117647409439087" blue="0.94509804248809814" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.17254902422428131" green="0.24313725531101227" blue="0.31372550129890442" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,7 +56,7 @@
                                 <rect key="frame" x="242" y="313" width="117" height="33"/>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <state key="normal" title="First Time User">
-                                    <color key="titleColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -68,7 +67,7 @@
                                 <rect key="frame" x="16" y="313" width="125" height="33"/>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <state key="normal" title="Forget Password">
-                                    <color key="titleColor" red="0.82352941176470584" green="0.20000000000000001" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -154,15 +153,13 @@
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PKV-u2-zii">
                                             <rect key="frame" x="99" y="105" width="253" height="40"/>
-                                            <color key="backgroundColor" red="0.75294119119644165" green="0.22352941334247589" blue="0.16862745583057404" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.7686274509803922" green="0.30196078431372547" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="hFC-AP-HZm"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                            <size key="titleShadowOffset" width="0.0" height="1"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                             <state key="normal" title="Vote">
                                                 <color key="titleColor" red="0.92549020051956177" green="0.94117647409439087" blue="0.94509804248809814" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" red="0.17254902422428131" green="0.24313725531101227" blue="0.31372550129890442" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -336,10 +333,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-Bt-4DZ">
-                                                    <rect key="frame" x="116" y="2" width="143" height="40"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="20"/>
+                                                    <rect key="frame" x="0.0" y="2" width="375" height="40"/>
+                                                    <color key="backgroundColor" red="0.33333333333333331" green="0.3843137254901961" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                                     <state key="normal" title="Logoff this Account">
-                                                        <color key="titleColor" red="0.75294119120000003" green="0.22352941330000001" blue="0.16862745579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="logoutButtonTap:" destination="Tx1-qN-F2e" eventType="touchUpInside" id="TaT-MR-nHz"/>
@@ -348,7 +346,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="lx1-Bt-4DZ" secondAttribute="centerX" id="1Tz-pX-or6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lx1-Bt-4DZ" secondAttribute="bottom" constant="-6" id="5c2-t2-lYf"/>
                                                 <constraint firstAttribute="centerY" secondItem="lx1-Bt-4DZ" secondAttribute="centerY" constant="0.5" id="SEf-q6-ZmC"/>
+                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="leading" secondItem="2Sg-M2-NvX" secondAttribute="leadingMargin" constant="-8" id="jaf-1q-VfN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lx1-Bt-4DZ" secondAttribute="trailing" constant="-8" id="lSj-6h-vdL"/>
+                                                <constraint firstItem="lx1-Bt-4DZ" firstAttribute="top" secondItem="2Sg-M2-NvX" secondAttribute="topMargin" constant="-6" id="tpI-FQ-Crc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -509,13 +511,13 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DAm-ZH-3JW">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9H-W8-Nw9">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -865,7 +867,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellPreviousFriend" textLabel="hN0-Hs-77V" detailTextLabel="9JG-bp-ylo" style="IBUITableViewCellStyleValue1" id="mBb-An-QJr">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellPreviousFriend" textLabel="hN0-Hs-77V" detailTextLabel="9JG-bp-ylo" rowHeight="50" style="IBUITableViewCellStyleValue1" id="mBb-An-QJr">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mBb-An-QJr" id="R1X-Pu-FbZ">
@@ -873,35 +875,35 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hN0-Hs-77V">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="E-Mail Address" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9JG-bp-ylo">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAddNewEmail" id="jql-CJ-e9Y" customClass="AddNewEmailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellAddNewEmail" rowHeight="50" id="jql-CJ-e9Y" customClass="AddNewEmailCell">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jql-CJ-e9Y" id="n1t-Ub-IQv">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter new email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZn-zC-uWs">
-                                            <rect key="frame" x="15" y="14" width="206" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter new email address" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZn-zC-uWs">
+                                            <rect key="frame" x="15" y="13" width="280" height="24"/>
+                                            <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                             <connections>
                                                 <action selector="emailTextfieldEditingChanged:" destination="jql-CJ-e9Y" eventType="editingChanged" id="B6j-Mm-yyt"/>
                                             </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-Hs-OFh">
-                                            <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                            <rect key="frame" x="337" y="14" width="22" height="22"/>
                                             <connections>
                                                 <action selector="addEmailButtonTapped:" destination="zaM-up-Btl" eventType="touchUpInside" id="ujG-8c-nCd"/>
                                             </connections>
@@ -962,12 +964,11 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mY-8A-zhZ">
                                 <rect key="frame" x="0.0" y="255" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="D0B-83-ibY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
-                                <size key="titleShadowOffset" width="0.0" height="1"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.92549020051956177" green="0.94117647409439087" blue="0.94509804248809814" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -997,7 +998,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
                                 <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1048,11 +1049,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.90588235855102539" green="0.29803922772407532" blue="0.23529411852359772" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="21"/>
-                            <color key="textShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="1"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1069,7 +1069,7 @@
         <image name="AccountIcon" width="11" height="26"/>
         <image name="AnswerUnchecked" width="28" height="28"/>
         <image name="BackIcon" width="13" height="11"/>
-        <image name="Voting with Friends" width="240" height="215"/>
+        <image name="Voting with Friends" width="112" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

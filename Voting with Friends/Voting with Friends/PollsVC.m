@@ -121,7 +121,6 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         self.tableView.backgroundView = nil;
     } else {
-        //UILabel *messageLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
         UIImageView *emptyTable = [[UIImageView alloc] initWithFrame:self.view.bounds];
         emptyTable.image = [UIImage imageNamed:@"EmptyTable"];
         
@@ -168,16 +167,17 @@
     
     if (pollData.isPollExpired) {
         [pollCell.voteButton setTitle: @"Expired - Tap for History" forState: UIControlStateNormal];
-        [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
+        [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:85.0f/255.0f green:98.0f/255.0f blue:112.0f/255.0f alpha:1.0]];
         
         pollCell.expirationLabel.text = [NSString stringWithFormat:@"This poll expired on %@", [dateFormatter stringFromDate:pollData.expirationDate]];
     } else {
         if (pollData.indexOfSelectedAnswerFromCurrentUser > -1) {
-            [pollCell.voteButton setTitle: @"Your Vote Has Counted" forState: UIControlStateNormal];
-            [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:52.0f/255.0f green:152.0f/255.0f blue:219.0f/255.0f alpha:1.0]];
+            [pollCell.voteButton setTitle: @"Your Vote has Counted" forState: UIControlStateNormal];
+            //[pollCell.voteButton setTitleColor:[UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+            [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:0.0f/255.0f green:149.0f/255.0f blue:163.0f/255.0f alpha:1.0]];
         } else {
             [pollCell.voteButton setTitle: @"Tap to Vote" forState: UIControlStateNormal];
-            [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:192.0f/255.0f green:57.0f/255.0f blue:43.0f/255.0f alpha:1.0]];
+            [pollCell.voteButton setBackgroundColor:[UIColor colorWithRed:196.0f/255.0f green:77.0f/255.0f blue:88.0f/255.0f alpha:1.0]];
         }
         
         if (pollData.expirationDate) {
