@@ -27,9 +27,12 @@
     // Make some UI changes to the text fields.
     
     _loginUITextField.borderStyle = UITextBorderStyleNone;
-    [_loginUITextField.layer addSublayer:[self createTextFieldBottomBorder:_loginUITextField]];
-    
     _passwordUITextField.borderStyle = UITextBorderStyleNone;
+    
+    [self.loginUITextField layoutIfNeeded];
+    [self.passwordUITextField layoutIfNeeded];
+    
+    [_loginUITextField.layer addSublayer:[self createTextFieldBottomBorder:_loginUITextField]];
     [_passwordUITextField.layer addSublayer:[self createTextFieldBottomBorder:_passwordUITextField]];
     
     [_loginUITextField becomeFirstResponder];
@@ -72,7 +75,11 @@
         [self signInFailedAlert:@"You must first enter your email address in order to reset your password." withTitle:@"Reset Password"];
     } else {
         [PFUser requestPasswordResetForEmailInBackground:emailString block:^(BOOL succeeded, NSError *error) {
-            [self signInFailedAlert:[NSString stringWithFormat:@"An email was sent to %@ with instructions on resetting your password.", emailString] withTitle:@"Reset Password"];
+            if (succeeded) {
+                [self signInFailedAlert:[NSString stringWithFormat:@"An email was sent to %@ with instructions on resetting your password.", emailString] withTitle:@"Reset Password"];
+            } else {
+                [self signInFailedAlert:@"You entered an invalid email address or you signed up using a different email address.\n\nPlease verify the email address and try again." withTitle:@"Reset Password"];
+            }
         }];
     }
 }

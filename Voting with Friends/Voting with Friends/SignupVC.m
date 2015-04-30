@@ -21,17 +21,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Make some UI changes to the text fields.
-    
     _nameUITextField.borderStyle = UITextBorderStyleNone;
-    [_nameUITextField.layer addSublayer:[self createTextFieldBottomBorder:_nameUITextField]];
-    
     _emailUITextField.borderStyle = UITextBorderStyleNone;
-    [_emailUITextField.layer addSublayer:[self createTextFieldBottomBorder:_emailUITextField]];
-    
     _passwordUITextField.borderStyle = UITextBorderStyleNone;
-    [_passwordUITextField.layer addSublayer:[self createTextFieldBottomBorder:_passwordUITextField]];
     
+    [self.nameUITextField layoutIfNeeded];
+    [self.emailUITextField layoutIfNeeded];
+    [self.passwordUITextField layoutIfNeeded];
+    
+    [_nameUITextField.layer addSublayer:[self createTextFieldBottomBorder:_nameUITextField]];
+    [_emailUITextField.layer addSublayer:[self createTextFieldBottomBorder:_emailUITextField]];
+    [_passwordUITextField.layer addSublayer:[self createTextFieldBottomBorder:_passwordUITextField]];
+
     [_nameUITextField becomeFirstResponder];
 }
 
