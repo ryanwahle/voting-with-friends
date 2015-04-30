@@ -21,10 +21,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Clear the login and password fields
     self.loginUITextField.text = @"";
     self.passwordUITextField.text = @"";
-    
+
     // Make some UI changes to the text fields.
     
     _loginUITextField.borderStyle = UITextBorderStyleNone;
@@ -34,6 +33,7 @@
     [_passwordUITextField.layer addSublayer:[self createTextFieldBottomBorder:_passwordUITextField]];
     
     [_loginUITextField becomeFirstResponder];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

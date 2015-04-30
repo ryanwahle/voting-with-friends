@@ -23,11 +23,7 @@
 		6835AFE21AF03FEF008CB121 /* AddNewEmailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6835AFE11AF03FEF008CB121 /* AddNewEmailCell.m */; };
 		6839C2111ADB292800AAFECB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2101ADB292800AAFECB /* Parse.framework */; };
 		6839C2131ADB293600AAFECB /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6839C2121ADB293600AAFECB /* Bolts.framework */; };
-		688356701AF1490F005DCBD0 /* FiraSans-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6883564D1AF1490F005DCBD0 /* FiraSans-Italic.otf */; };
-		688356711AF1490F005DCBD0 /* FiraSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6883564E1AF1490F005DCBD0 /* FiraSans-Light.otf */; };
-		688356721AF1490F005DCBD0 /* FiraSans-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6883564F1AF1490F005DCBD0 /* FiraSans-LightItalic.otf */; };
-		688356731AF1490F005DCBD0 /* FiraSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 688356501AF1490F005DCBD0 /* FiraSans-Medium.otf */; };
-		688356751AF1490F005DCBD0 /* FiraSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 688356521AF1490F005DCBD0 /* FiraSans-Regular.otf */; };
+		686E14D41AF19E140093A4C3 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E14D31AF19E140093A4C3 /* ActivityCell.m */; };
 		6886167A1ADDB09E00207EE3 /* VFPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 688616791ADDB09E00207EE3 /* VFPush.m */; };
 		6893E6D41AD34E2C00851820 /* AddEditPollFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6893E6D31AD34E2C00851820 /* AddEditPollFriendCell.m */; };
 		68989BE71AC1F98C00FD8323 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68989BE61AC1F98C00FD8323 /* libz.dylib */; };
@@ -88,11 +84,8 @@
 		6835AFE11AF03FEF008CB121 /* AddNewEmailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewEmailCell.m; sourceTree = "<group>"; };
 		6839C2101ADB292800AAFECB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6839C2121ADB293600AAFECB /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		6883564D1AF1490F005DCBD0 /* FiraSans-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Italic.otf"; sourceTree = "<group>"; };
-		6883564E1AF1490F005DCBD0 /* FiraSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Light.otf"; sourceTree = "<group>"; };
-		6883564F1AF1490F005DCBD0 /* FiraSans-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-LightItalic.otf"; sourceTree = "<group>"; };
-		688356501AF1490F005DCBD0 /* FiraSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Medium.otf"; sourceTree = "<group>"; };
-		688356521AF1490F005DCBD0 /* FiraSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Regular.otf"; sourceTree = "<group>"; };
+		686E14D21AF19E140093A4C3 /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
+		686E14D31AF19E140093A4C3 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
 		688616781ADDB09E00207EE3 /* VFPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFPush.h; sourceTree = "<group>"; };
 		688616791ADDB09E00207EE3 /* VFPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VFPush.m; sourceTree = "<group>"; };
 		6893E6D21AD34E2C00851820 /* AddEditPollFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEditPollFriendCell.h; sourceTree = "<group>"; };
@@ -187,7 +180,6 @@
 		681AFFE71AB9F285000FD77B /* Voting with Friends */ = {
 			isa = PBXGroup;
 			children = (
-				688356391AF148F7005DCBD0 /* Fonts */,
 				681AFFF21AB9F285000FD77B /* Main.storyboard */,
 				68C841681ACFAA5300FE38CC /* Signup */,
 				68C841671ACFAA4900FE38CC /* Login */,
@@ -242,18 +234,6 @@
 			name = "Data Classes";
 			sourceTree = "<group>";
 		};
-		688356391AF148F7005DCBD0 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				6883564D1AF1490F005DCBD0 /* FiraSans-Italic.otf */,
-				6883564E1AF1490F005DCBD0 /* FiraSans-Light.otf */,
-				6883564F1AF1490F005DCBD0 /* FiraSans-LightItalic.otf */,
-				688356501AF1490F005DCBD0 /* FiraSans-Medium.otf */,
-				688356521AF1490F005DCBD0 /* FiraSans-Regular.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		68989BDF1AC1F85600FD8323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +259,8 @@
 				680E81171AED8A7C00BB0C66 /* AnswerCell.m */,
 				68B4B0511AD1C50F000ABDB2 /* HeaderQuestionCell.h */,
 				68B4B0521AD1C50F000ABDB2 /* HeaderQuestionCell.m */,
+				686E14D21AF19E140093A4C3 /* ActivityCell.h */,
+				686E14D31AF19E140093A4C3 /* ActivityCell.m */,
 			);
 			name = "Vote ViewController";
 			sourceTree = "<group>";
@@ -418,13 +400,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				688356751AF1490F005DCBD0 /* FiraSans-Regular.otf in Resources */,
-				688356711AF1490F005DCBD0 /* FiraSans-Light.otf in Resources */,
-				688356701AF1490F005DCBD0 /* FiraSans-Italic.otf in Resources */,
-				688356721AF1490F005DCBD0 /* FiraSans-LightItalic.otf in Resources */,
 				681AFFF41AB9F285000FD77B /* Main.storyboard in Resources */,
 				681AFFF61AB9F285000FD77B /* Images.xcassets in Resources */,
-				688356731AF1490F005DCBD0 /* FiraSans-Medium.otf in Resources */,
 				68E0D6CA1ACD0C6600CC9508 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				680E81181AED8A7C00BB0C66 /* AnswerCell.m in Sources */,
+				686E14D41AF19E140093A4C3 /* ActivityCell.m in Sources */,
 				68989BFD1AC20A2700FD8323 /* PollCell.m in Sources */,
 				68B3F9DF1AD4A16A00949BC4 /* VFAnswer.m in Sources */,
 				6835AFE21AF03FEF008CB121 /* AddNewEmailCell.m in Sources */,
@@ -587,6 +565,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -605,6 +584,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Voting with Friends/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

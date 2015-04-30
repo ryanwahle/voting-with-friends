@@ -15,6 +15,7 @@
 #import "AnswerCell.h"
 #import "VFAnswer.h"
 #import "VFActivity.h"
+#import "ActivityCell.h"
 
 @implementation VoteVC
 
@@ -28,7 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.tableView.estimatedRowHeight = 50.0;
+    self.tableView.estimatedRowHeight = 88.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPoll) name:@"cloudDataRefreshed" object:nil];
@@ -161,17 +162,17 @@
     }
     
     if (indexPath.section == 2) { // Activity Section
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
+        ActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellActivity" forIndexPath:indexPath];
         
         VFActivity *activity = self.pollData.pollActivity[indexPath.row];
         
-        cell.detailTextLabel.text = activity.descriptionOfActivity;
+        cell.activityLabel.text = activity.descriptionOfActivity;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 
-        cell.textLabel.text = [dateFormatter stringFromDate:activity.dateAndTimeOfActivity];
+        cell.dateLabel.text = [dateFormatter stringFromDate:activity.dateAndTimeOfActivity];
         
         return cell;
     }
@@ -200,11 +201,11 @@
             [newAnswer selectAnswerForCurrentUser];
             [newAnswer save];
             
-            NSString *newAnswerChosenString = [NSString stringWithFormat:@"%@ has voted for '%@' on the poll '%@'", [PFUser currentUser][@"name"], newAnswer.answerText, self.pollData.questionForPoll];
-            [self.pollData addActivityToPollWithDescription:newAnswerChosenString];
+            [self.pollData addActivityToPollWithDescription:[NSString stringWithFormat:@"%@ has voted for '%@'", [PFUser currentUser][@"name"], newAnswer.answerText]];
             [self.pollData save];
             
-            [self.pollData sendNotificationToAllPollFriends:newAnswerChosenString];
+             [self.pollData sendNotificationToAllPollFriends:[NSString stringWithFormat:@"%@ has voted for '%@' on the poll '%@'", [PFUser currentUser][@"name"], newAnswer.answerText, self.pollData.questionForPoll]];
+
         }
         
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];

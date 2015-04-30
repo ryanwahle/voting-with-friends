@@ -219,6 +219,13 @@
         }
     }
     
+    pollCell.bounds = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 99999);
+    pollCell.contentView.bounds = pollCell.bounds;
+    [pollCell layoutIfNeeded];
+    
+    pollCell.pollQuestion.preferredMaxLayoutWidth = CGRectGetWidth(pollCell.pollQuestion.frame) - 20;
+
+    
     return pollCell;
 }
 
