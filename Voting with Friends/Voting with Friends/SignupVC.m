@@ -18,6 +18,7 @@
 
 @implementation SignupVC
 
+// Take the border off the textfields (which is left on so I can see them in IB) and then call the custom graphic code.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -36,6 +37,7 @@
     [_nameUITextField becomeFirstResponder];
 }
 
+// This is where we draw the custom graphics for the textfields.
 - (CALayer *)createTextFieldBottomBorder:(UITextField *)textField {
     CALayer *textFieldBorder = [CALayer layer];
     CGFloat borderWidth = 1;
@@ -47,6 +49,9 @@
     return textFieldBorder;
 }
 
+
+
+// Verify the users input and try to sign up a user within the parse database.
 - (IBAction)signupNewUser:(UIButton *)sender {
     NSString *emailString = [_emailUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *passwordString = [_passwordUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -77,6 +82,7 @@
     }
 }
 
+// Alert box
 - (void)signUpFailedAlert:(NSString *)alertString {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sign Up Failed" message:alertString preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];

@@ -18,23 +18,13 @@
 
 @implementation AddEditPollQuestionCell
 
+// This is here to add the placeholder text for the textview.
 - (void)awakeFromNib {
     [super awakeFromNib];
     
     _placeholderString = @"Type your question for this poll here.";
     
     [self textViewDidEndEditing:_questionUITextView];
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    [UIView setAnimationsEnabled:NO];
-    
-    [[self parentTableView] beginUpdates];
-    [[self parentTableView] endUpdates];
-    
-    [UIView setAnimationsEnabled:YES];
-    
-    [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -51,6 +41,19 @@
     }
 }
 
+// This will expand the textview and the tableviewcell as the user enters multiple lines of text.
+- (void)textViewDidChange:(UITextView *)textView {
+    [UIView setAnimationsEnabled:NO];
+    
+    [[self parentTableView] beginUpdates];
+    [[self parentTableView] endUpdates];
+    
+    [UIView setAnimationsEnabled:YES];
+    
+    [[self parentTableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:VFSettingsSectionQuestion] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
+
+// This finds the parent table view without having to provide a reference.
 -(UITableView *) parentTableView {
     // iterate up the view hierarchy to find the table containing this cell/view
     UIView *aView = self.superview;

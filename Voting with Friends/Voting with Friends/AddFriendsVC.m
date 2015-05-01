@@ -77,6 +77,8 @@
 
 #pragma mark - Add Email
 
+// Add the user to the poll settings from the previous view. Remember, this data is not saved until the user
+// taps the save button on the previous view.
 - (void)addUserToPollSettings:(PFUser *)user {
     BOOL shouldAddUserToPoll = YES;
     
@@ -103,6 +105,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// Validate the email address exists in the userbase and if so, then add it to the poll settings from the previous view.
 - (IBAction)addEmailButtonTapped:(UIButton *)sender {
     NSString *emailString = [self->addNewEmailCell.emailTextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     

@@ -264,6 +264,7 @@
 
 }
 
+// Make sure we delete all the other objects/data linked to the poll data.
 - (void)deletePoll {
     for (VFAnswer *answerInPoll in self.possibleAnswersForPoll) {
         [answerInPoll deleteAnswer];

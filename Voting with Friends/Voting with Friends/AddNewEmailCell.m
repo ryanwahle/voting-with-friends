@@ -10,6 +10,8 @@
 
 @implementation AddNewEmailCell
 
+// Enable the "add" button if the user types any text in the textfield
+// Disable if the user removes or never types anything
 - (IBAction)emailTextfieldEditingChanged:(UITextField *)sender {
     NSString *emailString = [sender.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     

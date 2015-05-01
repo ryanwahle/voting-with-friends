@@ -10,6 +10,7 @@
 
 @implementation OptionsCell
 
+// Hide the date picker if the user turns off the expiration switch
 - (IBAction)allowPollToExpireUISwitchTap:(id)sender {
     self.pollExpirationLabel.hidden = !self.pollExpirationLabel.hidden;
     self.pollExpirationDate.hidden = !self.pollExpirationDate.hidden;

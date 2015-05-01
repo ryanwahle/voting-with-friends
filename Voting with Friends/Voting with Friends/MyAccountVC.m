@@ -19,6 +19,7 @@
 
 @implementation MyAccountVC
 
+// Populate textfields with user data
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -26,6 +27,7 @@
     self.emailAddressUITextField.text = self.userData[@"username"];
 }
 
+// Validate user input and always save email and name. Only save password if user entered text into the password textfield.
 - (IBAction)saveButtonTap:(UIBarButtonItem *)sender {
     NSString *emailString = [self.emailAddressUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *passwordString = [self.passwordUITextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -67,12 +69,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// User wants to log out, so deregister the push notifications for this user to this device.
 - (IBAction)logoutButtonTap:(id)sender {
     [VFPush deregisterPushNotifications];
     [PFUser logOut];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+// Alert box
 - (void)showAlert:(NSString *)alertString {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Account Update Failed" message:alertString preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];

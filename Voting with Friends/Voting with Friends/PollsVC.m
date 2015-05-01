@@ -22,6 +22,7 @@
 
 @implementation PollsVC
 
+// Register for notifications and get the data from the parse database.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -43,6 +44,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cloudDataRefreshed" object:nil];
 }
 
+// Connect with the parse database and start creating our VFPoll objects.
 - (void)getPollDataFromCloud {
     self.pollsFromCloud = nil;
     self.pollsFromCloudExpired = nil;
@@ -125,6 +127,7 @@
 
 #pragma mark - Table view data source
 
+// This is the pull to refresh code for the table view. Refresh the data from parse and set current time in the textfield.
 - (void)updateTableView {
     [self.tableView reloadData];
     
@@ -233,6 +236,7 @@
     // Needed for editActions to work
 }
 
+// Here is where the swipe on the cell magic happens
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *returnArray;
     
@@ -270,7 +274,6 @@
 }
 
 #pragma mark - Navigation
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Vote"]) {

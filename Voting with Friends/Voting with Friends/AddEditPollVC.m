@@ -36,6 +36,7 @@
 
 @implementation AddEditPollVC
 
+// Setup all the temporary arrays to store data.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -71,6 +72,8 @@
     [self.tableView endEditing:YES];
 }
 
+// The user wants to save the poll settings, so update data from the textfields and also add/remove friends
+// and answers to/from the parse database.
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     VFPoll *savePoll = nil;
     

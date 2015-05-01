@@ -21,6 +21,7 @@
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    // Setup remote notifications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
     
@@ -37,6 +38,9 @@
     [currentInstallation saveInBackground];
 }
 
+// This is called when getting a remote notification. If it has a message attached to it, then it was sent to display information to the user so
+// an alert box is displayed. Otherwise if it does not have a message attached, then it is just to tell us that data needs to be reloaded from
+// the parse database.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
     
@@ -55,6 +59,7 @@
     }
 }
 
+// This is for local notifcations like reminders to the user about placing their vote, and alerting users that the poll has expired.
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];
     
@@ -69,6 +74,7 @@
     [self.window.rootViewController.presentedViewController presentViewController:alert animated:YES completion:nil];
 }
 
+// Refresh the cloud data whenever we open the app. We don't want stale data.
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cloudDataRefreshed" object:nil];

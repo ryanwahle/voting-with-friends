@@ -18,6 +18,7 @@
 
 @implementation LoginVC
 
+// Take the border off the textfields (which is left on so I can see them in IB) and then call the custom graphic code.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -39,6 +40,7 @@
     
 }
 
+// Check to see if the user is already logged in or not
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -48,6 +50,7 @@
     }
 }
 
+// Validate the users input and then try to login using parse.
 - (IBAction)signInButtonTap:(id)sender {
     
     NSString *emailString = [self.loginUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -68,6 +71,7 @@
     }
 }
 
+// Use parse to send the user an email with instructions on resetting their password.
 - (IBAction)forgetPasswordButtonTap:(id)sender {
     NSString *emailString = [self.loginUITextField.text.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
@@ -84,17 +88,20 @@
     }
 }
 
+// Alert box
 - (void)signInFailedAlert:(NSString *)alertString withTitle:(NSString *)titleString {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:titleString message:alertString preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+// Login was good, so setup push notifications linking user to device
 - (void) loginSuccesful {
     [VFPush registerPushNotifications];
     [self performSegueWithIdentifier:@"LoginSuccessfulSegue" sender:nil];
 }
 
+// Custom drawing code for the textfields.
 - (CALayer *)createTextFieldBottomBorder:(UITextField *)textField {
     CALayer *textFieldBorder = [CALayer layer];
     CGFloat borderWidth = 1;

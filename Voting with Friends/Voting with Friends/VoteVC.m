@@ -19,6 +19,7 @@
 
 @implementation VoteVC
 
+// Add an array of toolbar buttons for share and new comments
 - (void)viewDidLoad {
     UIBarButtonItem *shareButtonBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
     UIBarButtonItem *addCommentButtonBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addCommentButtonTapped:)];
@@ -26,6 +27,7 @@
     self.navigationItem.rightBarButtonItems = @[shareButtonBarItem, addCommentButtonBarItem];
 }
 
+// Register for notifications from within the app and reload the table.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -45,6 +47,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pollObjectUpdated" object:nil];
 }
 
+
+// Refresh our VFPoll object with data from parse database.
 - (void)refreshPoll {
     //NSLog(@"VoteVC :: refreshPoll");
     [self.pollData refreshPoll];
@@ -57,6 +61,7 @@
 
 #pragma mark - Sharing
 
+// Load the iOS 8 sharing controller.
 - (IBAction)shareButtonTapped:(UIBarButtonItem *)sender {
     if (self.pollData.indexOfSelectedAnswerFromCurrentUser == -1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Share" message:@"You need to select an answer before you can share it!" preferredStyle:UIAlertControllerStyleAlert];
@@ -72,6 +77,7 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+// Add a new comment to the poll.
 - (IBAction)addCommentButtonTapped:(UIBarButtonItem *)sender {
     if (self.pollData.isPollExpired) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Poll Expired" message:@"This poll has expired so you are not allowed to add any comments." preferredStyle:UIAlertControllerStyleAlert];
